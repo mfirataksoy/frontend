@@ -1,0 +1,29 @@
+Posts are loading: 投稿を読み込んでいます
+Share a new story: 新しいストーリーを共有する
+asd: 新しい家族を作る
+button:
+  about: これは？
+  back: 戻る
+  go: 進む
+  home: ホーム
+  toggle_dark: ダークモード切り替え
+  toggle_langs: 言語切り替え
+herosection:
+  header: 物語と思い出
+  heroparagraph: |-
+    何世代にもわたる物語や思い出を作成し、最も愛する人と共有しましょう。
+    思い出を簡単に作成またはアップロードして、家族全員と共有できます。
+  login: ログイン
+  signup: サインアップ
+intro:
+  desc: 固執された Vite スターターテンプレート
+  dynamic-route: 動的ルートのデモ
+  hi: こんにちは、{name}!
+  whats-your-name: 君の名は。
+not-found: 見つかりませんでした
+p:
+  comments: コメントはまだありません
+  posts: 投稿を読み込んでいます
+span:
+  post: 新しい家族を作る
+spasan: 既存のファミリーに参加する

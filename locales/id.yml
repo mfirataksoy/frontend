@@ -1,0 +1,33 @@
+Posts are loading: Postingan sedang dimuat
+Share a new story: Berbagi cerita baru
+asd: Buat keluarga baru
+button:
+  about: Tentang
+  back: Kembali
+  go: Pergi
+  home: Beranda
+  toggle_dark: Ubah ke mode gelap
+  toggle_langs: Ubah bahasa
+herosection:
+  header: Cerita dan Kenangan
+  heroparagraph: >-
+    Buat dan bagikan cerita dan kenangan generasi dengan yang paling Anda
+    sukai. 
+
+    Buat atau unggah kenangan dengan mudah untuk dibagikan dengan seluruh
+    keluarga Anda.
+  login: Gabung
+  signup: Daftar
+intro:
+  aka: Juga diketahui sebagai
+  desc: Template awal vite
+  dynamic-route: Contoh rute dinamik
+  hi: Halo, {name}!
+  whats-your-name: Siapa nama anda?
+not-found: Tidak ditemukan
+p:
+  comments: Belum ada komentar
+  posts: Memuat postingan
+span:
+  post: Buat keluarga baru
+spasan: Bergabung dengan keluarga yang sudah ada

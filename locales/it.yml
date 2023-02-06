@@ -1,0 +1,31 @@
+Posts are loading: I post si stanno caricando
+Share a new story: Condividi una nuova storia
+asd: Crea una nuova famiglia
+button:
+  about: Su di me
+  back: Indietro
+  go: Vai
+  home: Home
+  toggle_dark: Attiva/disattiva modalità scura
+  toggle_langs: Cambia lingua
+herosection:
+  header: Storie e ricordi
+  heroparagraph: >-
+    Crea e condividi storie e ricordi generazionali con le persone che ami di
+    più. 
+
+    Crea o carica facilmente ricordi da condividere con tutta la tua famiglia.
+  login: Login
+  signup: Iscrizione
+intro:
+  desc: Modello per una Applicazione Vite
+  dynamic-route: Demo di rotta dinamica
+  hi: Ciao, {name}!
+  whats-your-name: Come ti chiami?
+not-found: Non trovato
+p:
+  comments: Ancora nessun commento
+  posts: Caricamento post
+span:
+  post: Crea una nuova famiglia
+spasan: Unisciti a una famiglia esistente

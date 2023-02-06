@@ -1,0 +1,33 @@
+Posts are loading: Trwa ładowanie postów
+Share a new story: Podziel się nową historią
+asd: Stwórz nową rodzinę
+button:
+  about: O nas
+  back: Wróć
+  go: WEJDŹ
+  home: Strona główna
+  toggle_dark: Ustaw tryb nocny
+  toggle_langs: Zmień język
+herosection:
+  header: Historie i wspomnienia
+  heroparagraph: >-
+    Twórz i udostępniaj pokoleniowe historie i wspomnienia tym, których kochasz
+    najbardziej. 
+
+    Z łatwością twórz lub przesyłaj wspomnienia, aby dzielić się nimi z całą
+    rodziną.
+  login: Zaloguj sie
+  signup: Zapisz się
+intro:
+  aka: Znany też jako
+  desc: Opiniowany szablon startowy Vite
+  dynamic-route: Demonstracja dynamicznego route
+  hi: Cześć, {name}!
+  whats-your-name: Jak masz na imię?
+not-found: Nie znaleziono
+p:
+  comments: brak komentarzy
+  posts: Ładowanie postów
+span:
+  post: Stwórz nową rodzinę
+spasan: Dołącz do istniejącej rodziny

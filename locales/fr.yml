@@ -1,0 +1,33 @@
+Posts are loading: Les messages sont en cours de chargement
+Share a new story: Partager une nouvelle histoire
+asd: Créer une nouvelle famille
+button:
+  about: À propos
+  back: Retour
+  go: Essayer
+  home: Accueil
+  toggle_dark: Basculer en mode sombre
+  toggle_langs: Changer de langue
+herosection:
+  header: Histoires et souvenirs
+  heroparagraph: >-
+    Créez et partagez des histoires et des souvenirs générationnels avec ceux
+    que vous aimez le plus. 
+
+    Créez ou téléchargez facilement des souvenirs à partager avec toute votre
+    famille.
+  login: Connexion
+  signup: S'inscrire
+intro:
+  aka: Aussi connu sous le nom de
+  desc: Exemple d'application Vite
+  dynamic-route: Démo de route dynamique
+  hi: Salut, {name}!
+  whats-your-name: Comment t'appelles-tu ?
+not-found: Page non trouvée
+p:
+  comments: aucun commentaire pour l'instant
+  posts: Chargement des messages
+span:
+  post: Créer une nouvelle famille
+spasan: Rejoindre une famille existante

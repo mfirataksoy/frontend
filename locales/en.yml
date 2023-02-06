@@ -1,0 +1,48 @@
+Posts are loading: Posts are loading
+Share a new story: Share a new story
+asd: Create a new family
+button:
+  about: About
+  back: Back
+  go: GO
+  home: Home
+  login: Login
+  signup: Signup
+  toggle_dark: Toggle dark mode
+  toggle_langs: Change languages
+error:
+  email: Please enter a valid email
+  otp: Please fill otp
+  password: Please enter a valid password
+  wrongPassword: Wrong Password or Email
+footer:
+  language: Language
+  title: KeepSake
+herosection:
+  header: Stories and Memories
+  heroparagraph: >-
+    Create and share generational stories and memories with the ones you love
+    the most. Easily create or upload memories to share with your entire family.
+  login: Login
+  signup: Signup
+intro:
+  aka: Also known as
+  desc: Opinionated Vite Starter Template
+  dynamic-route: Demo of dynamic route
+  hi: Hi, {name}!
+  whats-your-name: What's your name?
+login:
+  errors:
+    body: Please try again later
+    title: Could'nt Signup
+not-found: Not found
+p:
+  comments: No comments yet
+  posts: Loading posts
+span:
+  post: Create a new family
+spasan: Join to an existing family
+verify:
+  resend: Resend
+  title: Verify your email
+  verify: Verify
