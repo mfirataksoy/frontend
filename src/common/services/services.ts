@@ -63,6 +63,19 @@ export const joinFamily = async (code: string) => {
   return response.data
 }
 
+export const uploadProfilePic = async (data: any) => {
+
+
+  const response = await httpClient.post(endpoints.file.profilePhoto, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+
+  return response.data;
+}
+
+
 export const services = {
-  signup, verifyEmail, login, makePost, getAccountDetails, getPosts, editAccountDetails, getFamilies, createFamily, joinFamily,
+  signup, verifyEmail, login, makePost, getAccountDetails, getPosts, editAccountDetails, getFamilies, createFamily, joinFamily, uploadProfilePic
 }

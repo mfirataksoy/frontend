@@ -15,4 +15,9 @@ export const endpoints = {
     myFamilies: '/families/my-family',
     joinFamily: '/families/join-family',
   },
+
+  file: {
+    profilePhoto: '/file/uploadPhoto',
+  },
+
 }
