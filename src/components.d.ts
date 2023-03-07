@@ -15,7 +15,6 @@ declare module '@vue/runtime-core' {
     JoinFamilyButton: typeof import('./components/Family/JoinFamilyButton.vue')['default']
     KeepSake: typeof import('./components/Navbar&Footer/KeepSake.vue')['default']
     LoginForm: typeof import('./components/forms/LoginForm.vue')['default']
-    Modal: typeof import('./components/Posts/Modal.vue')['default']
     Navbar: typeof import('./components/Navbar&Footer/Navbar.vue')['default']
     PostButton: typeof import('./components/Posts/PostButton.vue')['default']
     PostCard: typeof import('./components/Posts/PostCard.vue')['default']
