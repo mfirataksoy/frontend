@@ -22,9 +22,16 @@ async function openModal() {
 }
 
 async function createFamily() {
-  await services.createFamily(familyName.value)
-  window.location.reload()
-}
+  const nowJoinedFamily = await services.createFamily(familyName.value)
+  const currentFamilies = await services.getAccountDetails();
+  const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
+  familyIdArray.push(nowJoinedFamily._id);
+  const response = await services.editAccountDetails({
+  _id: currentFamilies._id,
+  familyId: familyIdArray
+  });
+  console.log(response);
+  }
 </script>
 
 <template>

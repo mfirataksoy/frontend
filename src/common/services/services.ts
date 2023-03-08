@@ -18,6 +18,16 @@ export const getPosts = async () => {
   return response.data
 }
 
+export const getFeed = async (familyIds: string[], feedOptions: any) => {
+  const response = await httpClient.post<any>(endpoints.feed, {
+    familyIds: familyIds,
+    skip: feedOptions.skip,
+    limit: feedOptions.limit
+  });
+  return response.data;
+}
+
+
 export const signup = async (signupData: SignupData) => {
   const response = await httpClient.post(endpoints.auth.register, signupData)
 
@@ -60,6 +70,11 @@ export const createFamily = async (familyName: string) => {
 
 export const joinFamily = async (code: string) => {
   const response = await httpClient.get('http://localhost:3002/families/join-family' + `/${code}`)
+  return response.data
+}
+
+export const updateFamily = async (familyId: string) => {
+  const response = await httpClient.put(endpoints.families.families + `/${familyId}`)
   return response.data
 }
 

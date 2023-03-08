@@ -1,16 +1,40 @@
 <script setup lang="ts">
-import { getPosts } from '~/common/services/services'
+import { getPosts, getFamilies, getFeed } from '~/common/services/services'
 import type { Post } from '~/stores/types'
 
 const posts = ref<Post[] | null>(null)
 
-const getposts = async () => {
-  const postsResponse = await getPosts()
-  posts.value = postsResponse
+interface Family {
+  _id: string;
+  name: string;
+  // Add any other properties here
 }
 
+const families = ref<Family[] | null>(null);
+
+const getfamilies = async() =>{
+  const familiesResponse = await getFamilies()
+  families.value = familiesResponse;
+  console.log(families)
+  if (families.value) {
+    const familyIdArray = families.value.map((item: Family) => item._id).flat();
+    console.log(familyIdArray);
+    const feedOptions = {
+      skip: 0,
+      limit: 3
+    };
+    const postsResponse = await getFeed(familyIdArray, feedOptions)
+    console.log(postsResponse)
+    posts.value = postsResponse
+  }
+}
+
+
+
+
 onMounted(() => {
-  getposts()
+  getPosts();
+  getfamilies();
 })
 
 const { t } = useI18n()
