@@ -11,8 +11,6 @@ import { services } from '~/common/services/services'
 import { audioRecorder } from '~/common/constants/audioRecorder'
 import type { Family } from '~/stores/types'
 
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
-
 const { t } = useI18n()
 
 const isOpen = ref(false)
@@ -33,13 +31,13 @@ async function closeRecording() {
   audioRecorder.stop()
   audioURL.value = URL.createObjectURL(audioRecorder.audioBlobs[0])
   // Convert the audio blob to an MP3 file using ffmpeg.js
-  const ffmpeg = createFFmpeg({ log: true });
-  await ffmpeg.load();
-  ffmpeg.FS('writeFile', 'audio.wav', await fetchFile(audioURL.value));
-  await ffmpeg.run('-i', 'audio.wav', '-codec:a', 'libmp3lame', 'audio.mp3');
-  const mp3Data = ffmpeg.FS('readFile', 'audio.mp3');
-  const mp3Blob = new Blob([mp3Data.buffer], { type: 'audio/mp3' });
-  console.log(mp3Blob)
+  // const ffmpeg = createFFmpeg({ log: true });
+  // await ffmpeg.load();
+  // ffmpeg.FS('writeFile', 'audio.wav', await fetchFile(audioURL.value));
+  // await ffmpeg.run('-i', 'audio.wav', '-codec:a', 'libmp3lame', 'audio.mp3');
+  // const mp3Data = ffmpeg.FS('readFile', 'audio.mp3');
+  // const mp3Blob = new Blob([mp3Data.buffer], { type: 'audio/mp3' });
+  // console.log(mp3Blob)
 }
 
 async function post() {
