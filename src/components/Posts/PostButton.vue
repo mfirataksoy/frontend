@@ -8,42 +8,26 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { services } from '~/common/services/services'
-import { audioRecorder } from '~/common/constants/audioRecorder'
 import type { Family } from '~/stores/types'
-
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
+import Audio from '../Audio.vue'
 
 const { t } = useI18n()
 
 const isOpen = ref(false)
 const families = ref<Family[] | null>(null)
-const audioURL = ref<string | null>(null);
 
 function closeModal() {
   isOpen.value = false
 }
 async function openModal() {
-  isOpen.value = true
   const resp = await services.getFamilies()
+  isOpen.value = true
   families.value = resp
   console.log(resp)
 }
 
-async function closeRecording() {
-  audioRecorder.stop()
-  audioURL.value = URL.createObjectURL(audioRecorder.audioBlobs[0])
-  // Convert the audio blob to an MP3 file using ffmpeg.js
-  const ffmpeg = createFFmpeg({ log: true });
-  await ffmpeg.load();
-  ffmpeg.FS('writeFile', 'audio.wav', await fetchFile(audioURL.value));
-  await ffmpeg.run('-i', 'audio.wav', '-codec:a', 'libmp3lame', 'audio.mp3');
-  const mp3Data = ffmpeg.FS('readFile', 'audio.mp3');
-  const mp3Blob = new Blob([mp3Data.buffer], { type: 'audio/mp3' });
-  console.log(mp3Blob)
-}
 
 async function post() {
-  closeRecording()
   const post = {
     audioUrl: 'https://audiostoragekeepsake.s3.amazonaws.com/Never+gonna+give+you+up.mp3',
     date: Date.now(),
@@ -115,19 +99,9 @@ async function post() {
                       Make a recording to share with your family
                     </p>
                   </div>
-                  <button
-                    type="button" class="btn btn-primary"
-                    @click="audioRecorder.start()"
-                  >
-                    Record
-                  </button>
-                  <button
-                    type="button" class="btn btn-primary"
-                    @click="audioRecorder.stop()"
-                  >
-                    Stop
-                  </button>
-                  <!-- <AudioPlayer :src="" /> -->
+                  <div>
+                    <Audio>asd</Audio>
+                  </div>
 
                   <div class="mt-4">
                     <button
