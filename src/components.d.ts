@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AddFamilyButton: typeof import('./components/Family/AddFamilyButton.vue')['default']
     Alert: typeof import('./components/Notification/Alert.vue')['default']
+    Audio: typeof import('./components/Audio.vue')['default']
     AudioPlayer: typeof import('./components/Posts/AudioPlayer.vue')['default']
     FamilyCard: typeof import('./components/Family/FamilyCard.vue')['default']
     HeroSection: typeof import('./components/HeroSection.vue')['default']
