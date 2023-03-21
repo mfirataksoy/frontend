@@ -37,7 +37,7 @@ async function joinFamily() {
 <template>
   <button
     class="fixed text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-    style="top: 95%; left: 85%; transform: translate(-50%, -50%)"
+    style="top: 90%; left: 45%; transform: translate(-50%, -50%);"
     @click="openModal"
   >
     <span>{{ t("spasan") }}</span>

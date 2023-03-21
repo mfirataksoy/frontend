@@ -16,6 +16,7 @@ const changeLang = (event: Event) => {
 </script>
 
 <template>
+  <footer class="footer">
   <nav text-xl mt-6 flex justify-center items-center gap-2>
     <RouterLink class="icon-btn mx-2" to="/" :title="t('button.home')">
       <div i-carbon-campsite />
@@ -48,4 +49,27 @@ const changeLang = (event: Event) => {
 
 
   </nav>
+</footer>
 </template>
+
+<style scoped>
+.footer {
+  /* Set the footer to be fixed at the bottom of the viewport */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  /* Use flexbox to vertically center the content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Add some padding to give space between the content and the bottom of the viewport */
+  padding: 16px;
+  
+  /* Set the background color and text color */
+  background-color: #f5f5f5;
+  color: #333;
+}
+</style>

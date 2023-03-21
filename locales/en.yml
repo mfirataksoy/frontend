@@ -40,8 +40,9 @@ p:
   comments: No comments yet
   posts: Loading posts
 span:
+  createRecording: Create a memory
   post: Create a new family
-spasan: Join to an existing family
+spasan: Join an existing family
 verify:
   resend: Resend
   title: Verify your email

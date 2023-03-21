@@ -59,7 +59,7 @@ function onFamilySelect(family) {
                 C7,11.035,7.652,12,10,12z M13,1.6C13,0.963,12.346,0,10,0C7.652,0,7,0.963,7,1.6v4.242h6V1.6z"
       />
     </svg>
-    <span>{{ t("span.post") }}</span>
+    <span>{{ t("span.createRecording") }}</span>
     <div>
       <TransitionRoot appear :show="isOpen" as="template">
         <Dialog as="div" class="relative z-10" @close="closeModal">
