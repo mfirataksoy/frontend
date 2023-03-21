@@ -4,7 +4,6 @@
 
 <template>
   <div class="h-2xl">
-    Sign Up
     <SignupForm />
   </div>
 </template>

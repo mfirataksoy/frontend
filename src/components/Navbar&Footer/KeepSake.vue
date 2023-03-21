@@ -6,7 +6,7 @@
   <div class="flex justify-center">
     <a href="/">
       <div
-        class="bg-gradient-to-r from-teal-500 to-teal-800 rounded-md hover:from-teal-800  hover:to-teal-800   w-30 "
+        class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900   w-30 "
       >
         <h1 class=" text-xl text-white font-bold">
           KEEPSAKE
