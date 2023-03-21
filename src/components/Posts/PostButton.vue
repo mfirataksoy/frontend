@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -9,12 +9,15 @@ import {
 } from '@headlessui/vue'
 import { services } from '~/common/services/services'
 import type { Family } from '~/stores/types'
-import Audio from '../Audio.vue'
+import Audio from './Audio.vue'
 
 const { t } = useI18n()
 
 const isOpen = ref(false)
 const families = ref<Family[] | null>(null)
+const selectedFamilies = ref<any[]>([]);
+
+provide('selectedFamilies', selectedFamilies.value);
 
 function closeModal() {
   isOpen.value = false
@@ -25,22 +28,22 @@ async function openModal() {
   families.value = resp
   console.log(resp)
 }
-
-
-async function post() {
-  const post = {
-    audioUrl: 'https://audiostoragekeepsake.s3.amazonaws.com/Never+gonna+give+you+up.mp3',
-    date: Date.now(),
-  }
-  try {
-    await services.makePost(post)
-  }
-  catch (error) {
-    console.error(error)
-  }
-  closeModal()
+function setSelectedFamilies(families) {
+  selectedFamilies.value = families;
 }
+
+function onFamilySelect(family) {
+  if (selectedFamilies.value.includes(family)) {
+    selectedFamilies.value = selectedFamilies.value.filter(
+      (selectedFamily) => selectedFamily !== family
+    );
+  } else {
+    selectedFamilies.value.push({id: family._id, name: family.name});
+  }
+}
+
 </script>
+
 
 <template>
   <button
@@ -78,7 +81,7 @@ async function post() {
                 <DialogPanel
                   class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                 >
-                  <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
+                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
                     Please select the family you want to post to
                   </DialogTitle>
                   <div class="flex items-center justify-center">
@@ -88,7 +91,8 @@ async function post() {
                     >
                       <a
                         href="#" aria-current="page"
-                        class=" rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                        class="rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                        @click.prevent="onFamilySelect(family)"
                       >
                         {{ family.name }}
                       </a>
@@ -100,7 +104,7 @@ async function post() {
                     </p>
                   </div>
                   <div>
-                    <Audio>asd</Audio>
+                    <Audio :selected-families="selectedFamilies" @selected-families="setSelectedFamilies" />
                   </div>
 
                   <div class="mt-4">
@@ -110,13 +114,6 @@ async function post() {
                       @click="closeModal"
                     >
                       Cancel
-                    </button>
-                    <button
-                      type="button"
-                      class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      @click="post"
-                    >
-                      Post
                     </button>
                   </div>
                 </DialogPanel>
