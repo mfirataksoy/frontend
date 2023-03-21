@@ -62,7 +62,7 @@ const handleSubmit = async (e: MouseEvent) => {
     if (loginResponse.status.toString().startsWith('2'))
       user.isLoggedIn = true
       router.push('/feed')
-      //location.reload()
+      location.reload()
   }
   catch (error) {
     const errorMsg = error?.response?.data?.message

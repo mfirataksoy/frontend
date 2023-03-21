@@ -10,7 +10,6 @@ const logout = () => {
   user.isLoggedIn = false
   console.log(router.currentRoute);
   router.push('/')
-  console.log(router.currentRoute);
 }
 
 // get current page name
