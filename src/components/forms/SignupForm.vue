@@ -125,38 +125,44 @@ const handleSubmit = async (e: MouseEvent) => {
 
   emit('signup', body)
 }
+
+function redirectToLogin() {
+  console.log("here")
+  router.push('/auth/login')
+}
+
 </script>
 
 <template>
-
-
   <section class="text-gray-600 body-font bg-gray-100">
-  <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
-    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-      <h1 class="title-font font-bold lg:text-7xl text-6xl text-blue-600 text-center md:text-left ">Keepsake</h1>
-      <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-black text-center md:text-left ">Connect with your loved ones.</p>
-    </div>
-    <div class="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-      <div class="relative mb-4">
-        <input v-model="firstname" type="text" for="firstname" name="firstname" placeholder="First name" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+    <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
+      <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+        <h1 class="title-font font-bold lg:text-7xl text-6xl text-blue-600 text-center md:text-left ">Keepsake</h1>
+        <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-black text-center md:text-left ">Connect with your loved ones.</p>
       </div>
-      <div class="relative mb-4">
-        <input v-model="lastname" type="text" for="lastname" name="lastname" placeholder="Last name" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-      </div>
-      <div class="relative mb-4">
-        <input v-model="email" type="email" for="email" name="email" placeholder="Email address" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-lg outline-none  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-      </div>
-      <div class="relative mb-4">
-        <input v-model="password" type="password" for="password" name="password" placeholder="Password" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
-      </div>
-      <button class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-blue-600"
-        onmouseover="this.style.backgroundColor='#1d4dc0';"
-        onmouseout="this.style.backgroundColor='#2a67ec';"
-        :onclick="handleSubmit">
-        Sign Up
-      </button>
-      <hr class="my-5" />
-      <button class="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 " onmouseover="this.style.backgroundColor='#228B22';" onmouseout="this.style.backgroundColor='#34A853';">Already a member?</button>
+      <div class="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+        <div class="relative mb-4">
+          <input v-model="firstname" type="text" for="firstname" name="firstname" placeholder="First name" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        </div>
+        <div class="relative mb-4">
+          <input v-model="lastname" type="text" for="lastname" name="lastname" placeholder="Last name" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        </div>
+        <div class="relative mb-4">
+          <input v-model="email" type="email" for="email" name="email" placeholder="Email address" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-lg outline-none  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+          <p class="text-red-400 text-left text-sm">{{ errors.email }}</p>
+        </div>
+        <div class="relative mb-4">
+          <input v-model="password" type="password" for="password" name="password" placeholder="Password" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+          <p class="text-red-400 text-left text-sm">{{ errors.password }}</p>
+        </div>
+        <button class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-blue-600"
+          onmouseover="this.style.backgroundColor='#1d4dc0';"
+          onmouseout="this.style.backgroundColor='#2a67ec';"
+          :onclick="handleSubmit">
+          Sign Up
+        </button>
+        <hr class="my-5" />
+        <button class="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 " onmouseover="this.style.backgroundColor='#228B22';" onmouseout="this.style.backgroundColor='#34A853';" @click="redirectToLogin">Already a member?</button>
     </div>
   </div>
 </section>

@@ -16,80 +16,46 @@ const mobileMenuOpen = ref(false)
 </script>
 
 <template>
-  <div class="relative isolate overflow-hidden bg-gray-100">
-    <img
-      src="https://images.unsplash.com/photo-1478061653917-455ba7f4a541?ixlib=rb-4.0.3&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-40&exp=45&blend-mode=multiply"
-      alt="" class="absolute inset-0 -z-10 h-full w-full object-cover"
+  <section class="mb-40">
+
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+      class="svg absolute hidden lg:block"
+      style="height: 560px; width: 100%; z-index: -10; overflow: hidden"
     >
-    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
-      <svg
-        class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
-        viewBox="0 0 1155 678"
-      >
-        <path
-          fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".2"
-          d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
-        />
-        <defs>
-          <linearGradient
-            id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#9089FC" />
-            <stop offset="1" stop-color="#FF80B5" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div
-            class="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20"
-          >
-            Invite your family members now. <a href="#" class="font-semibold text-white"><span
-              class="absolute inset-0" aria-hidden="true"
-            />Read more <span aria-hidden="true">&rarr;</span></a>
+      <defs>
+        <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+          <stop stop-color="hsl(217, 102%, 99%)" offset="0%"></stop>
+          <stop stop-color="hsl(217,88%, 93%)" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#sw-gradient-0)"
+        d="M 0.351 264.418 C 0.351 264.418 33.396 268.165 47.112 270.128 C 265.033 301.319 477.487 325.608 614.827 237.124 C 713.575 173.504 692.613 144.116 805.776 87.876 C 942.649 19.853 1317.845 20.149 1440.003 23.965 C 1466.069 24.779 1440.135 24.024 1440.135 24.024 L 1440 0 L 1360 0 C 1280 0 1120 0 960 0 C 800 0 640 0 480 0 C 320 0 160 0 80 0 L 0 0 L 0.351 264.418 Z"
+      ></path>
+    </svg>
+
+    <div class="px-6 py-12 lg:my-12 md:px-12 text-gray-800 text-center lg:text-left">
+      <div class="container mx-auto xl:px-32">
+        <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+          <div class="mt-12 lg:mt-0">
+            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">Keepsake <br /><span class="text-blue-600">Share your Stories and Memories</span></h1>
+            <a class="inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/signup" role="button">Get started</a>
+            <a class="inline-block px-7 py-3 bg-transparent text-blue-600 font-medium text-sm leading-snug uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
           </div>
-        </div>
-        <div class="text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            {{ t('herosection.header') }}
-          </h1>
-          <p class="mt-6 text-lg leading-8 text-gray-300">
-            {{ t('herosection.heroparagraph') }}
-          </p>
-          <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="/auth/signup" class="btn">{{
-              t('herosection.signup')
-            }} </a>
-            <a href="/auth/login" class="text-base font-semibold leading-7 text-white">{{ t('herosection.login') }}
-              <span aria-hidden="true">→</span></a>
+          <div class="mb-12 lg:mb-0">
+            <img
+              src="https://imgs.search.brave.com/idfB1ukUODyBZOaaA0PzHfZ1oQfTLx7gxHnPmG3R24M/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hZHZh/bnRhZ2U0cGFyZW50/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMTcvMTEvaGFw/cHktZmFtaWx5Lmpw/Zw"
+              class="w-full rounded-lg shadow-lg"
+              alt=""
+              style="opacity: 0.7;"
+            />
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-    >
-      <svg
-        class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
-        viewBox="0 0 1155 678"
-      >
-        <path
-          fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".2"
-          d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
-        />
-        <defs>
-          <linearGradient
-            id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#9089FC" />
-            <stop offset="1" stop-color="#FF80B5" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  </div>
+  </section>
 </template>
