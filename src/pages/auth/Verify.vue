@@ -37,10 +37,10 @@ onMounted(() => {
           {{ !otp && isDirty ? t('error.otp') : '' }}
         </p>
         <div class="w-full justify-between">
-          <button class="loading" btn mt-2 text-lg :onclick="handleVerify">
+          <button class="loading" bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg :onclick="handleVerify">
             {{ t('verify.verify') }}
           </button>
-          <button class="loading" btn-ghost mt-2 ml-4 text-lg :onclick="resendCode">
+          <button class="loading" btn-ghost mt-2 ml-4 text-lg py-2 px-4 :onclick="resendCode">
             {{ t('verify.resend') }}
           </button>
         </div>

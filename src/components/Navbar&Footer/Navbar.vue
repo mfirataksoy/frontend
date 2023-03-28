@@ -1,154 +1,108 @@
 <script setup lang="ts">
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+//import { computed, watch } from '@vue/reactivity'
+import { computed } from 'vue'
 
-const route = useRoute()
-const router = useRouter()
-const user = useUserStore()
-const logout = () => {
-  localStorageState.value = null
-  user.isLoggedIn = false
-  console.log(router.currentRoute);
-  router.push('/')
-}
+  const router = useRouter()
+  const user = useUserStore()
+  const isLoggedIn = computed(() => user.isLoggedIn)
 
-// get current page name
+
+
+
+
+  const logout = () => {
+    //localStorageState.value = null
+    //user.isLoggedIn = false
+    user.logout()
+    router.push('/')
+  }
+
+  const print = () => {
+    console.log(isLoggedIn.value)
+  }
+
+
 </script>
 
 <template>
-  <!--   <div class="w-full ">
-    <div class=" mx-auto max-w-5xl flex justify-between items-center ">
-      <KeepSake />
-      <a href="">
-        Posts
-      </a>
-    </div>
-  </div> -->
-  <Disclosure v-slot="{ open }" as="nav" class="bg-white shadow dark:bg-black dark:text-white">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-16 justify-between">
-        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          <!-- Mobile menu button -->
-          <DisclosureButton
-            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          >
-            <span class="sr-only">Open main menu</span>
-            <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
-          </DisclosureButton>
-        </div>
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex flex-shrink-0 items-center">
-            <KeepSake />
-          </div>
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <a
-              v-if="!user.isLoggedIn"
-              href="/" class="inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-900"
-              :class="{ 'border-indigo-500 ': route.name === 'index' }"
-            >Home</a>
-            <a
-              v-if="user.isLoggedIn"
-              href="/family"
-              class="inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-            >Family</a>
 
-            <a
-              v-if="user.isLoggedIn"
-              href="/feed"
-              class="inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 "
-              :class="{ 'border-indigo-500 ': route.name === 'feed' }"
-            >Posts</a>
-            <a
-              v-if="!user.isLoggedIn"
-              href="/auth/signup"
-              class="inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-            >Sign
-              up</a>
-            <a
-              v-if="!user.isLoggedIn"
-              href="/auth/login"
-              class="inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-            >Login</a>
-          </div>
+<nav class="bg-gray-100 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+  <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <KeepSake />
+    <button @click="print">Button</button>
+  <div class="flex md:order-2">
+    <router-link v-if="!user.isLoggedIn" to="/auth/signup" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Get started
+    </router-link>
+    <div v-else class="flex items-center md:order-2">
+      <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        <img class="w-8 h-8 rounded-full" :src="user.currentUser?.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="user photo">
+      </button>
+      <!-- Dropdown menu -->
+      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white"> {{ user.savedName }}</span>
         </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-
-          <!-- Profile dropdown -->
-          <Menu v-if="user.isLoggedIn" as="div" class="relative ml-3">
-            <div>
-              <MenuButton
-                class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                <span class="sr-only">Open user menu</span>
-                <img
-                  class="h-8 w-8 rounded-full"
-                  :src="user.currentUser.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'"
-                  alt=""
-                >
-              </MenuButton>
-            </div>
-            <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-              <MenuItems
-                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              >
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="/account/account" class="block px-4 py-2 text-sm text-gray-700"
-                    :class="[active ? 'bg-gray-100' : '']"
-                  >Profile Settings</a>
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#" class="block px-4 py-2 text-sm text-gray-700" :class="[active ? 'bg-gray-100' : '']"
-                    @click="logout"
-                  >Sign
-                    out</a>
-                </MenuItem>
-              </MenuItems>
-            </transition>
-          </Menu>
-        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li>
+            <a href="/account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Account</a>
+          </li>
+          <li>
+            <a @click="logout" href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+              <div class="inline-flex items-center">
+                Sign Out
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+      <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <li v-if="!isLoggedIn.value">
+        <a href="/" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
+      </li>
+      <li v-if="isLoggedIn.value">
+        <a href="/family" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Families</a>
+      </li>
+      <li v-if="isLoggedIn.value">
+        <a href="/feed" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Feed</a>
+      </li>
+      <li v-if="!isLoggedIn.value">
+        <a href="/auth/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Login</a>
+      </li>
+      <li v-if="isLoggedIn.value">
+        <a href="/account/account" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Account</a>
+      </li>
+      <li v-if="isLoggedIn.value">
+        <a @click="logout" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sign Out</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
 
-    <DisclosurePanel class="sm:hidden">
-      <div class="space-y-1 pt-2 pb-4">
-        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <DisclosureButton
-          as="a" href="/"
-          class="block border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-          :class="{ 'bg-indigo-50 border-indigo-500 text-indigo-700 ': route.name === 'index' }"
-        >
-          Dashboard
-        </DisclosureButton>
-        <DisclosureButton
-          as="a" href="#"
-          class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-        >
-          Team
-        </DisclosureButton>
-        <DisclosureButton
-          as="a" href="#"
-          class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-          :class="{ 'bg-indigo-50 border-indigo-500 text-indigo-700 ': route.name === 'feed' }"
-        >
-          Feed
-        </DisclosureButton>
-        <DisclosureButton
-          as="a" href="#"
-          class="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-        >
-          Calendar
-        </DisclosureButton>
-      </div>
-    </DisclosurePanel>
-  </Disclosure>
+
+
+
+
+
 </template>
+
+<style scoped>
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+</style>
+
+
+
+

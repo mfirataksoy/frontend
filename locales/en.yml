@@ -35,7 +35,7 @@ login:
   errors:
     body: Please try again later
     title: Could'nt Signup
-not-found: Not found
+not-found: Page Not found
 p:
   comments: No comments yet
   posts: Loading posts

@@ -6,7 +6,8 @@ export const useUserStore = defineStore('user', () => {
    * Current name of the user.
    */
   const savedName = ref('')
-  const isLoggedIn = ref(false)
+  //const isLoggedIn = ref(false)
+  const isLoggedIn = reactive({ value: true })
   const previousNames = ref(new Set<string>())
   const currentUser = ref<User | null>(null)
   const accessToken = ref<string>('')
@@ -32,9 +33,37 @@ export const useUserStore = defineStore('user', () => {
     accessToken.value = token
   }
 
-  function switchIsLoggedIn() {
-    isLoggedIn.value = !isLoggedIn.value
+  // function switchIsLoggedIn() {
+  //   console.log(isLoggedIn.value)
+  //   isLoggedIn.value = !isLoggedIn.value
+  //   console.log(isLoggedIn.value)
+  // }
+
+  function logout() {
+    isLoggedIn.value = false
+    console.log("users.ts: ", isLoggedIn.value)
   }
+
+  function login() {
+    isLoggedIn.value = true
+    console.log("users.ts: ", isLoggedIn.value)
+  }
+
+  // function switchIsLoggedIn() {
+  //   // Get the current value of "loggedin" from local storage
+  //   var isLoggedIn = localStorage.getItem("loggedin");
+  
+  //   // If the value is "true", set it to "false", and vice versa
+  //   if (isLoggedIn === "true") {
+  //     isLoggedIn = "false";
+  //   } else {
+  //     isLoggedIn = "true";
+  //   }
+  
+  //   // Store the updated value of "loggedin" in local storage
+  //   localStorage.setItem("loggedin", isLoggedIn);
+  // }
+  
 
   return {
     setNewName,
@@ -45,7 +74,8 @@ export const useUserStore = defineStore('user', () => {
     setUser,
     setAccessToken,
     isLoggedIn,
-    switchIsLoggedIn,
+    logout,
+    login
   }
 })
 

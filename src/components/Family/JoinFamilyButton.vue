@@ -36,8 +36,8 @@ async function joinFamily() {
 
 <template>
   <button
-    class="fixed text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-    style="top: 90%; left: 45%; transform: translate(-50%, -50%);"
+    class="fixed text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow-lg transition ease-in duration-200 focus:outline-none"
+    style="top: 90%; right: 40%; transform: translate(-50%, -50%);"
     @click="openModal"
   >
     <span>{{ t("spasan") }}</span>
@@ -74,23 +74,23 @@ async function joinFamily() {
                 >
                   <DialogTitle
                     as="h3"
-                    class="text-lg font-medium leading-6 text-gray-900"
+                    class="text-center text-xl font-medium leading-6 text-gray-900"
                   >
-                    Join a new family
+                    Join a New Family
                   </DialogTitle>
 
-                  <div class="flex flex-col gap-1 max-w-xl" w="300px">
-                    <label class="text-gray-700 text-left" for="name">
-                      Choose what your family is going to be called
+                  <div class="mx-auto flex flex-col gap-1 max-w-xl" w="300px">
+                    <label class="text-gray-700 text-center text-sm pt-3 pb-3" for="name">
+                      Ask your admin for the family code
                     </label>
                     <TheInput
                       v-model="code"
-                      placeholder="Enter the code"
+                      placeholder="Enter family code"
                       autocomplete="false"
                     />
                     <button
                       type="button"
-                      class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg mt-1"
                       @click="joinFamily"
                     >
                       Join family

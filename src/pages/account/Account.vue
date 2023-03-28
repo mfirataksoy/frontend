@@ -12,6 +12,7 @@ export default {
       phoneNumber: "",
       profilePicUrl: "",
       selectedProfilePicture: null,
+      user: useUserStore()
     };
   },
   created() {
@@ -32,6 +33,7 @@ export default {
       }
     },
     async submitForm() {
+      this.updateProfilePic()
       try {
         const response = await services.editAccountDetails({
           _id: this.secretId,
@@ -45,99 +47,99 @@ export default {
         console.log("finished update");
       } catch (error) {
         console.error(error);
-        console.log("here");
       }
     },
     async updateProfilePic() {
-  try {
-    if (!this.selectedProfilePicture) {
-      console.error('No profile picture selected');
-      return;
+      try {
+        if (!this.selectedProfilePicture) {
+          console.error('No profile picture selected');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', this.selectedProfilePicture, this.selectedProfilePicture.name);
+
+        const response = await services.uploadProfilePic(formData);
+        console.log(response)
+        this.profilePicUrl = response.url;
+
+        console.log("finished update");
+      } catch (error) {
+        console.error(error);
+        console.log("here");
     }
-
-    const formData = new FormData();
-    formData.append('file', this.selectedProfilePicture, this.selectedProfilePicture.name);
-
-    const response = await services.uploadProfilePic(formData);
-    console.log(response)
-    this.profilePicUrl = response.url;
-
-    console.log("finished update");
-  } catch (error) {
-    console.error(error);
-    console.log("here");
-  }
-}
-,
+  },
     handleProfilePictureChange(event) {
       this.selectedProfilePicture = event.target.files[0];
+      this.updateProfilePic()
     },
   },
 };
+
+
+
 </script>
 
+
+
+
 <template>
-  <div>
-    <h1 class="text-2xl mt-10" font-bold dark:text-white>
-      Edit Your Account Details
-    </h1>
-  </div>
-  <div class="h-2xl">
-    <div
-      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex justify-center"
-    >
-      <div class="flex flex-col gap-1 max-w-xl" w="300px">
-        <label class="text-gray-700 text-left" for="name"> First name </label>
-        <input
-          v-model="firstName"
-          class="border border-gray-300 p-2 rounded-lg"
-          type="text"
-        />
-        <label class="text-gray-700 text-left" for="name"> Last name </label>
-        <input
-          v-model="lastName"
-          class="border border-gray-300 p-2 rounded-lg"
-          type="text"
-        />
-        <label class="text-gray-700 text-left" for="email"> Email </label>
-        <input
-          v-model="email"
-          class="border border-gray-300 p-2 rounded-lg"
-          type="email"
-        />
-        <label class="text-gray-700 text-left" for="birthDate">
-          Birth Date
-        </label>
-        <input
-          v-model="birthDate"
-          class="border border-gray-300 p-2 rounded-lg"
-          type="text"
-        />
-        <label class="text-gray-700 text-left" for="phoneNumber">
-          Phone Number
-        </label>
-        <input
-          v-model="phoneNumber"
-          class="border border-gray-300 p-2 rounded-lg"
-          type="text"
-        />
-        <button class="btn mt-2 text-lg" @click="submitForm">
-          Update Information
-        </button>
-        <label class="text-gray-700 text-left" for="profilePicture">
-          Profile Picture
-        </label>
 
-        <input
-          class="border border-gray-300 p-2 rounded-lg"
-          type="file"
-          @change="handleProfilePictureChange"
-        />
 
-        <button class="btn mt-2 text-lg" @click="updateProfilePic">
-          Update Profile Picture
-        </button>
-      </div>
+
+<!-- component -->
+<!-- component -->
+<div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16">
+        <div class="container mx-auto">
+            <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl">
+
+              <label for="profile-picture" class="block w-30 h-30 rounded-full mx-auto mb-10 shadow-lg hover:scale-115 transition-all ease-out duration-200 cursor-pointer">
+                <img class="w-full h-full object-cover rounded-full" :src="user.currentUser?.profilePicUrl ||'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Profile Picture">
+              </label>
+              <input id="profile-picture" type="file" class="shadow-lg" @change="handleProfilePictureChange" style="display:none">
+
+                <h2 class="text-2xl text-gray-900 font-bold">Account Setting</h2>
+                <form class="mt-6 border-t border-gray-400 pt-4">
+                    <div class='flex flex-wrap -mx-3 mb-6'>
+                        <div class='w-full md:w-full px-3 mb-6'>
+                            <label class='block tracking-wide text-black text-lg font-bold mb-2' for='grid-text-1'>Email Address</label>
+                            <input v-model="email" class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' id='grid-text-1' type='text' placeholder='Enter email'  required>
+                        </div>
+                        <div class='w-full md:w-full px-3 mb-6 '>
+                            <label class='block tracking-wide text-black text-lg font-bold mb-2'>Password</label>
+                            <button class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">Change Your Password</button>
+                        </div>
+
+                        <div class="Personal w-full border-t border-gray-400 pt-4">
+                            <h2 class="text-2xl text-black font-bold">Personal Info:</h2>
+                            <div class="flex items-center justify-between mt-4">
+                                <div class='w-full md:w-1/2 px-3 mb-6'>
+                                    <label class='block tracking-wide text-black text-lg font-bold mb-2' >First Name</label>
+                                    <input v-model="firstName" class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'  required>
+                                </div>
+                                <div class='w-full md:w-1/2 px-3 mb-6'>
+                                    <label class='block tracking-wide text-black text-lg font-bold mb-2' >Last Name</label>
+                                    <input v-model="lastName" class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'  required>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-4">
+                                <div class='w-full md:w-1/2 px-3 mb-6'>
+                                    <label class='block tracking-wide text-black text-lg font-bold mb-2' >Birthdate</label>
+                                    <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'>
+                                </div>
+                                <div class='w-full md:w-1/2 px-3 mb-6'>
+                                    <label class='block tracking-wide text-black text-lg font-bold mb-2' >Phone Number</label>
+                                    <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button @click="submitForm" class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" type="submit">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
+
 </template>

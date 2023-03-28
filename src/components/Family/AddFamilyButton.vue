@@ -36,8 +36,8 @@ async function createFamily() {
 
 <template>
   <button
-    class="fixed text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-    style="top: 90%; left: 55%; transform: translate(-50%, -50%);" @click="openModal"
+    class="shadow-lg fixed text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+    style="top: 90%; left: 50%; transform: translate(50%, -50%);" @click="openModal"
   >
     <span>{{ t("asd") }}</span>
     <div>
@@ -51,7 +51,7 @@ async function createFamily() {
             <div class="fixed inset-0 bg-black bg-opacity-25" />
           </TransitionChild>
 
-          <div class="fixed inset-0 overflow-y-auto">
+          <div class="fixed inset-0 overflow-y-auto items-center">
             <div class="flex min-h-full items-center justify-center p-4 text-center">
               <TransitionChild
                 as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
@@ -61,22 +61,23 @@ async function createFamily() {
                 <DialogPanel
                   class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                 >
-                  <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
+                  <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-black">
                     Create a new family
                   </DialogTitle>
 
-                  <div class="flex flex-col gap-1 max-w-xl" w="300px">
-                    <label class=" text-gray-700 text-left" for="name">
-                      Choose what your family is going to be called
+                  <div class="mx-auto flex flex-col gap-1 max-w-xlr" w="300px">
+                    <label class=" text-gray-700 text-center text-sm pt-3 pb-3" for="name">
+                      Choose a family name
                     </label>
                     <TheInput v-model="familyName" placeholder="Other users will see this name" autocomplete="false" />
                     <button
                       type="button"
-                      class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg mt-1"
                       @click="createFamily"
                     >
                       Create new family
                     </button>
+
                   </div>
                 </DialogPanel>
               </TransitionChild>
@@ -87,3 +88,8 @@ async function createFamily() {
     </div>
   </button>
 </template>
+
+<style scoped>
+
+
+</style>
