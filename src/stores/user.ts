@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', () => {
    */
   const savedName = ref('')
   //const isLoggedIn = ref(false)
-  const isLoggedIn = reactive({ value: true })
+  const isLoggedIn = reactive({ value: false })
   const previousNames = ref(new Set<string>())
   const currentUser = ref<User | null>(null)
   const accessToken = ref<string>('')
