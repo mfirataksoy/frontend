@@ -43,5 +43,7 @@ const changeLang = (event: Event) => {
   /* Set the background color and text color */
   background-color: #f5f5f5;
   color: #333;
+
+  box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 1);;
 }
 </style>

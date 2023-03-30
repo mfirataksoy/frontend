@@ -22,7 +22,7 @@ const { t } = useI18n()
             </li>
           </ul>
         </p>
-        <img class="w-30 h-30 rounded-md object-cover" :src="post.postedBy?.profilePicUrl || emptyProfilePic" alt="">
+        <img class="w-30 h-30 rounded-full object-cover" :src="post.postedBy?.profilePicUrl || emptyProfilePic" alt="">
         <p class="text-gray-800 text-lg">
           {{ post.postedBy?.firstName }}
           {{ post.postedBy?.lastName }}
