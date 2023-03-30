@@ -66,7 +66,6 @@ export default {
         console.log("finished update");
       } catch (error) {
         console.error(error);
-        console.log("here");
     }
   },
     handleProfilePictureChange(event) {

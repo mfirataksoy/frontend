@@ -18,16 +18,21 @@ onMounted(() => {
 <template>
 <div v-if="families" class="grid-container">
   <FamilyCard v-for="family in families" :key="family._id" class="grid-item " :family="family" />
+
 </div>
 
 
 
 
 
-  <div class="flex ">
-    <AddFamilyButton class="mx-3" />
-    <JoinFamilyButton class="mx-3" />
-  </div>
+<div class="fixed bottom-30 left-1/2 transform -translate-x-1/2 flex justify-center w-full flex-row">
+  <AddFamilyButton class="mx-3 " />
+  <JoinFamilyButton class="mx-3" />
+
+
+</div>
+
+
 </template>
 
 <style scoped>
