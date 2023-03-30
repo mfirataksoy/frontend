@@ -1,5 +1,4 @@
 <script setup lang="ts">
-//import { computed, watch } from '@vue/reactivity'
 import { computed } from 'vue'
 
   const router = useRouter()
@@ -11,14 +10,8 @@ import { computed } from 'vue'
 
 
   const logout = () => {
-    //localStorageState.value = null
-    //user.isLoggedIn = false
     user.logout()
     router.push('/')
-  }
-
-  const print = () => {
-    console.log(isLoggedIn.value)
   }
 
 
@@ -27,20 +20,20 @@ import { computed } from 'vue'
 <template>
 
 
-<nav class="bg-gray-100 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+<nav class="bg-gray-100 border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
     <KeepSake />
   <div class="flex md:order-2">
-    <router-link v-if="!user.isLoggedIn.value" to="/auth/login" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+    <router-link v-if="!user.isLoggedIn.value" to="/auth/login" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
       Login
     </router-link>
     <div v-else class="flex items-center md:order-2">
       <router-link to="/account/account">
-          <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+          <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <img class="w-8 h-8 rounded-full" :src="user.currentUser?.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="user photo">
           </button>
         </router-link>
-        <a @click="logout" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sign Out</a>
+        <a @click="logout" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Sign Out</a>
     </div>
       <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -48,21 +41,21 @@ import { computed } from 'vue'
     </button>
   </div>
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
       <li v-if="!isLoggedIn.value">
-        <router-link to="/" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</router-link>
+        <router-link to="/" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Home</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/family" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Family</router-link>
+        <router-link to="/family" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Family</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/feed" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Feed</router-link>
+        <router-link to="/feed" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Feed</router-link>
       </li>
       <li v-if="!isLoggedIn.value">
-        <router-link to="/auth/signup" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sign Up</router-link>
+        <router-link to="/auth/signup" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Sign Up</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/account/account" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Account</router-link>
+        <router-link to="/account/account" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Account</router-link>
       </li>
     </ul>
   </div>
@@ -81,10 +74,6 @@ import { computed } from 'vue'
   z-index: 999;
 }
 
-
-.KeepSake {
-  pointer-events: none;
-}
 
 
 </style>
