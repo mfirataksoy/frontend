@@ -38,7 +38,7 @@ function onFamilySelect(family) {
       (selectedFamily) => selectedFamily !== family
     );
   } else {
-    selectedFamilies.value.push({id: family._id, name: family.name});
+    selectedFamilies.value.push(family.name);
   }
 }
 
@@ -82,10 +82,11 @@ function onFamilySelect(family) {
                   class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                 >
                 <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-black mb-5">
-                    Select the family/families you want to post to:
-                  </DialogTitle>
+                   Select the family/families you want to post to:
+                </DialogTitle>
                   <div class="flex items-center justify-center">
-                    <div class="grid grid-cols-3 gap-4">
+                    <div>
+                      <div class="grid grid-cols-3 gap-4">
                       <div
                         v-for="family in families"
                         :key="family"
@@ -102,20 +103,23 @@ function onFamilySelect(family) {
                         </a>
                       </div>
                     </div>
+                    </div>
                   </div>
                   <div class="mt-2">
-                    <p class="text-sm text-gray-500">
-                      Make a recording to share with your family
+                    <p class="text-sm text-gray-500 text-center mt-5 mb-5">
+                      Create a recording to share with your family:
                     </p>
                   </div>
-                  <div>
-                    <Audio :selected-families="selectedFamilies" @selected-families="setSelectedFamilies" />
-                  </div>
+                  <Audio :selected-families="selectedFamilies" @selected-families="setSelectedFamilies" />
+
+
+
+  
 
                   <div class="mt-4">
                     <button
                       type="button"
-                      class="inline-flex mr-2 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      class="text-white shadow-xl px-4 w-auto h-12 bg-red-600 rounded-lg hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none "
                       @click="closeModal"
                     >
                       Cancel
