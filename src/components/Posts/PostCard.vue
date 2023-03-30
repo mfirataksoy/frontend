@@ -33,17 +33,7 @@ const { t } = useI18n()
         </p> -->
         <p class="text-sm text-gray-600 mb-4" />
 
-        <p v-if="post?.comments && post.comments.length > 0" class="text-sm text-gray-600 mb-4">
-          Comments:
-          <ul>
-            <li v-for="comment in post.comments" :key="comment._id">
-              {{ comment }}
-            </li>
-          </ul>
-        </p>
-        <p v-else class="text-sm text-gray-600">
-          {{ t("p.comments") }}
-        </p>
+
         <div />
       </div>
       <div class="w-full px-5 flex flex-col">

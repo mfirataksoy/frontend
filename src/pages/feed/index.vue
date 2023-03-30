@@ -3,7 +3,7 @@ import { services } from '~/common/services/services'
 </script>
 
 <template>
-  <div v-if="">
+  <div >
     <PostList />
     <PostButton />
   </div>
