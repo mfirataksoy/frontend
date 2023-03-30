@@ -4,10 +4,14 @@ import { services } from '~/common/services/services'
 import type { Family } from '~/stores/types'
 
 const families = ref<Family[] | null>(null)
+const loading = ref<boolean>(false)
+
 
 const getFamilies = async () => {
+  loading.value = true
   const familyResponse = await services.getFamilies()
   families.value = familyResponse
+  loading.value = false
 }
 
 onMounted(() => {
@@ -23,13 +27,37 @@ onMounted(() => {
     <JoinFamilyButton class="mx-3" />
   </div>
 </div>
+<div v-else-if="loading">
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="w-full h-24 border-2 rounded-md mx-auto mt-20">
+      <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+        <div class="w-12 bg-gray-300 h-12 rounded-full"></div>
+        <div class="flex flex-col space-y-3">
+          <div class="w-36 bg-gray-300 h-6 rounded-md"></div>
+          <div class="w-24 bg-gray-300 h-6 rounded-md"></div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-24 border-2 rounded-md mx-auto mt-20">
+      <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+        <div class="w-12 bg-gray-300 h-12 rounded-full"></div>
+        <div class="flex flex-col space-y-3">
+          <div class="w-36 bg-gray-300 h-6 rounded-md"></div>
+          <div class="w-24 bg-gray-300 h-6 rounded-md"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <div v-else>
   <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
-  <div class="font-bold mb-10 text-4xl">View Families</div>
+  <div class="font-bold text-gray-800 mb-10 text-4xl">View Families</div>
     <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
       <div class="">
 
-        <h1 class="font-bold mb-10 text-xl">Join or create a family to get started</h1>
+        <h1 class="font-bold text-gray-900 mb-10 text-xl">Join or create a family to get started</h1>
         <div class="w-full justify-between">
           <AddFamilyButton class="mx-3" />
           <JoinFamilyButton class="mx-3" />

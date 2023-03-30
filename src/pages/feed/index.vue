@@ -3,8 +3,8 @@ import { services } from '~/common/services/services'
 </script>
 
 <template>
-  <div >
+  <div>
     <PostList />
-    <PostButton />
+    
   </div>
 </template>
