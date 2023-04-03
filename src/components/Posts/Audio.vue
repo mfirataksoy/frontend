@@ -1,22 +1,24 @@
 <template>
   <div>
-    <div>
-      <button class="btn btn-success" @click="beginRecording">
+    <div class="text-center mb-4">
+      <button class=" shadow-xl mr-1 text-white px-4 w-auto h-12 bg-blue-600 rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="beginRecording">
         Begin Recording
       </button>
-      <button class="btn btn-danger" @click="endRecording">
+      <button class=" shadow-xl ml-1 text-white px-4 w-auto h-12 bg-red-600 rounded-lg hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="endRecording">
         End Recording
       </button>
     </div>
-    <div v-if="recordingInProgress">Recording in progress...</div>
-    <audio controls :src="audioResultURL" id="resultAudio"></audio>
+    <audio class="mx-auto" controls :src="audioResultURL" id="resultAudio"></audio>
+    <div class=" mx-auto mt-4 mb-4 bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white " v-if="recordingInProgress">Recording in progress...</div>
+
     <button
-      class="btn btn-primary"
-      @click="sendAudioToBackend"
-      :disabled="!audioResultURL"
-    >
-      Send to {{ selectedFamilies }}
-    </button>
+  class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 bg-gray-400 rounded-lg hover:bg-gray-500 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+  @click="sendAudioToBackend"
+  :disabled="!audioResultURL"
+>
+  Send to {{ selectedFamilies.map(item => item.name).join(', ') }}
+</button>
+
   </div>
 </template>
 

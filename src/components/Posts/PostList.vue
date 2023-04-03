@@ -28,10 +28,11 @@ const getfamilies = async() =>{
     loading.value = true
     const postsResponse = await getFeed(familyIdArray, feedOptions)
     console.log(postsResponse)
-    posts.value = postsResponse
+    posts.value = postsResponse.reverse() // Reverse the posts array here
     loading.value = false
   }
 }
+
 
 
 

@@ -33,12 +33,13 @@ function setSelectedFamilies(families) {
 }
 
 function onFamilySelect(family) {
-  if (selectedFamilies.value.includes(family)) {
-    selectedFamilies.value = selectedFamilies.value.filter(
-      (selectedFamily) => selectedFamily !== family
-    );
+  const selectedFamilyIndex = selectedFamilies.value.findIndex(
+    (selectedFamily) => selectedFamily.id === family._id
+  );
+  if (selectedFamilyIndex >= 0) {
+    selectedFamilies.value.splice(selectedFamilyIndex, 1);
   } else {
-    selectedFamilies.value.push({id: family._id, name: family.name});
+    selectedFamilies.value.push({ id: family._id, name: family.name });
   }
 }
 
@@ -81,26 +82,21 @@ function onFamilySelect(family) {
                 <DialogPanel
                   class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
                 >
-                <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-black mb-5">
-                    Select the family/families you want to post to:
+                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
+                    Please select the family you want to post to
                   </DialogTitle>
                   <div class="flex items-center justify-center">
-                    <div class="grid grid-cols-3 gap-4">
-                      <div
-                        v-for="family in families"
-                        :key="family"
-                        class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg"
-                        role="group"
+                    <div
+                      v-for="family in families" :key="family"
+                      class="inline-flex  shadow-md hover:shadow-lg focus:shadow-lg" role="group"
+                    >
+                      <a
+                        href="#" aria-current="page"
+                        class="rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                        @click.prevent="onFamilySelect(family)"
                       >
-                        <a
-                          href="#"
-                          aria-current="page"
-                          class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md font-bold text-white text-lg text-center px-4 py-2 shadow-lg hover:scale-105 transition-all ease-out duration-200 cursor-pointer"
-                          @click.prevent="onFamilySelect(family)"
-                        >
-                          {{ family.name }}
-                        </a>
-                      </div>
+                        {{ family.name }}
+                      </a>
                     </div>
                   </div>
                   <div class="mt-2">
