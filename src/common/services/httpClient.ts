@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { baseURL, prodURL } from '../constants/urls'
+import { baseURL } from '../constants/urls'
 
 // if developlent mode
 
@@ -9,7 +9,7 @@ const tokenRes: LoginResponse = localStorageState.value
 const accesToken = tokenRes?.idToken?.jwtToken
 
 export const httpClient = axios.create({
-  baseURL: isDev ? baseURL : prodURL,
+  baseURL: baseURL
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

@@ -46,7 +46,7 @@ const { t } = useI18n()
 
 <template>
   <div class="mt-4">
-    <div v-if="posts && posts.length > 0" class="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">
+    <div v-if="posts" class="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">
       <PostCard v-for="post in posts" :key="post._id" :post="post" />
       <PostButton />
     </div>
