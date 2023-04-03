@@ -1,5 +1,5 @@
 export const baseURL = 'http://localhost:3002'
-export const prodURL = 'https://api.jelylabs.com/proxy'
+export const prodURL = 'https://backend.keepsakeproject.com'
 
 export const endpoints = {
   auth: {
