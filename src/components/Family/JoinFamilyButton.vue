@@ -30,7 +30,7 @@ async function joinFamily() {
   _id: currentFamilies._id,
   familyId: familyIdArray
 });  console.log(response);
-  // window.location.reload();
+  window.location.reload();
 }
 </script>
 

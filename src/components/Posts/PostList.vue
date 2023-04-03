@@ -47,6 +47,7 @@ const { t } = useI18n()
 
 <template>
   <div class="mt-4">
+    
     <div v-if="posts && posts.length > 0" class="grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-1">
       <PostCard v-for="post in posts" :key="post._id" :post="post" />
       <PostButton />
@@ -54,7 +55,7 @@ const { t } = useI18n()
     <div v-else-if="loading">
       <PostLoader v-for="_, index in Array.from({ length: 10 })" :key="index" />
     </div>
-    <div v-else>
+    <div v-else-if="!families || families.length == 0">
       <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
         <div class="font-bold text-gray-800 mb-10 text-4xl">View Posts</div>
         <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
@@ -64,6 +65,20 @@ const { t } = useI18n()
               <AddFamilyButton class="mx-3" />
               <JoinFamilyButton class="mx-3" />
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
+        <div class="font-bold text-gray-800 mb-10 text-4xl">There are no memories made in  your family! :(</div>
+        <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
+          <div class="">
+            <h1 class="font-bold text-gray-900 mb-10 text-xl">There are no posts made in your family.</h1>
+            <h1 class="font-bold text-gray-900 mb-10 text-xl">Make the first post.</h1>
+            <div class="w-full justify-between">
+              <PostButton/>
+            </div> 
           </div>
         </div>
       </div>

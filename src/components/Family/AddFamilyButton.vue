@@ -31,6 +31,7 @@ async function createFamily() {
   familyId: familyIdArray
   });
   console.log(response);
+  window.location.reload();
   }
 </script>
 
