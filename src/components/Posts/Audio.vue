@@ -12,12 +12,13 @@
     <div class=" mx-auto mt-4 mb-4 bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white " v-if="recordingInProgress">Recording in progress...</div>
 
     <button
-      class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 bg-gray-400 rounded-lg hover:bg-gray-500 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-      @click="sendAudioToBackend"
-      :disabled="!audioResultURL"
-    >
-      Send to {{ selectedFamilies }}
-    </button>
+  class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 bg-gray-400 rounded-lg hover:bg-gray-500 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+  @click="sendAudioToBackend"
+  :disabled="!audioResultURL"
+>
+  Send to {{ selectedFamilies.map(item => item.name).join(', ') }}
+</button>
+
   </div>
 </template>
 
