@@ -4,6 +4,13 @@ const props = defineProps<{
   family: Family
 }>()
 
+const user = useUserStore()
+
+
+const isAdmin = computed(() => {
+  return family?.adminUser?.email === user.currentUser?.email;
+});
+
 async function closeFamily() {
   // await services.closeFamily(props.family._id)
 }
@@ -27,7 +34,6 @@ const family = props.family
 
 <template>
   <div class="flex flex-wrap bg-white md:w-1/2 lg:w-1/3 rounded-lg ">
-
     <div class="w-full  px-4 mb-8">
       <div class="rounded-lg p-6">
         <div class="flex justify-center">
@@ -40,6 +46,9 @@ const family = props.family
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
+          <button v-if="isAdmin" class="mr-3">
+            <font-awesome-icon class="text-3xl transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
+          </button>
           <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
           Copy Invite ID: {{ family.code }}
