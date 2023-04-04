@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-<div v-if="families && families.length > 0" class="grid-container">
+<div v-if="families && families.length > 0" class="grid-container ml-10 mr-10">
   <FamilyCard v-for="family in families" :key="family._id" class="grid-item " :family="family" />
   <div class="fixed bottom-30 left-1/2 transform -translate-x-1/2 flex justify-center w-full flex-row">
     <AddFamilyButton class="mx-3 " />

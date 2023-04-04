@@ -84,11 +84,11 @@ export default {
 
 <!-- component -->
 <!-- component -->
-<div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16">
+<div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16 ">
         <div class="container mx-auto">
-            <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl">
-
-              <label for="profile-picture" class="block w-30 h-30 rounded-full mx-auto mb-10 shadow-lg hover:scale-115 transition-all ease-out duration-200 cursor-pointer">
+            <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl bg-gray-100 rounded-xl">
+              <div class="p-10 bg-gray-200 rounded-xl shadow-md">
+                <label for="profile-picture" class="block w-30 h-30 rounded-full mx-auto mb-10 shadow-lg hover:scale-115 transition-all ease-out duration-200 cursor-pointer">
                 <img class="w-full h-full object-cover rounded-full" :src="user.currentUser?.profilePicUrl ||'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Profile Picture">
               </label>
               <input id="profile-picture" type="file" class="shadow-lg" @change="handleProfilePictureChange" style="display:none">
@@ -133,6 +133,7 @@ export default {
                         </div>
                     </div>
                 </form>
+              </div>
             </div>
         </div>
     </div>

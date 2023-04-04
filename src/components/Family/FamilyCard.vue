@@ -46,14 +46,14 @@ const family = props.family
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
-          <button v-if="isAdmin" class="mr-3">
-            <font-awesome-icon class="text-3xl transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
+          <button v-if="isAdmin" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+            <font-awesome-icon class=" transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
           </button>
           <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
           Copy Invite ID: {{ family.code }}
           </button>
-          <button class="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-md ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
+          <button class="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-xl ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
             <font-awesome-icon :icon="['fas', 'envelope']" style="color: #000000;" />
           </button>
 
