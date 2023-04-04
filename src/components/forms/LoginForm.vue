@@ -150,6 +150,8 @@ onMounted(() => {
           <span v-if="errors.password" class="text-sm text-red-500">{{ errors.password }}</span>
         </div>
         <button class="text-white border-0 py-2 px-8 focus:outline-none font-medium rounded text-xl bg-blue-600"
+          onmouseover="this.style.backgroundColor='#1d4dc0';"
+          onmouseout="this.style.backgroundColor='#2a67ec';"
           :disabled="isFormSubmitting"
           @click="handleSubmit">
           {{ isFormSubmitting ? 'Logging in...' : 'Log In' }}

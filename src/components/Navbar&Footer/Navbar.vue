@@ -44,19 +44,19 @@ import { computed } from 'vue'
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
       <li v-if="!isLoggedIn.value">
-        <router-link to="/" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Home</router-link>
+        <router-link to="/" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Home</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/family" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Family</router-link>
+        <router-link to="/family" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Family</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/feed" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Feed</router-link>
+        <router-link to="/feed" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Feed</router-link>
       </li>
       <li v-if="!isLoggedIn.value">
-        <router-link to="/auth/signup" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Sign Up</router-link>
+        <router-link to="/auth/signup" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Sign Up</router-link>
       </li>
       <li v-if="isLoggedIn.value">
-        <router-link to="/account/account" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Account</router-link>
+        <router-link to="/account/account" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">Account</router-link>
       </li>
     </ul>
   </div>
@@ -74,7 +74,6 @@ import { computed } from 'vue'
   right: 0;
   z-index: 999;
 }
-
 
 
 </style>
