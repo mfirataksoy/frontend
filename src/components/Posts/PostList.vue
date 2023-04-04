@@ -21,7 +21,7 @@ interface Family {
 const families = ref<Family[] | null>(null);
 const loading = ref<boolean>(false)
 const isOpen = ref(false);
-const currentFamily: Ref<Family | null> = ref(null); // Use Ref<T> to define the type of the reactive variable
+const currentFamily: Ref<string> = ref('All'); // Use Ref<T> to define the type of the reactive variable
 
 const getfamilies = async() =>{
   const familiesResponse = await getFamilies()
@@ -49,8 +49,13 @@ async function openModal() {
   isOpen.value = true;
 }
 
-function setFamily(fam: Family): void {
+function setFamily(fam: string): void {
   currentFamily.value = fam;
+  isOpen.value = false
+}
+
+function filterPosts() {
+
 }
 
 
@@ -69,7 +74,7 @@ const { t } = useI18n()
   <div class="mt-4">
     
     <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
-      {{ currentFamily?.name }}
+      {{ currentFamily }}
       <div>
       <TransitionRoot appear :show="isOpen" as="template">
         <Dialog as="div" class="relative z-10" @close="closeModal">
@@ -108,7 +113,7 @@ const { t } = useI18n()
                     View posts from:
                   </DialogTitle>
                   <div class="grid grid-cols-3 gap-4 mt-4">
-                    <button v-for="family in families" :key="family._id" @click="setFamily(family)" 
+                    <button v-for="family in families" :key="family._id" @click="setFamily(family.name)" 
                       class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                       {{family.name}}
                     </button>
