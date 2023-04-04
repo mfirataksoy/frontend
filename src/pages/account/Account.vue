@@ -93,7 +93,7 @@ export default {
               </label>
               <input id="profile-picture" type="file" class="shadow-lg" @change="handleProfilePictureChange" style="display:none">
 
-                <h2 class="text-2xl text-gray-900 font-bold">Account Setting</h2>
+                <h2 class="text-2xl text-gray-900 font-bold">Account Settings</h2>
                 <form class="mt-6 border-t border-gray-400 pt-4">
                     <div class='flex flex-wrap -mx-3 mb-6'>
                         <div class='w-full md:w-full px-3 mb-6'>

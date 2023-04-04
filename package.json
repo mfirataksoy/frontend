@@ -34,6 +34,7 @@
     "bootstrap": "^5.2.3",
     "date-fns": "^2.29.3",
     "flowbite": "^1.6.4",
+    "flowbite-vue": "^0.0.10",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.29",

@@ -87,7 +87,7 @@ function onFamilySelect(family) {
                   </DialogTitle>
                   <div class="flex items-center justify-center">
                     <div
-                      v-for="family in families" :key="family"
+                      v-for="family in families" :key="family._id"
                       class="inline-flex  shadow-md hover:shadow-lg focus:shadow-lg" role="group"
                     >
                       <a
