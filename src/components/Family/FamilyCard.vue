@@ -12,12 +12,22 @@ async function copyToClipboard(text: string) {
   await navigator.clipboard.writeText(text)
 }
 
+function  sendInviteEmail() {
+    const recipient = '';
+    const subject = 'Join my family!';
+    const body = `Hey!\n\nI wanted to invite you to join my family online. We've created a space where we can stay connected and share our stories.\n\nTo join, just click on this link: [www.keepsakeproject.com]. You'll need to create an account or log in if you haven't already. Then, just copy the following family code into the family page and you're in!\n\nMy family code: ${family.code}\n\nWe'd love to have you as a part of our family. Hope to see you online soon!\n\nCheers,\n${family.adminUser.firstName}`;
+
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink, '_self');
+  }
+
 
 const family = props.family
 </script>
 
 <template>
   <div class="flex flex-wrap bg-white md:w-1/2 lg:w-1/3 rounded-lg ">
+
     <div class="w-full  px-4 mb-8">
       <div class="rounded-lg p-6">
         <div class="flex justify-center">
@@ -34,6 +44,8 @@ const family = props.family
           @click="copyToClipboard(family.code)">
           Copy Invite ID: {{ family.code }}
           </button>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" @click="sendInviteEmail">Click me to send an email</button>
+
         </p>
         <h2 class="text-xl font-bold mb-4 text-black">
           Admin User
