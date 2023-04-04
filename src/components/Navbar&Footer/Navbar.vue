@@ -25,7 +25,7 @@ import { computed } from 'vue'
   <div class="container flex flex-wrap items-center justify-between mx-auto">
     <KeepSake />
   <div class="flex md:order-2">
-    <router-link v-if="!user.isLoggedIn.value" to="/auth/login" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
+    <router-link v-if="!user.isLoggedIn.value" to="/auth/login" active-class="text-blue-600 underline" exact-active-class="text-blue-600 underline" class="ml-4 block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
       Login
     </router-link>
     <div v-else class="flex items-center md:order-2">
