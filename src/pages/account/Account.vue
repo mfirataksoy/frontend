@@ -33,8 +33,8 @@ export default {
       }
     },
     async submitForm() {
-      this.updateProfilePic()
       try {
+        this.updateProfilePic();
         const response = await services.editAccountDetails({
           _id: this.secretId,
           firstName: this.firstName,
@@ -43,7 +43,6 @@ export default {
           phoneNumber: this.phoneNumber,
           profilePicUrl: this.profilePicUrl,
         });
-
         console.log("finished update");
       } catch (error) {
         console.error(error);
@@ -63,20 +62,17 @@ export default {
         console.log(response)
         this.profilePicUrl = response.url;
 
-        console.log("finished update");
+        console.log("Updated profile picture");
       } catch (error) {
         console.error(error);
-    }
-  },
+      }
+    },
     handleProfilePictureChange(event) {
       this.selectedProfilePicture = event.target.files[0];
-      this.updateProfilePic()
+      this.updateProfilePic();
     },
   },
 };
-
-
-
 </script>
 
 

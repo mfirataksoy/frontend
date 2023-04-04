@@ -40,11 +40,13 @@ const family = props.family
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
-          <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:scale-105 transition-all ease-out duration-200 cursor-pointer" 
+          <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
           Copy Invite ID: {{ family.code }}
           </button>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" @click="sendInviteEmail">Click me to send an email</button>
+          <button class="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-md ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
+            <font-awesome-icon :icon="['fas', 'envelope']" style="color: #000000;" />
+          </button>
 
         </p>
         <h2 class="text-xl font-bold mb-4 text-black">
