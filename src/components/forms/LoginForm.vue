@@ -1,34 +1,6 @@
 <script setup lang="ts">
 
 
-// <div class="flex justify-center items-center h-screen">
-//     <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex justify-center">
-//       <div class="w-xl flex justify-center max-w-sm rounded overflow-hidden shadow-lg py-8 px-4 min-h-[400px]">
-//         <div class="flex flex-col gap-1 max-w-xl" w="300px">
-//           <label class="text-gray-700 text-left" for="email">
-//             Email
-//           </label>
-//           <TheInput v-model="email" placeholder="What's your email?" autocomplete="false" />
-//           <p class="text-red-400 text-left text-sm">
-//             {{ errors.email }}
-//           </p>
-//           <label class="text-gray-700 text-left" for="password">
-//             Password
-//           </label>
-//           <TheInput v-model="password" placeholder="What's your password?" autocomplete="false" type="password" />
-//           <p class="text-red-400 text-left text-sm">
-//             {{ errors.password }}
-//           </p>
-//           <button class="loading" btn mt-2 text-lg :onclick="handleSubmit">
-//             {{ t('button.login') }}
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-
-
-
 
 import { errorMessages } from '~/common/constants/data'
 import { services } from '~/common/services/services'
@@ -44,6 +16,7 @@ const email = ref('')
 const password = ref<string>('')
 const passwordConfirm = ref<string>('')
 const isFormDirty = ref(false)
+const isFormSubmitting = ref(false)
 const user = useUserStore()
 const errors = reactive({
   email: '',
@@ -84,19 +57,20 @@ const handleSubmit = async (e: MouseEvent) => {
   }
 
   try {
+    isFormSubmitting.value = true
     const loginResponse = await services.login(body.email, body.password)
     user.setAccessToken(loginResponse.data.idToken.jwtToken)
     //user.isLoggedIn = true
     /* useLocalStorage('userresponse', loginResponse) */
     localStorageState.value = loginResponse.data
     if (loginResponse.status.toString().startsWith('2'))
-      //user.isLoggedIn = true
       user.login()
       router.push('/feed')
-      //location.reload()
+      isFormSubmitting.value = false
 
   }
   catch (error) {
+    isFormSubmitting.value = false
     const errorMsg = error?.response?.data?.message
     if (errorMsg === errorMessages.userNotConfirmed)
       router.push('/auth/verify')
