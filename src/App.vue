@@ -27,6 +27,7 @@ useHead({
 const router = useRouter()
 
 const user = useUserStore()
+const isLoggedIn = computed(() => user.isLoggedIn)
 
 onMounted(async () => {
   const tokenRes: LoginResponse = localStorageState.value
@@ -40,6 +41,7 @@ onMounted(async () => {
 
   if (accesToken) {
     user.setAccessToken(accesToken)
+    user.login();
     /* router.push('/feed') */
   }
   else {

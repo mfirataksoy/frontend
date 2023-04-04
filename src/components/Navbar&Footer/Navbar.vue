@@ -11,6 +11,7 @@ import { computed } from 'vue'
 
   const logout = () => {
     user.logout()
+    localStorage.clear();
     router.push('/')
   }
 
