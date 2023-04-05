@@ -10,7 +10,8 @@ import {
 } from "@headlessui/vue";
 import { Ref } from 'vue';
 
-const posts = ref<Post[] | null>(null)
+const posts = ref([]);
+
 
 interface Family {
   _id: string;
@@ -22,7 +23,7 @@ const families = ref<Family[] | null>(null);
 const loading = ref<boolean>(false)
 const isOpen = ref(false);
 const currentFamily: Ref<string> = ref('All Posts'); // Use Ref<T> to define the type of the reactive variable
-const filteredPosts = ref<Post[] | null>(null);
+const filteredPosts: Ref<Post[]> = ref([]);
 
 const getfamilies = async() =>{
   const familiesResponse = await getFamilies()
@@ -56,28 +57,21 @@ function setFamily(fam: string, famId: string): void {
   filterPosts(famId)
 }
 
+// function filterPosts(famId: string) {
+//   filteredPosts.value = Array.from(posts.value).filter((post) => {
+//     console.log(post); // Add this line
+//     return (post as { familyId: { _id: string }[] }).familyId.some((familyId) => familyId._id === famId);
+//   });
+// }
+
 function filterPosts(famId: string) {
-
-  // Access the actual array value from the `Ref` object
-  const actualPosts = posts.value;
-
-  // Loop through each post in the `actualPosts` array using a standard for loop
-  for (let i = 0; i < actualPosts.length; i++) {
-    const post = actualPosts[i];
-    // Check if the `familyId` of the post matches the given `famId`
-    if (post.familyId === famId) {
-      // If the `familyId` matches, append the post to `filteredPosts` array
-      if (filteredPosts.value === null) {
-        filteredPosts.value = [post];
-      } else {
-        filteredPosts.value.push(post);
-      }
-    }
-  }
-
-  // Return the filtered posts
-  return filteredPosts.value;
+  filteredPosts.value = Array.from(posts.value).filter((post) => {
+    return (post as { familyId: string }).familyId === famId;
+  });
+  console.log(filteredPosts.value)
 }
+
+
 
 
 
@@ -93,8 +87,9 @@ const { t } = useI18n()
 
 <template>
   <div class="mt-4">
-    
-    <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+    <div class="flex justify-center items-center mb-10">
+      <hr class="font-bold">
+    <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="ml-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
       {{ currentFamily }}
       <div>
       <TransitionRoot appear :show="isOpen" as="template">
@@ -148,20 +143,10 @@ const { t } = useI18n()
       </TransitionRoot>
     </div>
     </button>
-
-    <!-- Dropdown menu -->
-    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li v-for="family in families" :key="family._id">
-            <p class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-              {{ family.name }}
-            </p>
-          </li>
-        </ul>
+    <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
-
-    <div v-if="posts && posts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
-      <PostCard v-for="post in posts" :key="post._id" :post="post" />
+    <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
+      <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" />
       <PostButton />
     </div>
     <div v-else-if="loading">
@@ -203,6 +188,14 @@ const { t } = useI18n()
 
 .container {
   box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-lg {
+  text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
 }
 
 </style>
