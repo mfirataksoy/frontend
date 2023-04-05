@@ -21,7 +21,8 @@ interface Family {
 const families = ref<Family[] | null>(null);
 const loading = ref<boolean>(false)
 const isOpen = ref(false);
-const currentFamily: Ref<string> = ref('All'); // Use Ref<T> to define the type of the reactive variable
+const currentFamily: Ref<string> = ref('All Posts'); // Use Ref<T> to define the type of the reactive variable
+const filteredPosts = ref<Post[] | null>(null);
 
 const getfamilies = async() =>{
   const familiesResponse = await getFamilies()
@@ -49,13 +50,33 @@ async function openModal() {
   isOpen.value = true;
 }
 
-function setFamily(fam: string): void {
+function setFamily(fam: string, famId: string): void {
   currentFamily.value = fam;
   isOpen.value = false
+  filterPosts(famId)
 }
 
-function filterPosts() {
+function filterPosts(famId: string) {
 
+  // Access the actual array value from the `Ref` object
+  const actualPosts = posts.value;
+
+  // Loop through each post in the `actualPosts` array using a standard for loop
+  for (let i = 0; i < actualPosts.length; i++) {
+    const post = actualPosts[i];
+    // Check if the `familyId` of the post matches the given `famId`
+    if (post.familyId === famId) {
+      // If the `familyId` matches, append the post to `filteredPosts` array
+      if (filteredPosts.value === null) {
+        filteredPosts.value = [post];
+      } else {
+        filteredPosts.value.push(post);
+      }
+    }
+  }
+
+  // Return the filtered posts
+  return filteredPosts.value;
 }
 
 
@@ -113,7 +134,7 @@ const { t } = useI18n()
                     View posts from:
                   </DialogTitle>
                   <div class="grid grid-cols-3 gap-4 mt-4">
-                    <button v-for="family in families" :key="family._id" @click="setFamily(family.name)" 
+                    <button v-for="family in families" :key="family._id" @click="setFamily(family.name, family._id)" 
                       class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                       {{family.name}}
                     </button>
