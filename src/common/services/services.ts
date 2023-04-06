@@ -70,6 +70,13 @@ export const createFamily = async (familyName: string) => {
   return response.data;
 };
 
+export const deleteFamily = async (id: string) => {
+  //const response = await httpClient.patch(`${endpoints.families.deleteFamily}/${id}`);
+  const response = await httpClient.patch(endpoints.families.deleteFamily + `/${id}`);
+  return response.data;
+};
+
+
 export const joinFamily = async (code: string) => {
   const response = await httpClient.get(
     "http://localhost:3002/families/join-family" + `/${code}`
@@ -117,4 +124,5 @@ export const services = {
   joinFamily,
   uploadProfilePic,
   uploadPost,
+  deleteFamily
 };

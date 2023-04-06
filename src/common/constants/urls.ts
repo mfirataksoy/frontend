@@ -17,6 +17,7 @@ export const endpoints = {
     families: '/families',
     myFamilies: '/families/my-family',
     joinFamily: '/families/join-family',
+    deleteFamily: '/families'
   },
 
   file: {

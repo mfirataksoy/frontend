@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { Family } from '~/stores/types'
+import { services } from '~/common/services/services'
+
+
 const props = defineProps<{
   family: Family
 }>()
 
 const user = useUserStore()
-
 
 const isAdmin = computed(() => {
   return family?.adminUser?.email === user.currentUser?.email;
@@ -28,6 +30,13 @@ function  sendInviteEmail() {
     window.open(mailtoLink, '_self');
   }
 
+async function deleteFamily(id: string) {
+  console.log(id)
+  const deleteConfirmation = await services.deleteFamily(id)
+  console.log(deleteConfirmation)
+}
+
+
 
 const family = props.family
 </script>
@@ -46,7 +55,7 @@ const family = props.family
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
-          <button v-if="isAdmin" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+          <button v-if="isAdmin" @click="deleteFamily(family._id)" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
             <font-awesome-icon class=" transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
           </button>
           <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
