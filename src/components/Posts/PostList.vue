@@ -22,7 +22,7 @@ interface Family {
 const families = ref<Family[] | null>(null);
 const loading = ref<boolean>(false)
 const isOpen = ref(false);
-const currentFamily: Ref<string> = ref('All'); // Use Ref<T> to define the type of the reactive variable
+const currentFamily: Ref<string> = ref('All Posts'); // Use Ref<T> to define the type of the reactive variable
 const filteredPosts: Ref<Post[]> = ref([]);
 
 const getfamilies = async() =>{
@@ -39,7 +39,7 @@ const getfamilies = async() =>{
     loading.value = true
     const postsResponse = await getFeed(familyIdArray, feedOptions)
     posts.value = postsResponse.reverse() // Reverse the posts array here
-    families.value = familiesResponse.concat([{ _id: "all", name: "All" }]); // Move this line above the posts assignment
+    families.value = familiesResponse.concat([{ _id: "all", name: "All Posts" }]); // Move this line above the posts assignment
     loading.value = false
   }
 
@@ -67,7 +67,6 @@ function filterPosts(famId: string) {
   filteredPosts.value = Array.from(posts.value).filter((post) => {
     return (post as { familyId: string }).familyId === famId;
   });
-  console.log(filteredPosts.value)
 }
 
 
@@ -146,9 +145,16 @@ const { t } = useI18n()
     </button>
     <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
+    <div class="border-b-4 font-bold mb-10"></div>
+
     <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
         <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" />
+
+    </div>
+    <div v-else-if="posts && posts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
+
+        <PostCard v-for="post in posts" :key="post._id" :post="post" />
 
     </div>
     <div v-else-if="loading">
