@@ -2,7 +2,7 @@
 
 import { endpoints } from "../constants/urls";
 import { httpClient } from "./httpClient";
-import type { Post, SignupData, VerifyEmailData } from "~/stores/types";
+import type { Family, Post, SignupData, VerifyEmailData } from "~/stores/types";
 import type { LoginResponse } from "~/stores/response.type";
 
 export const login = async (email: string, password: string) => {
@@ -70,9 +70,10 @@ export const createFamily = async (familyName: string) => {
   return response.data;
 };
 
-export const deleteFamily = async (id: string) => {
+export const deleteFamily = async (id: string, updates: Family) => {
   //const response = await httpClient.patch(`${endpoints.families.deleteFamily}/${id}`);
-  const response = await httpClient.patch(endpoints.families.deleteFamily + `/${id}`);
+  console.log(endpoints.families.deleteFamily + `/${id}`)
+  const response = await httpClient.patch(endpoints.families.deleteFamily + `/${id}`, updates);
   return response.data;
 };
 

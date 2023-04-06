@@ -31,8 +31,20 @@ function  sendInviteEmail() {
   }
 
 async function deleteFamily(id: string) {
-  console.log(id)
-  const deleteConfirmation = await services.deleteFamily(id)
+
+  const emptyFamily: Family = {
+  _id: '',
+  name: '',
+  createdDate: '',
+  adminUser: null,
+  feed: [],
+  members: [],
+  code: '',
+  isAvailibleForNewMembers: false,
+  __v: 0,
+};
+
+  const deleteConfirmation = await services.deleteFamily(id, emptyFamily)
   console.log(deleteConfirmation)
 }
 
