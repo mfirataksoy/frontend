@@ -22,13 +22,13 @@ interface Family {
 const families = ref<Family[] | null>(null);
 const loading = ref<boolean>(false)
 const isOpen = ref(false);
-const currentFamily: Ref<string> = ref('All Posts'); // Use Ref<T> to define the type of the reactive variable
+const currentFamily: Ref<string> = ref('All'); // Use Ref<T> to define the type of the reactive variable
 const filteredPosts: Ref<Post[]> = ref([]);
 
 const getfamilies = async() =>{
   const familiesResponse = await getFamilies()
   families.value = familiesResponse;
-  console.log(families)
+
   if (families.value) {
     const familyIdArray = families.value.map((item: Family) => item._id).flat();
     console.log(familyIdArray);
@@ -38,10 +38,11 @@ const getfamilies = async() =>{
     };
     loading.value = true
     const postsResponse = await getFeed(familyIdArray, feedOptions)
-    console.log(postsResponse)
     posts.value = postsResponse.reverse() // Reverse the posts array here
+    families.value = familiesResponse.concat([{ _id: "all", name: "All" }]); // Move this line above the posts assignment
     loading.value = false
   }
+
 }
 
 function closeModal() {
@@ -53,16 +54,14 @@ async function openModal() {
 
 function setFamily(fam: string, famId: string): void {
   currentFamily.value = fam;
-  isOpen.value = false
-  filterPosts(famId)
+  isOpen.value = false;
+  if (famId === "all") {
+    filteredPosts.value = posts.value;
+  } else {
+    filterPosts(famId);
+  }
 }
 
-// function filterPosts(famId: string) {
-//   filteredPosts.value = Array.from(posts.value).filter((post) => {
-//     console.log(post); // Add this line
-//     return (post as { familyId: { _id: string }[] }).familyId.some((familyId) => familyId._id === famId);
-//   });
-// }
 
 function filterPosts(famId: string) {
   filteredPosts.value = Array.from(posts.value).filter((post) => {
@@ -129,6 +128,8 @@ const { t } = useI18n()
                     View posts from:
                   </DialogTitle>
                   <div class="grid grid-cols-3 gap-4 mt-4">
+                    
+
                     <button v-for="family in families" :key="family._id" @click="setFamily(family.name, family._id)" 
                       class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                       {{family.name}}
@@ -146,8 +147,9 @@ const { t } = useI18n()
     <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
     <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
-      <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" />
-      <PostButton />
+
+        <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" />
+
     </div>
     <div v-else-if="loading">
       <PostLoader v-for="_, index in Array.from({ length: 10 })" :key="index" />
