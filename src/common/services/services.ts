@@ -73,7 +73,7 @@ export const createFamily = async (familyName: string) => {
 export const deleteFamily = async (id: string, updates: Family) => {
   //const response = await httpClient.patch(`${endpoints.families.deleteFamily}/${id}`);
   console.log(endpoints.families.deleteFamily + `/${id}`)
-  const response = await httpClient.patch(endpoints.families.deleteFamily + `/${id}`, updates);
+  const response = await httpClient.delete(endpoints.families.deleteFamily + `/${id}`);
   return response.data;
 };
 
