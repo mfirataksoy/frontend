@@ -17,11 +17,16 @@ export const endpoints = {
     families: '/families',
     myFamilies: '/families/my-family',
     joinFamily: '/families/join-family',
-    deleteFamily: '/families'
+    deleteFamily: '/families',
+    openCloseFamily: '/families'
   },
 
   file: {
     profilePhoto: '/file/uploadPhoto',
+  },
+
+  users: {
+    getUser: '/users'
   },
 
 }

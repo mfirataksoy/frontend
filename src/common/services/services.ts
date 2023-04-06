@@ -70,12 +70,20 @@ export const createFamily = async (familyName: string) => {
   return response.data;
 };
 
-export const deleteFamily = async (id: string, updates: Family) => {
-  //const response = await httpClient.patch(`${endpoints.families.deleteFamily}/${id}`);
-  console.log(endpoints.families.deleteFamily + `/${id}`)
+export const getUser = async (id: string) => {
+  const response = await httpClient.get(endpoints.users + `/${id}`)
+  return response.data;
+}
+
+export const deleteFamily = async (id: string) => {
   const response = await httpClient.delete(endpoints.families.deleteFamily + `/${id}`);
   return response.data;
 };
+
+export const updateFamily = async (id: string, update: Family) => {
+  const response = await httpClient.patch(endpoints.families.openCloseFamily + `/${id}`, update);
+  return response.data;
+}
 
 
 export const joinFamily = async (code: string) => {
@@ -85,12 +93,7 @@ export const joinFamily = async (code: string) => {
   return response.data;
 };
 
-export const updateFamily = async (familyId: string) => {
-  const response = await httpClient.put(
-    endpoints.families.families + `/${familyId}`
-  );
-  return response.data;
-};
+
 
 export const uploadProfilePic = async (data: any) => {
   const response = await httpClient.post(endpoints.file.profilePhoto, data, {
@@ -125,5 +128,8 @@ export const services = {
   joinFamily,
   uploadProfilePic,
   uploadPost,
-  deleteFamily
+  deleteFamily,
+  updateFamily,
+  getUser
+  
 };

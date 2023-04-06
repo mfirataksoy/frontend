@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import type { Family } from '~/stores/types'
 import { services } from '~/common/services/services'
-
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
 
 const props = defineProps<{
   family: Family
 }>()
+
+const isOpen = ref(false);
+
+const familyClosed = ref(false)
 
 const user = useUserStore()
 
@@ -13,8 +23,11 @@ const isAdmin = computed(() => {
   return family?.adminUser?.email === user.currentUser?.email;
 });
 
-async function closeFamily() {
-  // await services.closeFamily(props.family._id)
+function closeModal() {
+  isOpen.value = false;
+}
+async function openModal() {
+  isOpen.value = true;
 }
 
 async function copyToClipboard(text: string) {
@@ -30,22 +43,32 @@ function  sendInviteEmail() {
     window.open(mailtoLink, '_self');
   }
 
+async function handleFamilyOpenClose() {
+  familyClosed.value = !familyClosed.value
+  const updatedFamily = family;
+  updatedFamily.isAvailibleForNewMembers = familyClosed.value;
+  const updateFamily = await services.updateFamily(family._id, updatedFamily)
+  console.log(updateFamily)
+}
+
 async function deleteFamily(id: string) {
-
-  const emptyFamily: Family = {
-  _id: '',
-  name: '',
-  createdDate: '',
-  adminUser: null,
-  feed: [],
-  members: [],
-  code: '',
-  isAvailibleForNewMembers: false,
-  __v: 0,
-};
-
-  const deleteConfirmation = await services.deleteFamily(id, emptyFamily)
+  const deleteConfirmation = await services.deleteFamily(id)
   console.log(deleteConfirmation)
+}
+
+async function removeUser(userId: string) {
+  //delete user from family
+  const updatedFamily = family;
+  const updatedMembers = family.members.filter(member => member._id !== userId);
+  updatedFamily.members = updatedMembers
+  const updateFamily = await services.updateFamily(family._id, updatedFamily)
+  console.log(updateFamily)
+
+  //delete family in user
+  const updatedUser = await services.getUser(userId)
+  console.log(updatedUser)
+  //const updatedUserFamilies = updatedUser.familyId.filter(family => family._id !== userId)
+  //updatedUser = updatedUser
 }
 
 
@@ -67,8 +90,102 @@ const family = props.family
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
-          <button v-if="isAdmin" @click="deleteFamily(family._id)" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+          <button v-if="isAdmin" @click="openModal" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
             <font-awesome-icon class=" transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
+            <div>
+              <TransitionRoot appear :show="isOpen" as="template">
+                <Dialog as="div" class="relative z-10" @close="closeModal">
+                  <TransitionChild
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0"
+                    enter-to="opacity-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100"
+                    leave-to="opacity-0"
+                  >
+                    <div class="fixed inset-0 bg-black bg-opacity-25" />
+                  </TransitionChild>
+
+                  <div class="fixed inset-0 overflow-y-auto">
+                    <div
+                      class="flex min-h-full items-center justify-center p-4 text-center"
+                    >
+                      <TransitionChild
+                        as="template"
+                        enter="duration-300 ease-out"
+                        enter-from="opacity-0 scale-95"
+                        enter-to="opacity-100 scale-100"
+                        leave="duration-200 ease-in"
+                        leave-from="opacity-100 scale-100"
+                        leave-to="opacity-0 scale-95"
+                      >
+                        <DialogPanel
+                          class="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                        >
+                          <DialogTitle
+                            as="h3"
+                            class="text-center text-2xl font-bold leading-6 text-gray-900"
+                          >
+                            {{family.name}} Settings
+                          </DialogTitle>
+                          <div class="mt-5">
+                            <button v-if="!familyClosed" @click="handleFamilyOpenClose" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                              Close to New Members
+                            </button>
+                            <button v-else @click="handleFamilyOpenClose" class="mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                              Open to New Members
+                            </button>
+                            <button class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="deleteFamily(family._id)">
+                              Delete {{ family.name }}
+                            </button>
+                            <div>
+                              <table class="table-auto">
+                                <thead>
+                                  <tr>
+                                    <th class="px-4 py-2 text-left">First Name</th>
+                                    <th class="px-4 py-2 text-left">Last Name</th>
+                                    <th class="px-4 py-2 text-left">Email</th>
+                                    <th class="px-4 py-2">Remove</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="overflow-auto">
+                                  <tr v-for="member in family.members" :key="member._id">
+                                    <td class="border px-4 py-2">{{ member.firstName }}</td>
+                                    <td class="border px-4 py-2">{{ member.lastName }}</td>
+                                    <td class="border px-4 py-2">{{ member.email }}</td>
+                                    <td class="border px-4 py-2">
+                                      <p v-if="member.email === family?.adminUser?.email">Admin</p>
+                                      <button v-else @click="removeUser(member._id)" class="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-800 hover:to-red-900 py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+                                        <font-awesome-icon :icon="['fas', 'trash']" style="color: #000000;" />
+                                      </button>
+                                      
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                            <button
+                              type="button"
+                              class="text-white inline-flex mr-2 justify-center rounded-md border border-transparent bg-gray-400 hover:bg-gray-500 px-4 py-2 text-sm font-bold text-blue-900 mt-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                              @click="closeModal"
+                            >
+                              Back
+                            </button>
+
+                          </div>
+                  
+
+
+                          
+                        </DialogPanel>
+                      </TransitionChild>
+                    </div>
+                  </div>
+                </Dialog>
+              </TransitionRoot>
+            </div>
           </button>
           <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
@@ -115,9 +232,6 @@ const family = props.family
           </div>
         </div>
         <div class="mt-8">
-          <button class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="closeFamily">
-            Close to public
-          </button>
         </div>
       </div>
     </div>
