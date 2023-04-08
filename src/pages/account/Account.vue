@@ -26,6 +26,7 @@ export default {
         this.firstName = response.firstName;
         this.lastName = response.lastName;
         this.email = response.email;
+        this.profilePicUrl = response.profilePicUrl;
         this.birthDate = response.birthDate;
         this.phoneNumber = response.phoneNumber;
       } catch (error) {
