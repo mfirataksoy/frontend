@@ -8,6 +8,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import axios from 'axios';
 
 const props = defineProps<{
   family: Family
@@ -43,16 +44,34 @@ function  sendInviteEmail() {
     window.open(mailtoLink, '_self');
   }
 
-async function handleFamilyOpenClose() {
-  familyClosed.value = !familyClosed.value
-  const updatedFamily = family;
-  updatedFamily.isAvailibleForNewMembers = familyClosed.value;
-  const updateFamily = await services.updateFamily(family._id, updatedFamily)
-  console.log(updateFamily)
-}
+  async function handleFamilyClose() {
+    familyClosed.value = !familyClosed.value
+    const updatedFamily = family;
+    const res = await axios.get("http://localhost:3002/families/close-family/"+family._id);
+    //change for prod
+    console.log(updatedFamily)
+  }
+
+  async function handleFamilyOpen(){
+    familyClosed.value = !familyClosed.value
+    const updatedFamily = family;
+    const res = await axios.get("http://localhost:3002/families/open-family/"+family._id);
+    //change for prod
+    console.log(updatedFamily)
+  }
+
+
+// async function handleFamilyClose() {
+//   familyClosed.value = !familyClosed.value
+//   const updatedFamily = family;
+//   updatedFamily.isAvailibleForNewMembers = familyClosed.value;
+//   const updateFamily = await services.updateFamily(family._id, updatedFamily)
+//   console.log(updateFamily)
+// }
 
 async function deleteFamily(id: string) {
   const deleteConfirmation = await services.deleteFamily(id)
+  window.location.reload()
   console.log(deleteConfirmation)
 }
 
@@ -130,10 +149,10 @@ const family = props.family
                             {{family.name}} Settings
                           </DialogTitle>
                           <div class="mt-5">
-                            <button v-if="!familyClosed" @click="handleFamilyOpenClose" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                            <button v-if="!familyClosed" @click="handleFamilyClose" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                               Close to New Members
                             </button>
-                            <button v-else @click="handleFamilyOpenClose" class="mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                            <button v-else @click="handleFamilyOpen" class="mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                               Open to New Members
                             </button>
                             <button class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="deleteFamily(family._id)">
