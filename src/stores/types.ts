@@ -25,7 +25,7 @@ export interface Post {
   _id: string
   audioUrl: string
   description: string
-  date: string
+  createdAt: string
   postedBy: PostedBy | null
   familyId: FamilyId[]
   comments: any[]
