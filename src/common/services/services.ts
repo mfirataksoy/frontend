@@ -81,7 +81,7 @@ export const deleteFamily = async (id: string) => {
 };
 
 export const updateFamily = async (id: string, update: Family) => {
-  const response = await httpClient.patch(endpoints.families.openCloseFamily + `/${id}`, update);
+  const response = await httpClient.patch(endpoints.families.families + `/${id}`, update);
   return response.data;
 }
 
