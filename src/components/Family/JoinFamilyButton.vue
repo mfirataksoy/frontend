@@ -8,30 +8,54 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { services } from "~/common/services/services";
+import Alert from "../Notification/Alert.vue";
 const { t } = useI18n();
-
+const errorMessage=ref("");
 const isOpen = ref(false);
-
+const error = ref<{ title: string; body: string }>({ title: '', body: '' });
+const errorvisible = ref(false);
 const code = ref("");
 
 function closeModal() {
+  errorvisible.value=false;
+  errorMessage.value="";
+  code.value="";
   isOpen.value = false;
 }
 async function openModal() {
   isOpen.value = true;
 }
-
 async function joinFamily() {
-  const nowJoinedFamily = await services.joinFamily(code.value);
-  const currentFamilies = await services.getAccountDetails();
-  const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
-  familyIdArray.push(nowJoinedFamily._id);
-  const response = await services.editAccountDetails({
-  _id: currentFamilies._id,
-  familyId: familyIdArray
-});  console.log(response);
-  window.location.reload();
+  try {
+    const nowJoinedFamily = await services.joinFamily(code.value);
+    const currentFamilies = await services.getAccountDetails();
+    const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
+    familyIdArray.push(nowJoinedFamily._id);
+    const response = await services.editAccountDetails({
+      _id: currentFamilies._id,
+      familyId: familyIdArray
+    });
+    console.log(response);
+    window.location.reload();
+  } catch (error) {
+    errorvisible.value=true
+    errorMessage.value = error.response?.data?.message || "Unknown error";
+    //alert(errorMessage); // Replace with your preferred method of displaying error messages
+    console.log(error)
+  }
 }
+
+// async function joinFamily() {
+//   const nowJoinedFamily = await services.joinFamily(code.value);
+//   const currentFamilies = await services.getAccountDetails();
+//   const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
+//   familyIdArray.push(nowJoinedFamily._id);
+//   const response = await services.editAccountDetails({
+//   _id: currentFamilies._id,
+//   familyId: familyIdArray
+// });  console.log(response);
+//   window.location.reload();
+// }
 </script>
 
 <template>
@@ -78,7 +102,9 @@ async function joinFamily() {
                   >
                     Join a New Family
                   </DialogTitle>
-
+                  <div v-if="errorvisible">
+                  <Alert :error="{title: errorMessage, body: 'Please fix the error and try again.'}"></Alert> 
+                  </div>
                   <div class="mx-auto flex flex-col gap-1 max-w-xl" w="300px">
                     <label class="text-gray-700 text-center text-sm pt-3 pb-3" for="name">
                       Ask your admin for the family code
