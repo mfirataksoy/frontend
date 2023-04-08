@@ -88,6 +88,7 @@ export default {
 
         const ans = await makePost(payload);
         console.log("Post sent successfully:", ans);
+        window.location.reload()
       } catch (error) {
         console.error("Error sending audio to backend:", error);
       }
