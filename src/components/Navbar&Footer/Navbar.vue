@@ -12,7 +12,9 @@ import { computed } from 'vue'
   const logout = () => {
     user.logout()
     localStorage.clear();
-    router.push('/')
+    window.location.href="http://localhost:3333"
+    //change in deploy
+    //router.push('/')
   }
 
 
