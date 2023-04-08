@@ -18,7 +18,9 @@ export const endpoints = {
     myFamilies: '/families/my-family',
     joinFamily: '/families/join-family',
     deleteFamily: '/families',
-    openCloseFamily: '/families'
+    closeFamily: '/families/close-family',
+    openFamily: '/families/open-family'
+    
   },
 
   file: {

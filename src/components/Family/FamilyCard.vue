@@ -14,9 +14,10 @@ const props = defineProps<{
   family: Family
 }>()
 
+const family = props.family
 const isOpen = ref(false);
+const familyClosed = ref(false)//await services.openCloseFamily(family._id);
 
-const familyClosed = ref(false)
 
 const user = useUserStore()
 
@@ -30,6 +31,7 @@ function closeModal() {
 async function openModal() {
   isOpen.value = true;
 }
+
 
 async function copyToClipboard(text: string) {
   await navigator.clipboard.writeText(text)
@@ -47,7 +49,7 @@ function  sendInviteEmail() {
   async function handleFamilyClose() {
     familyClosed.value = !familyClosed.value
     const updatedFamily = family;
-    const res = await axios.get("http://localhost:3002/families/close-family/"+family._id);
+    const res = await services.closeFamily(family._id);
     //change for prod
     console.log(updatedFamily)
   }
@@ -55,7 +57,7 @@ function  sendInviteEmail() {
   async function handleFamilyOpen(){
     familyClosed.value = !familyClosed.value
     const updatedFamily = family;
-    const res = await axios.get("http://localhost:3002/families/open-family/"+family._id);
+    const res = await services.openFamily(family._id);
     //change for prod
     console.log(updatedFamily)
   }
@@ -76,23 +78,25 @@ async function deleteFamily(id: string) {
 }
 
 async function removeUser(userId: string) {
+
   //delete user from family
   const updatedFamily = family;
   const updatedMembers = family.members.filter(member => member._id !== userId);
   updatedFamily.members = updatedMembers
   const updateFamily = await services.updateFamily(family._id, updatedFamily)
+  window.location.reload()
   console.log(updateFamily)
 
   //delete family in user
-  const updatedUser = await services.getUser(userId)
-  console.log(updatedUser)
+  //const updatedUser = await services.getUser(userId)
+  //console.log(updatedUser)
   //const updatedUserFamilies = updatedUser.familyId.filter(family => family._id !== userId)
   //updatedUser = updatedUser
 }
 
 
 
-const family = props.family
+
 </script>
 
 <template>
@@ -149,11 +153,11 @@ const family = props.family
                             {{family.name}} Settings
                           </DialogTitle>
                           <div class="mt-5">
-                            <button v-if="!familyClosed" @click="handleFamilyClose" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
-                              Close to New Members
-                            </button>
-                            <button v-else @click="handleFamilyOpen" class="mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                            <button v-if="!familyClosed" @click="handleFamilyClose" class="mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                               Open to New Members
+                            </button>
+                            <button v-else @click="handleFamilyOpen" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                              Closed to New Members
                             </button>
                             <button class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="deleteFamily(family._id)">
                               Delete {{ family.name }}

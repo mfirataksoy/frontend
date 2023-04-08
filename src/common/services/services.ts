@@ -81,14 +81,26 @@ export const deleteFamily = async (id: string) => {
 };
 
 export const updateFamily = async (id: string, update: Family) => {
+  console.log("I am here")
+  console.log(endpoints.families.families + `/${id}`)
   const response = await httpClient.patch(endpoints.families.families + `/${id}`, update);
+  return response.data;
+}
+
+export const closeFamily = async (id: string) => {
+  const response = await httpClient.get(endpoints.families.closeFamily + `/${id}`)
+  return response.data;
+}
+
+export const openFamily = async (id: string) => {
+  const response = await httpClient.get(endpoints.families.openFamily + `/${id}`)
   return response.data;
 }
 
 
 export const joinFamily = async (code: string) => {
   const response = await httpClient.get(
-    "http://localhost:3002/families/join-family" + `/${code}`
+    endpoints.families.joinFamily + `/${code}`
   );
   return response.data;
 };
@@ -130,6 +142,8 @@ export const services = {
   uploadPost,
   deleteFamily,
   updateFamily,
-  getUser
+  getUser,
+  closeFamily,
+  openFamily
   
 };
