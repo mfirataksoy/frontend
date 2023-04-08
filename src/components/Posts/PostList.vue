@@ -143,7 +143,13 @@ const { t } = useI18n()
       </TransitionRoot>
     </div>
     </button>
-    <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
+    <!-- <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1> -->
+    <h1 class="text-7xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg cursor-pointer"
+    @click="openModal"
+    style="text-decoration: underline">
+    {{ currentFamily }}
+    </h1>
+
     </div>
     <div class="border-b-4 font-bold mb-10"></div>
 
@@ -155,7 +161,7 @@ const { t } = useI18n()
     <div v-else-if="posts && posts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
         <PostCard v-for="post in posts" :key="post._id" :post="post" />
-
+        <PostButton/>  
     </div>
     <div v-else-if="loading">
       <PostLoader v-for="_, index in Array.from({ length: 10 })" :key="index" />
