@@ -82,7 +82,6 @@ onMounted(() => {
 
 const { t } = useI18n()
 </script>
-
 <template>
   <div class="mt-4">
     <div class="flex justify-center items-center mb-10">
@@ -143,9 +142,9 @@ const { t } = useI18n()
       </TransitionRoot>
     </div>
     </button>
-    <h1 class="text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
+    <h1 class="pr-30 text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
-    <div class="border-b-4 font-bold mb-10"></div>
+    <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 
     <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
@@ -198,12 +197,8 @@ const { t } = useI18n()
   box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.5);
 }
 
-.text-shadow {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
 
-.text-shadow-lg {
-  text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
-}
+
+
 
 </style>

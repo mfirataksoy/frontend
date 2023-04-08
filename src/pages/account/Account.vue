@@ -85,7 +85,9 @@ export default {
 
 <!-- component -->
 <!-- component -->
-<div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16 ">
+<div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16">
+  <h1 class="text-6xl font-bold text-black mx-auto text-shadow " > Hello, {{ user.currentUser.firstName }}!</h1>
+  <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
         <div class="container mx-auto">
             <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl bg-gray-100 rounded-xl">
               <div class="p-10 bg-gray-200 rounded-xl shadow-md">

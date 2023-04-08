@@ -5,6 +5,6 @@ import { services } from '~/common/services/services'
 <template>
   <div>
     <PostList />
-    
+    <PostButton />
   </div>
 </template>

@@ -20,6 +20,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <h1 class="text-6xl font-bold text-black mx-auto text-shadow  mt-20" > My Families</h1>
+  <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 <div v-if="families && families.length > 0" class="grid-container ml-10 mr-10">
   <FamilyCard v-for="family in families" :key="family._id" class="grid-item " :family="family" />
   <div class="fixed bottom-30 left-1/2 transform -translate-x-1/2 flex justify-center w-full flex-row">
@@ -78,10 +80,12 @@ onMounted(() => {
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  grid-template-columns: minmax(300px, 1fr);
   grid-gap: 5px;
   grid-column-gap: 2%;
   grid-row-gap: 2%;
+  margin-right: 20%;
+  margin-left: 20%;
 }
 
 
