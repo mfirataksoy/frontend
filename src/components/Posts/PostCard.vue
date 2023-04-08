@@ -38,7 +38,7 @@ const { t } = useI18n()
       </div>
       <div class="w-full px-5 flex flex-col">
         <p class="text-sm text-gray-600 mb-4   text-right">
-          {{ format(new Date(post?.date?.toString() || new Date()), 'dd MMMM yyyy hh:mm') }}
+          {{ format(new Date(post?.createdAt?.toString() || new Date()), 'dd MMMM yyyy hh:mm') }}
         </p>
         <AudioPlayer :src="post.audioUrl" />
       </div>
