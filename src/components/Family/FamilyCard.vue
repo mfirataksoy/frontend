@@ -94,6 +94,17 @@ async function removeUser(userId: string) {
   //updatedUser = updatedUser
 }
 
+async function leaveFamily() {
+  const userId = user.currentUser?._id;
+  if (typeof userId === 'string') {
+    await removeUser(userId);
+    window.location.reload();
+  } else {
+    console.error('User ID is not a valid string:', userId);
+  }
+}
+
+
 
 
 
@@ -209,6 +220,9 @@ async function removeUser(userId: string) {
                 </Dialog>
               </TransitionRoot>
             </div>
+          </button>
+          <button v-else @click="leaveFamily" class="text-white bg-red-500 hover:bg-red-600  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+            Leave
           </button>
           <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
