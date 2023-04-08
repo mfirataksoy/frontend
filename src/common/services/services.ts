@@ -88,7 +88,7 @@ export const updateFamily = async (id: string, update: Family) => {
 
 export const joinFamily = async (code: string) => {
   const response = await httpClient.get(
-    "http://localhost:3002/families/join-family" + `/${code}`
+    endpoints.families.joinFamily + `/${code}`
   );
   return response.data;
 };
