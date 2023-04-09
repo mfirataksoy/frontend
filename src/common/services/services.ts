@@ -63,6 +63,11 @@ export const getFamilies = async () => {
   return response.data;
 };
 
+export const getFamily = async (id: string) => {
+  const response = await httpClient.get(endpoints.families.families  + `/${id}`);
+  return response.data;
+};
+
 export const createFamily = async (familyName: string) => {
   const response = await httpClient.post(endpoints.families.families, {
     name: familyName,
@@ -144,6 +149,7 @@ export const services = {
   updateFamily,
   getUser,
   closeFamily,
-  openFamily
+  openFamily,
+  getFamily
   
 };
