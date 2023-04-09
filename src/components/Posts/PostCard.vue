@@ -2,6 +2,7 @@
 import { format } from 'date-fns'
 import type { Post } from '~/stores/types'
 import { services } from '~/common/services/services'
+import type { Family } from '~/stores/types'
 import {
   Dialog,
   DialogPanel,
@@ -12,10 +13,12 @@ import {
 
 const props = defineProps<{
   post: Post
+  family: Family
 }>()
 
 const user = useUserStore()
 const post = props.post
+const family = props.family
 
 // const family = computed(async () => {
 //   const familyData = await services.getFamily(post._id);
@@ -38,8 +41,8 @@ const ownsPost = computed(() => {
 });
 
 const isAdmin = computed(() => {
-  console.log(post.familyId[0].adminUser)
-  return user.currentUser?._id === post.familyId[0].adminUser;
+  console.log(family)
+ // return user.currentUser?._id === family.adminUser;
 });
 
 

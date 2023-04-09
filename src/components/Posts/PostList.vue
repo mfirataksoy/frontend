@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getPosts, getFamilies, getFeed } from '~/common/services/services'
+import { getPosts, getFamilies, getFeed, services } from '~/common/services/services'
 import type { Post } from '~/stores/types'
 import {
   Dialog,
@@ -24,6 +24,7 @@ const loading = ref<boolean>(false)
 const isOpen = ref(false);
 const currentFamily: Ref<string> = ref('All Posts'); // Use Ref<T> to define the type of the reactive variable
 const filteredPosts: Ref<Post[]> = ref([]);
+const propFamily: Ref<any | null> = ref(null);
 
 const getfamilies = async() =>{
   const familiesResponse = await getFamilies()
@@ -45,6 +46,17 @@ const getfamilies = async() =>{
 
 }
 
+watch(
+  loading,
+  async (isLoading: boolean) => {
+    if (!isLoading && propFamily.value !== null) {
+      await setFamily(currentFamily.value, propFamily.value._id);
+    }
+  }
+);
+
+
+
 function closeModal() {
   isOpen.value = false;
 }
@@ -52,14 +64,21 @@ async function openModal() {
   isOpen.value = true;
 }
 
-function setFamily(fam: string, famId: string): void {
+async function setFamily(fam: string, famId: string): Promise<void> {
   currentFamily.value = fam;
+  propFamily.value = await getFamily(famId)
+  console.log(propFamily.value)
   isOpen.value = false;
   if (famId === "all") {
     filteredPosts.value = posts.value;
   } else {
     filterPosts(famId);
   }
+}
+
+async function getFamily(id: string) {
+  const family = await services.getFamily(id)
+  return family
 }
 
 
@@ -148,12 +167,12 @@ const { t } = useI18n()
 
     <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
-        <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" />
+        <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" :family="propFamily" />
         <PostButton />
     </div>
     <div v-else-if="posts && posts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
-        <PostCard v-for="post in posts" :key="post._id" :post="post" />
+        <PostCard v-for="post in posts" :key="post._id" :post="post" :family="propFamily" />
         <PostButton />
 
     </div>
