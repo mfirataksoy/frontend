@@ -16,6 +16,7 @@ const props = defineProps<{
 
 const family = props.family
 const isOpen = ref(false);
+const isOpenConfirm = ref(false);
 const familyClosed = ref(false)//await services.openCloseFamily(family._id);
 
 
@@ -30,6 +31,13 @@ function closeModal() {
 }
 async function openModal() {
   isOpen.value = true;
+}
+
+function closeModalConfirm() {
+  isOpenConfirm.value = false;
+}
+async function openModalConfirm() {
+  isOpenConfirm.value = true;
 }
 
 
@@ -170,9 +178,66 @@ async function leaveFamily() {
                             <button v-else @click="handleFamilyOpen" class="mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                               Closed to New Members
                             </button>
-                            <button class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="deleteFamily(family._id)">
+                            <button @click="openModalConfirm" class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                              <div>
+                                <TransitionRoot appear :show="isOpenConfirm" as="template">
+                                  <Dialog as="div" class="relative z-10" @close="closeModal">
+                                    <TransitionChild
+                                      as="template"
+                                      enter="duration-300 ease-out"
+                                      enter-from="opacity-0"
+                                      enter-to="opacity-100"
+                                      leave="duration-200 ease-in"
+                                      leave-from="opacity-100"
+                                      leave-to="opacity-0"
+                                    >
+                                      <div class="fixed inset-0 bg-black bg-opacity-25" />
+                                    </TransitionChild>
+
+                                    <div class="fixed inset-0 overflow-y-auto">
+                                      <div
+                                        class="flex min-h-full items-center justify-center p-4 text-center"
+                                      >
+                                        <TransitionChild
+                                          as="template"
+                                          enter="duration-300 ease-out"
+                                          enter-from="opacity-0 scale-95"
+                                          enter-to="opacity-100 scale-100"
+                                          leave="duration-200 ease-in"
+                                          leave-from="opacity-100 scale-100"
+                                          leave-to="opacity-0 scale-95"
+                                        >
+                                          <DialogPanel
+                                            class="w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                                          >
+                                            <DialogTitle
+                                              as="h3"
+                                              class="text-center text-2xl font-bold leading-6 text-gray-900"
+                                            >
+                                              Are you sure you would like to delete this family?
+                                            </DialogTitle>
+                                            <div class="mt-5">
+                                              <div class="flex justify-center">
+                                                <button @click="deleteFamily(family._id)" class="w-20 mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                                                Yes
+                                              </button>
+                                              <button  @click="closeModalConfirm" class="w-20 mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                                                No
+                                              </button>
+                                              </div>
+                                            </div>
+                                          </DialogPanel>
+                                        </TransitionChild>
+                                      </div>
+                                    </div>
+                                  </Dialog>
+                                </TransitionRoot>
+                              </div>
                               Delete {{ family.name }}
                             </button>
+                            <!-- <button class="ml-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="deleteFamily(family._id)">
+                              Delete {{ family.name }}
+                            </button> -->
                             <div>
                               <table class="table-auto">
                                 <thead>
