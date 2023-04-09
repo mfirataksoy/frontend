@@ -15,10 +15,12 @@ function playAudio() {
   if (!playing.value) {
     audio?.value?.play()
     playing.value = true
+    console.log(playing.value)
   }
   else {
     audio?.value?.pause()
     playing.value = false
+    console.log(playing.value)
   }
 }
 
@@ -48,6 +50,7 @@ function updateCurrentTime(event: MouseEvent) {
   const { offsetX } = event
   const width = progressRef.value?.clientWidth || 2
   const percentage = offsetX / width
+  console.log(percentage)
   //  audio?.value?.currentTime = (audio?.value?.duration * percentage)
 }
 </script>
@@ -63,14 +66,15 @@ function updateCurrentTime(event: MouseEvent) {
             @click="updateCurrentTime"
           />
         </div>
-        <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
+        <span>{{ audioDuration ? formattedTime(audioDuration) : '??:??' }}</span>
       </div>
       <audio ref="audio" :src="props.src" />
-      <button class="p-2 border border-gray-500 rounded flex items-center" @click="playAudio">
+      <button class="mt-5 ml-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" @click="playAudio">
         {{ playing ? 'Pause' : 'Play' }}
-        <div v-if="!playing" i-carbon-play inline-block />
-        <div v-else i-carbon-pause inline-block />
+        <div v-if="!playing" i-carbon-play inline-block>Paused</div>
+        <div v-else i-carbon-pause inline-block>Play</div>
       </button>
+
     </div>
   </div>
 </template>

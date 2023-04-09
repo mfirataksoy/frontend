@@ -20,13 +20,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="text-6xl font-bold text-black mx-auto text-shadow  mt-20" > My Families</h1>
+  <div class="flex items-center justify-between">
+    <div class="">
+      <AddFamilyButton class="mt-20 ml-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" />
+    </div>
+    <h1 class="text-6xl font-bold text-black mx-auto text-shadow mt-20">My Families</h1>
+    <div class="mx-3">
+      <JoinFamilyButton class="mt-20 mr-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" />
+    </div>
+  </div>
   <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 <div v-if="families && families.length > 0" class="grid-container ml-10 mr-10">
   <FamilyCard v-for="family in families" :key="family._id" class="grid-item " :family="family" />
   <div class="fixed bottom-30 left-1/2 transform -translate-x-1/2 flex justify-center w-full flex-row">
-    <AddFamilyButton class="mx-3 " />
-    <JoinFamilyButton class="mx-3" />
+    <!-- <AddFamilyButton class="mx-3 " /> -->
+    <!-- <JoinFamilyButton class="mx-3" /> -->
   </div>
 </div>
 <div v-else-if="loading">

@@ -60,7 +60,7 @@ async function joinFamily() {
 
 <template>
   <button
-    class="text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow-lg transition ease-in duration-200 focus:outline-none"
+    class=""
     style=""
     @click="openModal"
   >
@@ -107,7 +107,7 @@ async function joinFamily() {
                   </div>
                   <div class="mx-auto flex flex-col gap-1 max-w-xl" w="300px">
                     <label class="text-gray-700 text-center text-sm pt-3 pb-3" for="name">
-                      Ask your admin for the family code
+                      Ask your family lead for the family code
                     </label>
                     <TheInput
                       v-model="code"

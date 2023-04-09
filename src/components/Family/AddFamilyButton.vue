@@ -37,7 +37,7 @@ async function createFamily() {
 
 <template>
   <button
-    class="shadow-lg text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+    class=""
     style="" @click="openModal"
   >
     <span>{{ t("asd") }}</span>

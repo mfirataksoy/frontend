@@ -288,7 +288,7 @@ async function leaveFamily() {
 
         </p>
         <h2 class="text-xl font-bold mb-4 text-black">
-          Admin User
+          Family Lead
         </h2>
         <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 bg-gray-100">
           <img :src="family.adminUser.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Admin User" class="w-12 h-12 rounded-full mr-4">
