@@ -132,6 +132,11 @@ export const uploadPost = async (data: any) => {
   return response.data;
 };
 
+export const deletePost = async (id: string) => {
+  const response = await httpClient.delete(endpoints.posts + `/${id}`)
+  return response.data
+}
+
 export const services = {
   signup,
   verifyEmail,
@@ -150,6 +155,7 @@ export const services = {
   getUser,
   closeFamily,
   openFamily,
-  getFamily
+  getFamily,
+  deletePost
   
 };

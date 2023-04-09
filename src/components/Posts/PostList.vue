@@ -34,7 +34,7 @@ const getfamilies = async() =>{
     console.log(familyIdArray);
     const feedOptions = {
       skip: 0,
-      limit: 50
+      limit: 100
     };
     loading.value = true
     const postsResponse = await getFeed(familyIdArray, feedOptions)

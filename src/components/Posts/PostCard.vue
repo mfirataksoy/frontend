@@ -37,6 +37,19 @@ const ownsPost = computed(() => {
   return user.currentUser?._id === post.postedBy?._id
 });
 
+const isAdmin = computed(() => {
+  console.log(post.familyId[0].adminUser)
+  return user.currentUser?._id === post.familyId[0].adminUser;
+});
+
+
+async function deletePost() {
+  const deleteConfirmation = await services.deletePost(post._id)
+  console.log(deleteConfirmation)
+  console.log(post.familyId)
+  window.location.reload()
+}
+
 
 
 
@@ -87,7 +100,7 @@ async function openModal() {
       </div>
     </div>
 
-    <button v-if="ownsPost" @click="openModal" class="float-right text-white bg-red-500 hover:bg-red-600  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+    <button v-if="ownsPost || isAdmin" @click="openModal" class="text-xs float-right text-white bg-red-500 hover:bg-red-600  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
             <font-awesome-icon :icon="['fas', 'trash']" style="color: #000000;" />
             <div>
               <TransitionRoot appear :show="isOpen" as="template">
@@ -124,11 +137,11 @@ async function openModal() {
                             as="h3"
                             class="text-center text-2xl font-bold leading-6 text-gray-900"
                           >
-                            Are you sure you would like to leave?
+                            Are you sure you would like to delete this post?
                           </DialogTitle>
                           <div class="mt-5">
                             <div class="flex justify-center">
-                              <button @click="closeModal" class="w-20 mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                              <button @click="deletePost" class="w-20 mr-1 bg-gradient-to-r from-green-600 to-green-800 rounded-md hover:from-green-800  hover:to-green-900 text-white font-bold py-2 px-4 rounded shadow-lg">
                               Yes
                             </button>
                             <button  @click="closeModal" class="w-20 mr-1 bg-gradient-to-r from-red-600 to-red-800 rounded-md hover:from-red-800  hover:to-red-900 text-white font-bold py-2 px-4 rounded shadow-lg">
