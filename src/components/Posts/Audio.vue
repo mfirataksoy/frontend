@@ -57,7 +57,7 @@ export default {
         };
 
         mediaRecorder.value.addEventListener("stop", () => {
-          audioBlob.value = new Blob(audioChunks, { type: "audio/mp3" });
+          audioBlob.value = new Blob(audioChunks, { type: "audio/mpeg" });
           audioResultURL.value = URL.createObjectURL(audioBlob.value);
           emit("audio-data", audioBlob.value);
         });
