@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { addSeconds, format } from 'date-fns'
 import { ref, watch } from 'vue'
+import VueWaveSurfer from '~/common/constants/VueWaveSurfer/VueWaveSurfer.vue';
+//import { VueWaveSurfer } from 'vue-wavesurfer';
+
+
 
 const props = defineProps({
   src: String,
@@ -10,8 +14,22 @@ const audio = ref<HTMLAudioElement | null>(null)
 const audioDuration = ref(0)
 const audioProgressPercentage = ref(0)
 const progressRef = ref<HTMLDivElement | null>(null)
+const visualRef = ref<typeof VueWaveSurfer | null>(null); // Add reference to the VueWaveSurfer component
+
+const options = {
+  waveColor: '#60a5fa',
+  progressColor: '#1d4ed8',
+  cursorColor: '#1d4ed8',
+  barWidth: 5,
+  barRadius: 3,
+  cursorWidth: 3,
+  height: 200,
+  barGap: 3
+}
+
 
 function playAudio() {
+  visualRef.value?.waveSurfer.playPause();
   if (!playing.value) {
     audio?.value?.play()
     playing.value = true
@@ -67,20 +85,16 @@ function updateCurrentTime(event: MouseEvent) {
 }
 </script>
 
-<template>
+<!-- <template>
   <div class="flex items-center">
     <div class="flex-1">
       <div class="flex justify-center items-center gap-2">
         <span>{{ audio?.currentTime ? formattedTime(audio?.currentTime) : '00:00' }}</span>
-        <div class="h-1 w-full bg-gray-200 rounded">
-          <div
-            ref="progressRef" class="h-1 bg-orange-500 rounded" :style="{ width: `${audioProgressPercentage}%` }"
-            @click="updateCurrentTime"
-          />
-        </div>
+
         <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
       </div>
       <audio ref="audio" :src="props.src" preload="metadata" />
+      <VueWaveSurfer ref="visualRef" class="soundVisualization" :src="props.src" :options="options"></VueWaveSurfer>
       <button class="p-2 border border-gray-500 rounded flex items-center" @click="playAudio">
         {{ playing ? 'Pause' : 'Play' }}
         <div v-if="!playing" i-carbon-play inline-block />
@@ -88,4 +102,29 @@ function updateCurrentTime(event: MouseEvent) {
       </button>
     </div>
   </div>
+</template> -->
+
+<template>
+  <div class="flex items-center">
+    <div class="flex-1">
+      <div class="flex justify-center items-center gap-2 text-gray-700">
+        <span>{{ '00:00' }}</span>
+        <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
+      </div>
+      <div class="relative rounded-lg overflow-hidden border-2 border-blue-600">
+        <VueWaveSurfer ref="visualRef" class="soundVisualization absolute top-0 left-0 w-full h-full" :src="props.src" :options="options"></VueWaveSurfer>
+        <audio ref="audio" :src="props.src" preload="metadata" class="w-full"></audio>
+      </div>
+      <div class="flex justify-center items-center gap-2 text-gray-700 mt-2">
+        <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
+      </div>
+      <div class="flex justify-center items-center mt-2">
+        <button class="p-2 border border-gray-500 rounded-full flex items-center text-gray-700" @click="playAudio">
+          <div v-if="!playing" class="text-blue-600" i-carbon-play inline-block />
+          <div v-else class="text-blue-600" i-carbon-pause inline-block />
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
+

@@ -66,6 +66,7 @@ specifiers:
   vue-i18n: ^9.2.2
   vue-router: ^4.1.6
   vue-tsc: ^1.0.24
+  wavesurfer.js: ^6.6.3
 
 dependencies:
   '@fortawesome/fontawesome-free': 6.4.0
@@ -95,6 +96,7 @@ dependencies:
   vue-demi: 0.13.11_vue@3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
+  wavesurfer.js: 6.6.3
 
 devDependencies:
   '@antfu/eslint-config': 0.34.1_7uibuqfxkfaozanbtbziikiqje
@@ -9795,6 +9797,10 @@ packages:
   /walk-up-path/1.0.0:
     resolution: {integrity: sha512-hwj/qMDUEjCU5h0xr90KGCf0tg0/LgJbmOWgrWKYlcJZM7XvquvUJZ0G/HMGr7F7OQMOUuPHWP9JpriinkAlkg==}
     dev: true
+
+  /wavesurfer.js/6.6.3:
+    resolution: {integrity: sha512-XqUOXe8+SOTe8uKCHaqW0vJ5etCCQvq/NgaPycn9HAX/nUi+2zoWD+w9i7H5vBT9UCDNawOia+vS5Ct3kZGQzA==}
+    dev: false
 
   /wbuf/1.7.3:
     resolution: {integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==}

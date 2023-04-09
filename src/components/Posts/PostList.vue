@@ -165,12 +165,12 @@ const { t } = useI18n()
     </div>
     <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 
-    <div v-if="posts && filteredPosts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
+    <div v-if="posts && filteredPosts.length > 0" class="ml-50 mr-50 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
         <PostCard v-for="post in filteredPosts" :key="post._id" :post="post" :family="propFamily" />
         <PostButton />
     </div>
-    <div v-else-if="posts && posts.length > 0" class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
+    <div v-else-if="posts && posts.length > 0" class="ml-50 mr-50 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
         <PostCard v-for="post in posts" :key="post._id" :post="post" :family="propFamily" />
         <PostButton />
