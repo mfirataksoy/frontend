@@ -88,10 +88,10 @@ export default {
 <!-- component -->
 <div class="bg-white-100 min-h-screen pt-2 shadow-lg p-10 my-16">
   <h1 class="text-6xl font-bold text-black mx-auto text-shadow " > Settings </h1>
-  <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
+  <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10 text-black"></div>
         <div class="container mx-auto">
-            <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl bg-gray-100 rounded-xl">
-              <div class="p-10 bg-gray-200 rounded-xl shadow-md">
+            <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl bg-white rounded-xl">
+              <div class="bg-white rounded-xl">
                 <label for="profile-picture" class="block w-30 h-30 rounded-full mx-auto mb-10 shadow-lg hover:scale-115 transition-all ease-out duration-200 cursor-pointer">
                 <img class="w-full h-full object-cover rounded-full" :src="user.currentUser?.profilePicUrl ||'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Profile Picture">
               </label>

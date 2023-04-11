@@ -76,7 +76,7 @@ export const createFamily = async (familyName: string) => {
 };
 
 export const getUser = async (id: string) => {
-  const response = await httpClient.get(endpoints.users + `/${id}`)
+  const response = await httpClient.get(endpoints.users.getUser + `/${id}`)
   return response.data;
 }
 

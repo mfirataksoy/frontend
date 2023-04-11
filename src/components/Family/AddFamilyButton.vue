@@ -12,13 +12,28 @@ const { t } = useI18n()
 
 const isOpen = ref(false)
 
+const user = useUserStore()
+
 const familyName = ref('')
 
 function closeModal() {
   isOpen.value = false
 }
 async function openModal() {
-  isOpen.value = true
+  const id = user.currentUser?._id;
+  if (id) {
+    console.log("here")
+    await checkFamilyNumber(id);
+    isOpen.value = true;
+  } else {
+    console.error('User ID is undefined');
+  }
+}
+
+
+async function checkFamilyNumber(id: string) {
+  const familyNumber = await services.getUser(id)
+  console.log(familyNumber)
 }
 
 async function createFamily() {

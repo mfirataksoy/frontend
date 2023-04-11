@@ -195,7 +195,7 @@ const { t } = useI18n()
     </div>
     <div v-else>
       <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
-        <div class="font-bold text-gray-800 mb-10 text-4xl">There are no memories made in  your family! :(</div>
+        <div class="font-bold text-gray-800 mb-10 text-4xl">There are no memories made in  your family!</div>
         <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
           <div class="">
             <h1 class="font-bold text-gray-900 mb-10 text-xl">There are no posts made in your family.</h1>

@@ -51,5 +51,16 @@ onMounted(async () => {
 </script>
 
 <template>
-  <RouterView />
+  <div id="mainApp">
+    <RouterView />
+  </div>
 </template>
+
+<style>
+
+#mainApp {
+  
+}
+
+
+</style>
