@@ -14,7 +14,7 @@ const mobileMenuOpen = ref(false)
 </script>
 
 <template>
-  <section class="mb-40">
+  <section class="mb-40 mt-20">
 
     <svg
       data-name="Layer 1"
