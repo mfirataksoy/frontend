@@ -71,7 +71,7 @@ async function openModal() {
 </script>
 
 <template>
-  <div class="more-shadow bg-white p-4 rounded-lg shadow-lg">
+  <div class="more-shadow custom-purple p-4 rounded-lg shadow-lg">
     <div class="flex">
       <div class="flex flex-col ">
         <p class="text-sm text-gray-600 mb-4">
@@ -172,6 +172,18 @@ async function openModal() {
 
 .more-shadow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
+
+.custom-black-text {
+  border-color: #272727;
 }
 
 

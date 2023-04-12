@@ -1,40 +1,6 @@
 <script setup lang="ts">
 
 
-// <div class="flex justify-center items-center h-screen">
-//   <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex justify-center">
-//     <div class="flex flex-col gap-1 max-w-xl" w="300px">
-//       <Alert :error="responseError" />
-//       <label class=" text-gray-700 text-left" for="name">
-//         First Name
-//       </label>
-//       <TheInput v-model="firstName" placeholder="Enter first name" autocomplete="false" />
-//       <label class=" text-gray-700 text-left" for="name">
-//         Last Name
-//       </label>
-//       <TheInput v-model="lastName" placeholder="Enter last name" autocomplete="false" />
-//       <label class=" text-gray-700 text-left" for="email">
-//         Email
-//       </label>
-//       <TheInput v-model="email" placeholder="Enter email" autocomplete="false" />
-//       <p class="text-red-400 text-left text-sm">
-//         {{ errors.email }}
-//       </p>
-//       <label class=" text-gray-700 text-left" for="pasword">
-//         Password
-//       </label>
-//       <TheInput v-model="password" placeholder="Choose a password" autocomplete="false" type="password" />
-//       <p class="text-red-400 text-left text-sm">
-//         {{ errors.password }}
-//       </p>
-//       <button class="loading" btn mt-2 text-lg :onclick="handleSubmit">
-//         {{ t('button.signup') }}
-//       </button>
-//     </div>
-//   </div>
-//   </div>
-
-
 import { services } from '~/common/services/services'
 const emit = defineEmits<{
   (e: 'login', data: {
@@ -146,8 +112,8 @@ function redirectToLogin() {
     >
       <defs>
         <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-          <stop stop-color="hsl(217, 102%, 99%)" offset="0%"></stop>
-          <stop stop-color="hsl(217,88%, 93%)" offset="100%"></stop>
+          <stop stop-color="#272727" offset="0%"></stop>
+          <stop stop-color="#272727" offset="100%"></stop>
         </linearGradient>
       </defs>
       <path
@@ -158,8 +124,8 @@ function redirectToLogin() {
 
     <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
       <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-        <h1 class="title-font font-bold lg:text-7xl text-6xl text-blue-600 text-center md:text-left ">Keepsake</h1>
-        <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-black text-center md:text-left ">Connect with your loved ones.</p>
+        <h1 class="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">Keepsake</h1>
+        <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-white text-center md:text-left ">Connect with your loved ones.</p>
       </div>
       <div class="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
         <div class="relative mb-4">
@@ -199,6 +165,10 @@ button {
 
 .text-gray-600 body-font bg-gray-100 {
   background-color: red;
+}
+
+.custom-color {
+  background-color: #bcecc2;
 }
 
 

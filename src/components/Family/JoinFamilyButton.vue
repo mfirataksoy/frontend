@@ -94,11 +94,11 @@ async function joinFamily() {
                 leave-to="opacity-0 scale-95"
               >
                 <DialogPanel
-                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                 >
                   <DialogTitle
                     as="h3"
-                    class="text-center text-xl font-medium leading-6 text-gray-900"
+                    class="text-center text-xl font-medium leading-6 text-white"
                   >
                     Join a New Family
                   </DialogTitle>
@@ -106,7 +106,7 @@ async function joinFamily() {
                   <Alert :error="{title: errorMessage, body: 'Please fix the error and try again.'}"></Alert> 
                   </div>
                   <div class="mx-auto flex flex-col gap-1 max-w-xl" w="300px">
-                    <label class="text-gray-700 text-center text-sm pt-3 pb-3" for="name">
+                    <label class="text-gray-100 text-center text-sm pt-3 pb-3" for="name">
                       Ask your family lead for the family code
                     </label>
                     <TheInput
@@ -116,7 +116,7 @@ async function joinFamily() {
                     />
                     <button
                       type="button"
-                      class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg mt-1"
+                      class="bg-white rounded-md text-black font-bold py-2 px-4 rounded shadow-lg hover:scale-105 transition duration-300 py-1 mt-1"
                       @click="joinFamily"
                     >
                       Join family
@@ -131,3 +131,8 @@ async function joinFamily() {
     </div>
   </button>
 </template>
+
+<style>
+
+
+</style>

@@ -75,20 +75,20 @@ async function createFamily() {
                 leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95"
               >
                 <DialogPanel
-                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                 >
-                  <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-black">
+                  <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-white">
                     Create a new family
                   </DialogTitle>
 
                   <div class="mx-auto flex flex-col gap-1 max-w-xlr" w="300px">
-                    <label class=" text-gray-700 text-center text-sm pt-3 pb-3" for="name">
+                    <label class=" text-gray-100 text-center text-sm pt-3 pb-3" for="name">
                       Choose a family name
                     </label>
                     <TheInput v-model="familyName" placeholder="Other users will see this name" autocomplete="false" />
                     <button
                       type="button"
-                      class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg mt-1"
+                      class="bg-white rounded-md text-black font-bold py-2 px-4 rounded shadow-lg hover:scale-105 transition duration-300 py-1 mt-1"
                       @click="createFamily"
                     >
                       Create new family

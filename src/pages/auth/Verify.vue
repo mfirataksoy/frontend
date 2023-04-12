@@ -25,19 +25,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
-    <div class="w-xl flex justify-center max-w-sm rounded overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
+  <div class="w-full h-xl flex flex-col items-center mt-4 px-8 pt-6 pb-8 mb-4 flex justify-center">
+    <div class="w-xl flex custom-black justify-center max-w-sm rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
       <div class="w-64">
-        <h2 class="text-lg self-start">
+        <h2 class="text-lg self-start text-white mb-5">
           {{ t('verify.title') }}
         </h2>
-        <TheInput v-model="email" class="mb-4" />
+        <TheInput v-model="email" class="mb-4 text-white" />
         <VerifyEmail v-model="otp" :fields="6" />
         <p class="text-red-400 text-center mt-2 text-sm">
           {{ !otp && isDirty ? t('error.otp') : '' }}
         </p>
         <div class="w-full justify-between">
-          <button class="loading" bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg :onclick="handleVerify">
+          <button class="loading" btn-ghost mt-2 ml-4 text-lg py-2 px-4 shadow-lg :onclick="handleVerify">
             {{ t('verify.verify') }}
           </button>
           <button class="loading" btn-ghost mt-2 ml-4 text-lg py-2 px-4 :onclick="resendCode">
@@ -48,3 +48,12 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+
+.custom-black {
+  background-color: #272727;
+}
+
+
+</style>

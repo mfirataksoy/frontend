@@ -31,8 +31,8 @@ const changeLang = (event: Event) => {
   left: 0;
   width: 100%;
   padding: 5px;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #272727;
+  color: #ffffff;
   box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 1);
 }
 

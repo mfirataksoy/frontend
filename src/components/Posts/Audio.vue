@@ -104,3 +104,19 @@ export default {
   },
 };
 </script>
+
+<style>
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
+
+.custom-black-text {
+  border-color: #272727;
+}
+
+</style>

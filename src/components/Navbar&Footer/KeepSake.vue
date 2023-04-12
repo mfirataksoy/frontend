@@ -9,9 +9,9 @@ const user = useUserStore()
   <div v-if="!user.isLoggedIn.value" class="flex justify-center">
     <a href="/">
       <div
-        class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900   w-30 "
+        class="bg-white rounded-md w-30 "
       >
-        <h1 class=" text-xl text-white font-bold">
+        <h1 class=" text-xl text-black font-bold">
           KEEPSAKE
         </h1>
       </div>
@@ -19,9 +19,9 @@ const user = useUserStore()
   </div>
   <div v-else class="flex justify-center">
       <div
-        class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900   w-30 "
+        class="bg-white rounded-md   w-30 "
       >
-        <h1 class=" text-xl text-white font-bold">
+        <h1 class=" text-xl text-black font-bold">
           KEEPSAKE
         </h1>
       </div>

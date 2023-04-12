@@ -32,7 +32,7 @@ const getfamilies = async() =>{
 
   if (families.value) {
     const familyIdArray = families.value.map((item: Family) => item._id).flat();
-    console.log(familyIdArray);
+    console.log(families);
     const feedOptions = {
       skip: 0,
       limit: 100
@@ -105,7 +105,7 @@ const { t } = useI18n()
   <div class="mt-4">
     <div class="flex justify-center items-center mb-10">
       <hr class="font-bold">
-    <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="ml-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+    <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300">
       {{ currentFamily }}
       <div>
       <TransitionRoot appear :show="isOpen" as="template">
@@ -136,11 +136,11 @@ const { t } = useI18n()
                 leave-to="opacity-0 scale-95"
               >
                 <DialogPanel
-                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                 >
                   <DialogTitle
                     as="h3"
-                    class="text-center text-2xl font-bold leading-6 text-gray-900"
+                    class="text-center text-2xl font-bold leading-6 text-white"
                   >
                     View posts from:
                   </DialogTitle>
@@ -148,7 +148,7 @@ const { t } = useI18n()
                     
 
                     <button v-for="family in families" :key="family._id" @click="setFamily(family.name, family._id)" 
-                      class="text-left mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800 hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg">
+                      class="text-left mb-5 bg-white rounded-md text-black font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300">
                       {{family.name}}
                     </button>
                   </div>
@@ -163,7 +163,7 @@ const { t } = useI18n()
     </button>
     <h1 class="pr-30 text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
-    <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
+    <div class="custom-black-text border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 
     <div v-if="posts && filteredPosts.length > 0" class="ml-50 mr-50 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 ml-10 mr-10">
 
@@ -179,32 +179,24 @@ const { t } = useI18n()
     <div v-else-if="loading">
       <PostLoader v-for="_, index in Array.from({ length: 10 })" :key="index" />
     </div>
-    <div v-else-if="!families || families.length == 0">
-      <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
-        <div class="font-bold text-gray-800 mb-10 text-4xl">View Posts</div>
-        <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
+    <div v-else-if="families?.length == 1">
+      <div class="w-full h-xl flex flex-col items-center mt-4  px-8 pt-6 pb-8 mb-4 flex justify-center">
+        <div class="font-bold text-gray-800 mb-10 text-4xl">Join or create a family to start posting.</div>
+        <div class=" w-xl flex justify-center rounded-lg overflow-hidden  py-6 px-4 min-h-[200px]">
           <div class="">
-            <h1 class="font-bold text-gray-900 mb-10 text-xl">Join a family to see posts</h1>
             <div class="w-full justify-between">
-              <AddFamilyButton class="mx-3" />
-              <JoinFamilyButton class="mx-3" />
+              <AddFamilyButton class="mx-3 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
+              <JoinFamilyButton class="mx-3 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
             </div>
           </div>
         </div>
       </div>
     </div>
     <div v-else>
-      <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
+      <div class="w-full h-xl flex flex-col items-center mt-4  px-8 pt-6 pb-8 mb-4 flex justify-center">
         <div class="font-bold text-gray-800 mb-10 text-4xl">There are no memories made in  your family!</div>
-        <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
-          <div class="">
-            <h1 class="font-bold text-gray-900 mb-10 text-xl">There are no posts made in your family.</h1>
-            <h1 class="font-bold text-gray-900 mb-10 text-xl">Make the first post.</h1>
-            <div class="w-full justify-between">
-              <PostButton/>
-            </div> 
-          </div>
-        </div>
+        <PostButton/>
+
       </div>
     </div>
   </div>
@@ -215,6 +207,18 @@ const { t } = useI18n()
 
 .container {
   box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
+
+.custom-black-text {
+  border-color: #272727;
 }
 
 

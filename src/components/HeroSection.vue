@@ -26,8 +26,8 @@ const mobileMenuOpen = ref(false)
     >
       <defs>
         <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
-          <stop stop-color="hsl(217, 102%, 99%)" offset="0%"></stop>
-          <stop stop-color="hsl(217,88%, 93%)" offset="100%"></stop>
+          <stop stop-color="#272727" offset="0%"></stop>
+          <stop stop-color="#272727" offset="100%"></stop>
         </linearGradient>
       </defs>
       <path
@@ -40,16 +40,16 @@ const mobileMenuOpen = ref(false)
       <div class="container mx-auto xl:px-32">
         <div class="grid lg:grid-cols-2 gap-12 flex items-center">
           <div class="mt-12 lg:mt-0">
-            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">Keepsake <br /><span class="text-blue-600">Share your Stories and Memories</span></h1>
-            <a class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/signup" role="button">Get started</a>
-            <a class="inline-block px-7 py-3 bg-transparent text-blue-600 font-medium text-sm leading-snug uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
+            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 text-white">Keepsake. <br /><span class="text-white">Share your Stories and Memories</span></h1>
+            <a class="bg-white text-black rounded-md font-bold py-2 px-4 rounded shadow-lg" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/signup" role="button">Get started</a>
+            <a class="inline-block px-7 py-3 bg-transparent text-white font-medium text-sm leading-snug uppercase rounded-md hover:text-black hover:bg-white ml-3 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
           </div>
           <div class="mb-12 lg:mb-0">
             <img
               src="https://imgs.search.brave.com/idfB1ukUODyBZOaaA0PzHfZ1oQfTLx7gxHnPmG3R24M/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hZHZh/bnRhZ2U0cGFyZW50/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMTcvMTEvaGFw/cHktZmFtaWx5Lmpw/Zw"
               class="w-full rounded-lg shadow-lg"
               alt=""
-              style="opacity: 0.7;"
+              style="opacity: 0.99;"
             />
           </div>
         </div>

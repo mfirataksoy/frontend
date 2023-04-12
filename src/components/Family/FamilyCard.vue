@@ -119,11 +119,11 @@ async function leaveFamily() {
 </script>
 
 <template>
-  <div class="flex flex-wrap bg-white md:w-1/2 lg:w-1/3 rounded-lg ">
+  <div class="flex flex-wrap custom-purple md:w-1/2 lg:w-1/3 rounded-lg ">
     <div class="w-full  px-4 mb-8">
       <div class="rounded-lg p-6">
         <div class="flex justify-center">
-        <h1 class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-md font-bold text-white text-xl text-center px-4 py-2 shadow-lg">
+        <h1 class="custom-black rounded-md font-bold text-white text-xl text-center px-4 py-2 shadow-lg">
           {{ family.name }}
         </h1>
       </div>
@@ -132,7 +132,7 @@ async function leaveFamily() {
           <!-- Created on: {{ format(new Date(family.createdDate), 'MM/dd/yyyy') }} -->
         </p>
         <p class="text-2xs font-bold mb-4">
-          <button v-if="isAdmin" @click="openModal" class="bg-gray-300 hover:bg-gray-400  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
+          <button v-if="isAdmin" @click="openModal" class="bg-white hover:bg-gray-100  py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
             <font-awesome-icon class=" transform hover:scale-110 transition duration-300" :icon="['fas', 'gear']" style="color: #000000;" />
             <div>
               <TransitionRoot appear :show="isOpen" as="template">
@@ -163,11 +163,11 @@ async function leaveFamily() {
                         leave-to="opacity-0 scale-95"
                       >
                         <DialogPanel
-                          class="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                          class="w-full max-w-xl transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                         >
                           <DialogTitle
                             as="h3"
-                            class="text-center text-2xl font-bold leading-6 text-gray-900"
+                            class="text-center text-2xl font-bold leading-6 text-white"
                           >
                             {{family.name}} Settings
                           </DialogTitle>
@@ -242,18 +242,18 @@ async function leaveFamily() {
                               <table class="table-auto">
                                 <thead>
                                   <tr>
-                                    <th class="px-4 py-2 text-left">First Name</th>
-                                    <th class="px-4 py-2 text-left">Last Name</th>
-                                    <th class="px-4 py-2 text-left">Email</th>
-                                    <th class="px-4 py-2">Remove</th>
+                                    <th class="px-4 py-2 text-left text-white">First Name</th>
+                                    <th class="px-4 py-2 text-left text-white">Last Name</th>
+                                    <th class="px-4 py-2 text-left text-white">Email</th>
+                                    <th class="px-4 py-2 text-white">Remove</th>
                                   </tr>
                                 </thead>
                                 <tbody class="overflow-auto">
                                   <tr v-for="member in family.members" :key="member._id">
-                                    <td class="border px-4 py-2">{{ member.firstName }}</td>
-                                    <td class="border px-4 py-2">{{ member.lastName }}</td>
-                                    <td class="border px-4 py-2">{{ member.email }}</td>
-                                    <td class="border px-4 py-2">
+                                    <td class="border px-4 py-2 text-white">{{ member.firstName }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ member.lastName }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ member.email }}</td>
+                                    <td class="border px-4 py-2 text-white">
                                       <p v-if="member.email === family?.adminUser?.email">Admin</p>
                                       <button v-else @click="removeUser(member._id)" class="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-800 hover:to-red-900 py-2 px-4 rounded-xl mr-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer">
                                         <font-awesome-icon :icon="['fas', 'trash']" style="color: #000000;" />
@@ -343,11 +343,11 @@ async function leaveFamily() {
               </TransitionRoot>
             </div>
           </button>
-          <button class="bg-gray-300 text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-400 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
+          <button class="bg-white text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-100 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
           @click="copyToClipboard(family.code)">
           Copy Invite ID: {{ family.code }}
           </button>
-          <button class="bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-xl ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
+          <button class="bg-white hover:bg-gray-100 text-white font-bold py-2 px-4 rounded-xl ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
             <font-awesome-icon :icon="['fas', 'envelope']" style="color: #000000;" />
           </button>
 
@@ -355,13 +355,13 @@ async function leaveFamily() {
         <h2 class="text-xl font-bold mb-4 text-black">
           Family Lead
         </h2>
-        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 bg-gray-100">
+        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 custom-black">
           <img :src="family.adminUser.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Admin User" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <p class="text-gray-400">
+            <p class="text-white">
               Name: {{ family.adminUser.firstName }} {{ family.adminUser.lastName }}
             </p>
-            <p class="text-gray-400">
+            <p class="text-white">
               Email: {{ family.adminUser.email }}
             </p>
           </div>
@@ -369,16 +369,16 @@ async function leaveFamily() {
         <h2 class="text-xl font-bold mb-4 text-black">
           Members
         </h2>
-        <div class="flex flex-wrap rounded-xl bg-gray-100 shadow-lg p-4">
+        <div class="flex flex-wrap rounded-xl custom-black shadow-lg p-4">
           <div
             v-for="member in family.members" :key="member._id"
-            class="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 hover:scale-105 transition-all ease-out duration-200 cursor-pointer"
+            class="w-full md:w-1/2 lg:w-1/5 px-4 mb-4 hover:scale-105 transition-all ease-out duration-200 cursor-pointer"
           >
-            <div class="p-4 bg-gray-200 rounded-lg shadow-md">
+            <div class="p-4 bg-white rounded-lg shadow-md">
               <div class="flex justify-center mt-2 mb-3">
                 <img :src="member.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Admin User" class="w-12 h-12 rounded-full mr-4 justify-center">
               </div>
-              <p class="text-black font-bold mb-2">
+              <p class="text-black font-bold mb-2 truncate">
                 {{ member.firstName }} {{ member.lastName }}
               </p>
               <p class="text-gray-400 mb-2 truncate ">
@@ -395,5 +395,13 @@ async function leaveFamily() {
 </template>
 
 <style>
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
 
 </style>

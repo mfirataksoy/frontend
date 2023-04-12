@@ -22,15 +22,15 @@ onMounted(() => {
 <template>
   <div class="flex items-center justify-between">
     <div class="">
-      <AddFamilyButton class="mt-20 ml-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" />
+      <AddFamilyButton class="mt-20 ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
     </div>
     <h1 class="text-6xl font-bold text-black mx-auto text-shadow mt-20">My Families</h1>
     <div class="mx-3">
-      <JoinFamilyButton class="mt-20 mr-10 mb-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lgbg-gradient-to-r from-blue-600 to-blue-800 rounded-md hover:from-blue-800  hover:to-blue-900 text-white font-bold py-2 px-4 rounded shadow-lg" />
+      <JoinFamilyButton class="mt-20 ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
     </div>
   </div>
-  <div class="border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
-<div v-if="families && families.length > 0" class="grid-container ml-10 mr-10">
+  <div class="custom-black-text border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
+<div v-if="families && families.length > 0" class="grid-container ml-10 mr-10 mb-50">
   <FamilyCard v-for="family in families" :key="family._id" class="grid-item " :family="family" />
   <div class="fixed bottom-30 left-1/2 transform -translate-x-1/2 flex justify-center w-full flex-row">
     <!-- <AddFamilyButton class="mx-3 " /> -->
@@ -62,15 +62,14 @@ onMounted(() => {
 
 </div>
 <div v-else>
-  <div class="w-full h-xl flex flex-col items-center mt-4 bg-white  px-8 pt-6 pb-8 mb-4 flex justify-center">
-  <div class="font-bold text-gray-800 mb-10 text-4xl">View Families</div>
-    <div class="container w-xl flex justify-center rounded-lg overflow-hidden shadow-lg  py-6 px-4 min-h-[200px]">
+  <div class="w-full h-xl flex flex-col items-center mt-4 px-8 pt-6 pb-8 mb-4 flex justify-center">
+  <div class="font-bold text-gray-800 mb-10 text-4xl">Join or create a family to get started.</div>
+    <div class=" w-xl flex justify-center rounded-lg overflow-hidden py-6 px-4 min-h-[200px]">
       <div class="">
 
-        <h1 class="font-bold text-gray-900 mb-10 text-xl">Join or create a family to get started</h1>
         <div class="w-full justify-between">
-          <AddFamilyButton class="mx-3" />
-          <JoinFamilyButton class="mx-3" />
+          <AddFamilyButton class="mx-3 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
+          <JoinFamilyButton class="mx-3 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
         </div>
       </div>
     </div>
@@ -105,6 +104,14 @@ onMounted(() => {
 
 .container {
   box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-black-text {
+  border-color: #272727;
 }
 
 </style>

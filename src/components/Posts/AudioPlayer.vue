@@ -17,9 +17,9 @@ const progressRef = ref<HTMLDivElement | null>(null)
 const visualRef = ref<typeof VueWaveSurfer | null>(null); // Add reference to the VueWaveSurfer component
 
 const options = {
-  waveColor: '#60a5fa',
-  progressColor: '#1d4ed8',
-  cursorColor: '#1d4ed8',
+  waveColor: '#272727',
+  progressColor: '#272727',
+  cursorColor: '#272727',
   barWidth: 5,
   barRadius: 3,
   cursorWidth: 3,
@@ -111,7 +111,7 @@ function updateCurrentTime(event: MouseEvent) {
         <span>{{ '00:00' }}</span>
         <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
       </div>
-      <div class="relative rounded-lg overflow-hidden border-2 border-blue-600">
+      <div class="relative rounded-lg overflow-hidden border-2 custom-black-border">
         <VueWaveSurfer ref="visualRef" class="soundVisualization absolute top-0 left-0 w-full h-full" :src="props.src" :options="options"></VueWaveSurfer>
         <audio ref="audio" :src="props.src" preload="metadata" class="w-full"></audio>
       </div>
@@ -119,12 +119,32 @@ function updateCurrentTime(event: MouseEvent) {
         <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
       </div>
       <div class="flex justify-center items-center mt-2">
-        <button class="p-2 border border-gray-500 rounded-full flex items-center text-gray-700" @click="playAudio">
-          <div v-if="!playing" class="text-blue-600" i-carbon-play inline-block />
-          <div v-else class="text-blue-600" i-carbon-pause inline-block />
+        <button class="p-2 border custom-black-border rounded-full flex items-center text-gray-700" @click="playAudio">
+          <div v-if="!playing" class="custom-black-text" i-carbon-play inline-block />
+          <div v-else class="custom-black-text" i-carbon-pause inline-block />
         </button>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
+
+.custom-black-text {
+  color: #272727;
+}
+
+.custom-black-border {
+  border-color: #272727;
+}
+
+</style>
 
