@@ -51,12 +51,13 @@ async function createFamily() {
 </script>
 
 <template>
+
   <button
     class=""
     style="" @click="openModal"
   >
+  <div>
     <span>{{ t("asd") }}</span>
-    <div>
       <TransitionRoot appear :show="isOpen" as="template">
         <Dialog as="div" class="relative z-10" @close="closeModal">
           <TransitionChild
@@ -106,6 +107,5 @@ async function createFamily() {
 </template>
 
 <style scoped>
-
 
 </style>

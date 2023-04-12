@@ -175,6 +175,12 @@ button {
   background-color: #272727;
 }
 
+@media screen and (max-width: 640px) {
+  .svg {
+    height: 300px;
+  }
+}
+
 
 
 

@@ -102,7 +102,7 @@ onMounted(() => {
 const { t } = useI18n()
 </script>
 <template>
-  <div class="mt-4">
+  <div class="mt-4 mb-20">
     <div class="flex justify-center items-center mb-10">
       <hr class="font-bold">
     <button v-if="posts && posts.length > 0" @click="openModal" id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300">

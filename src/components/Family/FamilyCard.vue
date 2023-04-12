@@ -123,7 +123,7 @@ async function leaveFamily() {
     <div class="w-full  px-4 mb-8">
       <div class="rounded-lg p-6">
         <div class="flex justify-center">
-        <h1 class="custom-black rounded-md font-bold text-white text-xl text-center px-4 py-2 shadow-lg">
+        <h1 class="custom-black rounded-md font-bold text-white text-4xl text-center px-4 py-2 ">
           {{ family.name }}
         </h1>
       </div>
@@ -355,7 +355,7 @@ async function leaveFamily() {
         <h2 class="text-xl font-bold mb-4 text-white">
           Family Lead
         </h2>
-        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 custom-white">
+        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 custom-white max-w-100 mx-auto">
           <img :src="family.adminUser.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Admin User" class="w-12 h-12 rounded-full mr-4">
           <div>
             <p class="text-black">
