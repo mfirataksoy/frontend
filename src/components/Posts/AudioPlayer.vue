@@ -17,9 +17,9 @@ const progressRef = ref<HTMLDivElement | null>(null)
 const visualRef = ref<typeof VueWaveSurfer | null>(null); // Add reference to the VueWaveSurfer component
 
 const options = {
-  waveColor: '#272727',
-  progressColor: '#272727',
-  cursorColor: '#272727',
+  waveColor: '#fff',
+  progressColor: '#fff',
+  cursorColor: '#fff',
   barWidth: 5,
   barRadius: 3,
   cursorWidth: 3,
@@ -85,43 +85,24 @@ function updateCurrentTime(event: MouseEvent) {
 }
 </script>
 
-<!-- <template>
-  <div class="flex items-center">
-    <div class="flex-1">
-      <div class="flex justify-center items-center gap-2">
-        <span>{{ audio?.currentTime ? formattedTime(audio?.currentTime) : '00:00' }}</span>
-
-        <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
-      </div>
-      <audio ref="audio" :src="props.src" preload="metadata" />
-      <VueWaveSurfer ref="visualRef" class="soundVisualization" :src="props.src" :options="options"></VueWaveSurfer>
-      <button class="p-2 border border-gray-500 rounded flex items-center" @click="playAudio">
-        {{ playing ? 'Pause' : 'Play' }}
-        <div v-if="!playing" i-carbon-play inline-block />
-        <div v-else i-carbon-pause inline-block />
-      </button>
-    </div>
-  </div>
-</template> -->
-
 <template>
   <div class="flex items-center">
     <div class="flex-1">
-      <div class="flex justify-center items-center gap-2 text-gray-700">
+      <div class="flex justify-center items-center gap-2 text-white">
         <span>{{ '00:00' }}</span>
         <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
       </div>
-      <div class="relative rounded-lg overflow-hidden border-2 custom-black-border">
+      <div class="relative rounded-lg overflow-hidden border-2 custom-white-border">
         <VueWaveSurfer ref="visualRef" class="soundVisualization absolute top-0 left-0 w-full h-full" :src="props.src" :options="options"></VueWaveSurfer>
         <audio ref="audio" :src="props.src" preload="metadata" class="w-full"></audio>
       </div>
-      <div class="flex justify-center items-center gap-2 text-gray-700 mt-2">
+      <div class="flex justify-center items-center gap-2 text-white mt-2">
         <span>{{ audioDuration ? formattedTime(audioDuration) : '??:00' }}</span>
       </div>
       <div class="flex justify-center items-center mt-2">
-        <button class="p-2 border custom-black-border rounded-full flex items-center text-gray-700" @click="playAudio">
-          <div v-if="!playing" class="custom-black-text" i-carbon-play inline-block />
-          <div v-else class="custom-black-text" i-carbon-pause inline-block />
+        <button class="p-2 border custom-white-border rounded-full flex items-center text-white" @click="playAudio">
+          <div v-if="!playing" class="custom-white-text" i-carbon-play inline-block />
+          <div v-else class="custom-white-text" i-carbon-pause inline-block />
         </button>
       </div>
     </div>
@@ -144,6 +125,18 @@ function updateCurrentTime(event: MouseEvent) {
 
 .custom-black-border {
   border-color: #272727;
+}
+
+.custom-white {
+  background-color: #ffffff;
+}
+
+.custom-white-border {
+  border-color: #ffffff;
+}
+
+.custom-white-text {
+  color: #ffffff;
 }
 
 </style>

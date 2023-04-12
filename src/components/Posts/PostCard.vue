@@ -71,7 +71,7 @@ async function openModal() {
 </script>
 
 <template>
-  <div class="more-shadow custom-purple p-4 rounded-lg shadow-lg">
+  <div class="more-shadow custom-black p-4 rounded-lg shadow-lg">
     <div class="flex">
       <div class="flex flex-col ">
         <p class="text-sm text-gray-600 mb-4">
@@ -83,7 +83,7 @@ async function openModal() {
         </p>
         <div class="mt-15">
           <img class="w-30 h-30 rounded-full object-cover" :src="post.postedBy?.profilePicUrl || emptyProfilePic" alt="">
-          <p class="text-gray-800 text-lg ml-4">
+          <p class="text-white text-lg ml-4">
             {{ post.postedBy?.firstName }}
             {{ post.postedBy?.lastName }}
           </p>
@@ -180,6 +180,10 @@ async function openModal() {
 
 .custom-purple {
   background-color: #cabfcb;
+}
+
+.custom-white {
+  background-color: #ffffff;
 }
 
 .custom-black-text {

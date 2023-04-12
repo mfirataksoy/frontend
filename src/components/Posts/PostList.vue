@@ -217,6 +217,10 @@ const { t } = useI18n()
   background-color: #cabfcb;
 }
 
+.custom-white {
+  background-color: #ffffff;
+}
+
 .custom-black-text {
   border-color: #272727;
 }

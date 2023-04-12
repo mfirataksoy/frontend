@@ -119,7 +119,7 @@ async function leaveFamily() {
 </script>
 
 <template>
-  <div class="flex flex-wrap custom-purple md:w-1/2 lg:w-1/3 rounded-lg ">
+  <div class="flex flex-wrap custom-black md:w-1/2 lg:w-1/3 rounded-lg ">
     <div class="w-full  px-4 mb-8">
       <div class="rounded-lg p-6">
         <div class="flex justify-center">
@@ -352,24 +352,24 @@ async function leaveFamily() {
           </button>
 
         </p>
-        <h2 class="text-xl font-bold mb-4 text-black">
+        <h2 class="text-xl font-bold mb-4 text-white">
           Family Lead
         </h2>
-        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 custom-black">
+        <div v-if="family?.adminUser" class="flex mb-4 justify-center rounded-xl shadow-lg p-4 custom-white">
           <img :src="family.adminUser.profilePicUrl || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'" alt="Admin User" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <p class="text-white">
+            <p class="text-black">
               Name: {{ family.adminUser.firstName }} {{ family.adminUser.lastName }}
             </p>
-            <p class="text-white">
+            <p class="text-black">
               Email: {{ family.adminUser.email }}
             </p>
           </div>
         </div>
-        <h2 class="text-xl font-bold mb-4 text-black">
+        <h2 class="text-xl font-bold mb-4 text-white">
           Members
         </h2>
-        <div class="flex flex-wrap rounded-xl custom-black shadow-lg p-4">
+        <div class="flex flex-wrap rounded-xl p-4">
           <div
             v-for="member in family.members" :key="member._id"
             class="w-full md:w-1/2 lg:w-1/5 px-4 mb-4 hover:scale-105 transition-all ease-out duration-200 cursor-pointer"
@@ -402,6 +402,10 @@ async function leaveFamily() {
 
 .custom-purple {
   background-color: #cabfcb;
+}
+
+.custom-white {
+  background-color: #ffffff;
 }
 
 </style>
