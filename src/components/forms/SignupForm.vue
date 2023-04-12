@@ -127,7 +127,7 @@ function redirectToLogin() {
         <h1 class="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">Keepsake</h1>
         <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-white text-center md:text-left ">Connect with your loved ones.</p>
       </div>
-      <div class="lg:w-2/6 md:w-1/2 bg-white shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <div class="lg:w-2/6 md:w-1/2 custom-black shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
         <div class="relative mb-4">
           <input v-model="firstname" type="text" for="firstname" name="firstname" placeholder="First name" class="w-full  bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200  outline-none text-lg text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
@@ -169,6 +169,10 @@ button {
 
 .custom-color {
   background-color: #bcecc2;
+}
+
+.custom-black {
+  background-color: #272727;
 }
 
 

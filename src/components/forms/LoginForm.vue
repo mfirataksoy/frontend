@@ -114,7 +114,7 @@ onMounted(() => {
         <h1 class="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">Keepsake</h1>
         <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-white text-center md:text-left ">Connect with your loved ones.</p>
       </div>
-      <div class="lg:w-2/6 md:w-1/2 shadow-lg rounded-lg p-8 flex bg-white flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <div class="lg:w-2/6 md:w-1/2 shadow-lg rounded-lg p-8 flex custom-black flex-col md:ml-auto w-full mt-10 md:mt-0">
         <div class="relative mb-4">
           <input v-model="email" type="email" for="email" name="email" placeholder="Email address" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-lg outline-none  text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
           <span v-if="errors.email" class="text-sm text-red-500">{{ errors.email }}</span>
@@ -130,7 +130,7 @@ onMounted(() => {
           @click="handleSubmit">
           {{ isFormSubmitting ? 'Logging in...' : 'Log In' }}
         </button>
-        <a class="text-sm text-black py-5 text-center" data-bs-toggle="modal" data-bs-target="#forgotPassword">Forgot Password?</a>
+        <a class="text-sm text-white py-5 text-center" data-bs-toggle="modal" data-bs-target="#forgotPassword">Forgot Password?</a>
         <hr class="my-5" />
         <router-link to="/auth/signup" class="text-white  border-0 py-2 px-8 focus:outline-none font-medium  rounded text-xl bg-green-500 " onmouseover="this.style.backgroundColor='#228B22';" onmouseout="this.style.backgroundColor='#34A853';">Create New Account</router-link>
       </div>
