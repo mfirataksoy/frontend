@@ -42,7 +42,7 @@ const mobileMenuOpen = ref(false)
           <div class="mt-12 lg:mt-0">
             <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 text-white">Keepsake. <br /><span class="text-white">Share your Stories and Memories.</span></h1>
             <a class="bg-white text-black rounded-md font-bold py-2 px-4 rounded shadow-lg" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/signup" role="button">Get started</a>
-            <a class="inline-block px-7 py-3 bg-transparent text-white font-medium text-sm leading-snug uppercase rounded-md hover:text-black hover:bg-white ml-3 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
+            <a class="inline-block px-7 py-3 bg-transparent font-bold text-white font-medium text-sm leading-snug uppercase rounded-md hover:text-black hover:bg-white ml-3 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
           </div>
           <div class="mb-12 lg:mb-0">
             <img
@@ -56,15 +56,7 @@ const mobileMenuOpen = ref(false)
       </div>
     </div>
   </section>
-  <section class="mb-5 text-center ml-40">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="max-w-screen-lg text-gray-500 sm:text-lg border-4 border-black rounded-xl p4">
-            <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900">Connecting Families Worldwide</h2>
-            <p class="mb-4 font-light">Welcome to Keepsake, a website dedicated to connecting families worldwide through the power of shared stories and memories. Here, you can create a digital space for your family to come together, reminisce about the past, and create new memories for the future.</p>
-            <p class="mb-4 font-medium">Whether you're separated by distance or just want to stay connected with loved ones, Keepsake provides a safe and secure space for your family to come together and celebrate the bonds that keep you all connected. So, take a moment to explore our platform and start sharing your family's story today.</p>
-        </div>
-    </div>
-  </section>
+  <div class="border-2 custom-black-border ml-20 mr-20"></div>
   <section class="">
       <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div class="grid grid-cols-2 gap-4 mt-8">
@@ -86,5 +78,10 @@ const mobileMenuOpen = ref(false)
 .custom-black {
   background-color: #272727;
 }
+
+.custom-black-border {
+  border-color: #272727;
+}
+
 
 </style>

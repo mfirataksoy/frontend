@@ -41,7 +41,9 @@ const getfamilies = async() =>{
     const postsResponse = await getFeed(familyIdArray, feedOptions)
     posts.value = postsResponse.reverse() // Reverse the posts array here
     families.value = familiesResponse.concat([{ _id: "all", name: "All Posts" }]); // Move this line above the posts assignment
-    loading.value = false
+    setTimeout(() => {
+      loading.value = false;
+    }, 1000); // set loading to false after 2 seconds
   }
 
 }
@@ -161,6 +163,7 @@ const { t } = useI18n()
       </TransitionRoot>
     </div>
     </button>
+    <button v-else class="ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" >All Posts</button>
     <h1 class="pr-30 text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
     </div>
     <div class="custom-black-text border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>

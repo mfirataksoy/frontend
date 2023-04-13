@@ -11,7 +11,9 @@ const getFamilies = async () => {
   loading.value = true
   const familyResponse = await services.getFamilies()
   families.value = familyResponse
-  loading.value = false
+  setTimeout(() => {
+      loading.value = false;
+    }, 1000); // set loading to false after 2 seconds
 }
 
 onMounted(() => {
@@ -39,23 +41,12 @@ onMounted(() => {
 </div>
 <div v-else-if="loading">
 
-  <div class="grid grid-cols-2 gap-4">
-    <div class="w-full h-24 border-2 rounded-md mx-auto mt-20">
-      <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-        <div class="w-12 bg-gray-300 h-12 rounded-full"></div>
-        <div class="flex flex-col space-y-3">
-          <div class="w-36 bg-gray-300 h-6 rounded-md"></div>
-          <div class="w-24 bg-gray-300 h-6 rounded-md"></div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full h-24 border-2 rounded-md mx-auto mt-20">
-      <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-        <div class="w-12 bg-gray-300 h-12 rounded-full"></div>
-        <div class="flex flex-col space-y-3">
-          <div class="w-36 bg-gray-300 h-6 rounded-md"></div>
-          <div class="w-24 bg-gray-300 h-6 rounded-md"></div>
-        </div>
+  <div class="w-full h-24 border-2 border-black rounded-md mx-auto mt-20">
+    <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+      <div class="w-12 bg-black h-12 rounded-full " />
+      <div class="flex flex-col space-y-3">
+        <div class="w-36 bg-black h-6 rounded-md " />
+        <div class="w-24 bg-black h-6 rounded-md " />
       </div>
     </div>
   </div>
