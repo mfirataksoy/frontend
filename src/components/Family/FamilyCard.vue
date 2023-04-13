@@ -267,7 +267,7 @@ async function leaveFamily() {
                             </div>
                             <button
                               type="button"
-                              class="text-white inline-flex mr-2 justify-center rounded-md border border-transparent bg-gray-400 hover:bg-gray-500 px-4 py-2 text-sm font-bold text-blue-900 mt-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                              class="text-black inline-flex mr-2 justify-center rounded-md border border-transparent bg-white hover:bg-gray-100 px-4 py-2 text-sm font-bold text-black mt-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                               @click="closeModal"
                             >
                               Back
