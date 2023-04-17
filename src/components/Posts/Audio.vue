@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="text-center mb-4">
-      <button class=" shadow-xl mr-1 text-white px-4 w-auto h-12 bg-blue-600 rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="beginRecording">
-        Begin Recording
-      </button>
-      <button class=" shadow-xl ml-1 text-white px-4 w-auto h-12 bg-red-600 rounded-lg hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="endRecording">
-        End Recording
-      </button>
+      <button class="shadow-xl mr-1 text-white px-4 w-auto h-12 bg-blue-600 rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " 
+  @click="recordingInProgress ? endRecording() : beginRecording()">
+  <i class="fas fa-{{ recordingInProgress ? 'stop' : 'play' }}"></i>
+  {{ recordingInProgress ? 'End Recording' : 'Begin Recording' }}
+</button>
+
+
+
     </div>
     <audio class="mx-auto" controls :src="audioResultURL" id="resultAudio"></audio>
     <div class=" mx-auto mt-4 mb-4 bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white " v-if="recordingInProgress">Recording in progress...</div>

@@ -21,6 +21,7 @@ provide('selectedFamilies', selectedFamilies.value);
 
 function closeModal() {
   isOpen.value = false
+  selectedFamilies.value = []
 }
 async function openModal() {
   const resp = await services.getFamilies()
@@ -33,15 +34,9 @@ function setSelectedFamilies(families) {
 }
 
 function onFamilySelect(family) {
-  const selectedFamilyIndex = selectedFamilies.value.findIndex(
-    (selectedFamily) => selectedFamily.id === family._id
-  );
-  if (selectedFamilyIndex >= 0) {
-    selectedFamilies.value.splice(selectedFamilyIndex, 1);
-  } else {
-    selectedFamilies.value.push({ id: family._id, name: family.name });
-  }
+  selectedFamilies.value = [{ id: family._id, name: family.name }];
 }
+
 
 </script>
 
@@ -86,18 +81,21 @@ function onFamilySelect(family) {
                     Please select the family you want to post to
                   </DialogTitle>
                   <div class="flex items-center justify-center">
-                    <div
-                      v-for="family in families" :key="family._id"
-                      class="inline-flex  shadow-md hover:shadow-lg focus:shadow-lg" role="group"
-                    >
-                      <a
-                        href="#" aria-current="page"
-                        class="rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
-                        @click.prevent="onFamilySelect(family)"
+                    <div class="mx-2">
+                      <div
+                        v-for="family in families" :key="family._id"
+                        class="inline-flex mx-2 shadow-md hover:shadow-lg focus:shadow-lg" role="group"
                       >
-                        {{ family.name }}
-                      </a>
+                        <a
+                          href="#" aria-current="page"
+                          class="rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                          @click.prevent="onFamilySelect(family)"
+                        >
+                          {{ family.name }}
+                        </a>
+                      </div>
                     </div>
+
                   </div>
                   <div class="mt-2">
                     <p class="text-sm text-gray-500">
