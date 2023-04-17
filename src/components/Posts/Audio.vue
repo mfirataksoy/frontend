@@ -1,28 +1,71 @@
 <template>
   <div>
     <div class="text-center mb-4">
-      <button class="shadow-xl mr-1 text-white px-4 w-auto h-12 bg-blue-600 rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " 
-  @click="recordingInProgress ? endRecording() : beginRecording()">
-  <i class="fas fa-{{ recordingInProgress ? 'stop' : 'play' }}"></i>
-  {{ recordingInProgress ? 'End Recording' : 'Begin Recording' }}
-</button>
-
-
-
+      <button class="shadow-xl mr-1 text-white px-4 w-auto h-12 primary-button rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="recordingInProgress ? endRecording() : beginRecording()">
+        <i class="fas fa-{{ recordingInProgress ? 'stop' : 'play' }}"></i>
+        {{ recordingInProgress ? 'End Recording' : 'Begin Recording' }}
+      </button>
     </div>
     <audio class="mx-auto" controls :src="audioResultURL" id="resultAudio"></audio>
-    <div class=" mx-auto mt-4 mb-4 bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white " v-if="recordingInProgress">Recording in progress...</div>
-
-    <button
-  class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 bg-gray-400 rounded-lg hover:bg-gray-500 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-  @click="sendAudioToBackend"
-  :disabled="!audioResultURL"
->
-  Send to {{ selectedFamilies.map(item => item.name).join(', ') }}
-</button>
-
+    <div class="mx-auto recording-indicator bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white" v-if="recordingInProgress">
+      Recording in progress...
+    </div>
+    <button class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 primary-button rounded-lg hover:bg-gray-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" @click="sendAudioToBackend" :disabled="!audioResultURL">
+      Send to {{ selectedFamilies.map(item => item.name).join(', ') }}
+    </button>
   </div>
 </template>
+
+<style>
+.primary-button {
+  background-color: #1c64f2;
+  color: white;
+}
+
+.primary-button:hover {
+  background-color: #1254c7;
+}
+
+.secondary-button {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.secondary-button:hover {
+  background-color: #d8d8d8;
+}
+
+audio {
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.recording-indicator {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+button {
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+body {
+  background-color: #f7f7f7;
+}
+
+</style>
 
 <script>
 import { makePost, uploadProfilePic } from "../../common/services/services";
