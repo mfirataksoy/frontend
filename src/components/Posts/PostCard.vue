@@ -137,11 +137,11 @@ async function openModal() {
                         leave-to="opacity-0 scale-95"
                       >
                         <DialogPanel
-                          class="w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                          class="w-full max-w-sm transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                         >
                           <DialogTitle
                             as="h3"
-                            class="text-center text-2xl font-bold leading-6 text-gray-900"
+                            class="text-center text-2xl font-bold leading-6 text-white"
                           >
                             Are you sure you would like to delete this post?
                           </DialogTitle>
