@@ -26,7 +26,7 @@ const user = useUserStore()
       <div
         class="bg-white rounded-md   w-30 "
       >
-        <h1 class=" text-xl text-black " style="font-family: 'Keepsake'">
+        <h1 class=" text-3xl text-black font-bold" style="font-family: 'Keepsake'">
           Keepsake
         </h1>
       </div>
