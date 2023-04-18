@@ -11,6 +11,14 @@ const navigation = [
 ]
 const { t } = useI18n()
 const mobileMenuOpen = ref(false)
+
+function scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
+}
+
 </script>
 
 <template>
@@ -59,6 +67,13 @@ const mobileMenuOpen = ref(false)
       </div>
     </div>
   </section>
+
+    <div class="text-black mb-3">
+      <button @click="scrollToBottom" >
+        <span class="mb-2">Read More</span>
+      </button>
+    </div>
+
   <div class="border-2 custom-black-border ml-20 mr-20"></div>
   <section class="">
       <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
