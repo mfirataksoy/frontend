@@ -87,7 +87,7 @@ export default {
 <!-- component -->
 <!-- component -->
 <div class="bg-white-100 min-h-screen pt-2  p-10 my-16">
-  <h1 class="text-6xl font-bold text-black mx-auto text-shadow " > Settings </h1>
+  <h1 class="text-6xl font-bold text-black mx-auto text-shadow " style="font-family: 'Keepsake'"> Settings </h1>
   <div class="custom-black-text border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
         <div class="container mx-auto">
             <div class="inputs w-full max-w-2xl p-16 mx-auto shadow-xl custom-black rounded-xl">

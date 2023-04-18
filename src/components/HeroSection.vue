@@ -40,7 +40,10 @@ const mobileMenuOpen = ref(false)
       <div class="container mx-auto xl:px-32">
         <div class="grid lg:grid-cols-2 gap-12 flex items-center">
           <div class="mt-12 lg:mt-0">
-            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 text-white">Keepsake. <br /><span class="text-white">Share your Stories and Memories.</span></h1>
+            <h1 class="text-5xl md:text-6xl xl:text-7xl tracking-tight mb-12 text-white" style="font-family: 'Keepsake'">
+              <span style="font-size: 1.5em;">Keepsake.</span><br />
+              <span class="text-white">Share Your love. Build Memories. Cherish Loved Ones.</span>
+            </h1>
             <a class="bg-white text-black rounded-md font-bold py-2 px-4 rounded shadow-lg" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/signup" role="button">Get started</a>
             <a class="inline-block px-7 py-3 bg-transparent font-bold text-white font-medium text-sm leading-snug uppercase rounded-md hover:text-black hover:bg-white ml-3 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="/auth/login" role="button">Log in</a>
           </div>
@@ -65,8 +68,8 @@ const mobileMenuOpen = ref(false)
           </div>
           <div class="custom-black rounded-3xl font-light text-gray-500 sm:text-lg dark:text-gray-400 p-10">
             
-              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white ">Our Mission</h2>
-              <p class="mb-4 text-gray-100">Bring friends and family closer by providing an online platform to record their voices in the form of stories, reading books, singing songs and more. We help you build memories and cherish your loved ones from anywhere across the globe.</p>
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white " style="font-family: 'Keepsake'">Our Mission</h2>
+              <p class="mb-4 text-gray-100 text-left">Bring friends and family closer by providing an online platform to record their voices in the form of stories, reading books, singing songs and more. We help you build memories and cherish your loved ones from anywhere across the globe.</p>
           </div>
           
       </div>
