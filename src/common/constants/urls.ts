@@ -1,3 +1,5 @@
+import { increaseFamilyCount } from "../services/services"
+
 export const baseURL = 'http://localhost:3002'
 export const prodURL = 'https://backend.keepsakeproject.com'
 
@@ -10,6 +12,7 @@ export const endpoints = {
     accountDetails: '/v1/auth/me',
   },
   posts: '/posts',
+  increasePostCount: '/increasePostCount',
 
   feed: '/posts/feed',
   
@@ -19,9 +22,11 @@ export const endpoints = {
     joinFamily: '/families/join-family',
     deleteFamily: '/families',
     closeFamily: '/families/close-family',
-    openFamily: '/families/open-family'
-    
+    openFamily: '/families/open-family',
+    increaseFamilyCount: '/increaseFamilyCount'
   },
+
+
 
   file: {
     profilePhoto: '/file/uploadPhoto',

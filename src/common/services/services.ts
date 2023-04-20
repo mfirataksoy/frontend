@@ -110,6 +110,18 @@ export const joinFamily = async (code: string) => {
   return response.data;
 };
 
+export const increaseFamilyCount = async () => {
+  const response = await getAccountDetails();
+  const asd = httpClient.get(endpoints.families.increaseFamilyCount + `/${response._id}`)
+  return response.data;
+}
+
+export const increasePostCount = async () => {
+  const response = await getAccountDetails();
+  const asd = httpClient.get(endpoints.increasePostCount + `/${response._id}`)
+  return response.data;
+}
+
 
 
 export const uploadProfilePic = async (data: any) => {
@@ -156,6 +168,6 @@ export const services = {
   closeFamily,
   openFamily,
   getFamily,
-  deletePost
-  
+  deletePost,
+  increaseFamilyCount
 };

@@ -16,6 +16,7 @@ const { t } = useI18n()
 const isOpen = ref(false)
 const families = ref<Family[] | null>(null)
 const selectedFamilies = ref<any[]>([]);
+const user = useUserStore()
 
 provide('selectedFamilies', selectedFamilies.value);
 
@@ -24,6 +25,7 @@ function closeModal() {
   selectedFamilies.value = []
 }
 async function openModal() {
+  console.log(user.currentUser?._id)
   const resp = await services.getFamilies()
   isOpen.value = true
   families.value = resp
