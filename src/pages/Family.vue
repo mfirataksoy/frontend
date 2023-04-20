@@ -26,7 +26,7 @@ onMounted(() => {
     <div class="">
       <AddFamilyButton class="mt-20 ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
     </div>
-    <h1 class="text-6xl font-bold text-black mx-auto text-shadow mt-20">My Families</h1>
+    <h1 class="text-6xl font-bold text-black mx-auto text-shadow mt-20" style="font-family: 'Keepsake'">My Families</h1>
     <div class="mx-3">
       <JoinFamilyButton class="mt-20 ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" />
     </div>

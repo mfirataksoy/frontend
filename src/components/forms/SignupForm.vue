@@ -124,8 +124,8 @@ function redirectToLogin() {
 
     <div class="container xl:px-32 px-5 py-36 mx-auto flex flex-wrap items-center">
       <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-        <h1 class="title-font font-bold lg:text-7xl text-6xl text-white text-center md:text-left ">Keepsake</h1>
-        <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl font-medium  text-white text-center md:text-left ">Connect with your loved ones.</p>
+        <h1 class="title-font lg:text-7xl text-6xl text-white text-center md:text-left " style="font-family: 'Keepsake'">Keepsake</h1>
+        <p class="leading-relaxed mt-4 lg:text-3xl text-2xl lg:max-w-xl  text-white text-center md:text-left " style="font-family: 'Keepsake'">Connect with your loved ones.</p>
       </div>
       <div class="lg:w-2/6 md:w-1/2 custom-black shadow-lg rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
         <div class="relative mb-4">

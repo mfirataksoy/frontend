@@ -133,27 +133,50 @@ export default {
 <template>
   <div>
     <div class="text-center mb-4">
-      <button class="shadow-xl mr-1 text-white px-4 w-auto h-12 primary-button rounded-lg hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none " @click="recordingInProgress ? endRecording() : beginRecording()">
-        <i class="fas fa-{{ recordingInProgress ? 'stop' : 'play' }}"></i>
-        {{ recordingInProgress ? 'End Recording' : 'Begin Recording' }}
-      </button>
+      <div class="flex justify-between">
+        <button 
+          class="shadow-xl mr-1 text-white px-4 w-auto h-12 rounded-lg hover:opacity-80 transition ease-in duration-200 focus:outline-none"
+          :class="recordingInProgress ? 'bg-gray-500 cursor-not-allowed' : 'bg-green-600'"
+          :disabled="recordingInProgress"
+          @click="beginRecording()"
+        >
+          <i class="fas fa-play mr-1"></i>
+          Begin Recording
+        </button>
+
+        <button 
+          class="shadow-xl mr-1 text-white px-4 w-auto h-12 rounded-lg hover:opacity-80 transition ease-in duration-200 focus:outline-none"
+          :class="recordingInProgress ? 'bg-red-600' : 'bg-gray-500 cursor-not-allowed'"
+          :disabled="!recordingInProgress"
+          @click="endRecording()"
+        >
+          <i class="fas fa-stop mr-1"></i>
+          End Recording
+        </button>
+      </div>
     </div>
+
     <audio class="mx-auto" controls :src="audioResultURL" id="resultAudio"></audio>
+
     <div class="mx-auto recording-indicator bg-red-500 animate-pulse rounded-full pl-4 pr-4 p-2 text-center font-bold text-white" v-if="recordingInProgress">
       Recording in progress...
     </div>
-    <button class="mx-auto mt-4 shadow-xl ml-1 text-white px-4 w-auto h-12 primary-button rounded-lg hover:bg-gray-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" @click="sendAudioToBackend" :disabled="!audioResultURL">
-      Send to {{ selectedFamilies.map(item => item.name).join(', ') }}
-    </button>
-    <div v-if="errorVisible">
+
+    <div class="text-center">
+      <button class="mx-auto mt-4 shadow-xl ml-1 text-black px-4 w-auto h-12 bg-white rounded-lg  active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" @click="sendAudioToBackend" :disabled="!audioResultURL">
+        <template v-if="selectedFamilies.length > 0">
+          Send to: {{ selectedFamilies.map(item => item.name).join(', ') }}
+        </template>
+        <template v-else>
+          <span class="text-red text-lg font-bold">No family selected</span>
+        </template>
+      </button>
+      <div v-if="errorVisible">
       <Alert :error="{title: errorMessage, body: 'Please upgrade your member plan and try again.'}"></Alert> 
+    </div>
     </div>
   </div>
 </template>
-
-
-
-
 <style>
 .primary-button {
   background-color: #1c64f2;

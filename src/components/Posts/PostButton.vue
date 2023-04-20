@@ -77,10 +77,10 @@ function onFamilySelect(family) {
                 leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95"
               >
                 <DialogPanel
-                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                 >
-                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
-                    Please select the family you want to post to
+                <DialogTitle as="h3" class="text-lg font-medium leading-6 text-white mb-3">
+                    Please select the family you want to post to:
                   </DialogTitle>
                   <div class="flex items-center justify-center">
                     <div class="mx-2">
@@ -90,7 +90,7 @@ function onFamilySelect(family) {
                       >
                         <a
                           href="#" aria-current="page"
-                          class="rounded-l px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                          class="rounded-lg px-6 py-2.5 bg-white text-black font-bold text-xs active:bg-blue-800 hover:scale-105 transition-all ease-out duration-200 cursor-pointer"
                           @click.prevent="onFamilySelect(family)"
                         >
                           {{ family.name }}
@@ -100,6 +100,7 @@ function onFamilySelect(family) {
 
                   </div>
 
+                  <div class="border-t border-b border-white mt-3 mb-3"></div>
 
                   <div class="mt-4">
                     <Audio :selected-families="selectedFamilies" @selected-families="setSelectedFamilies" />
@@ -113,3 +114,11 @@ function onFamilySelect(family) {
     </div>
   </button>
 </template>
+
+<style scoped>
+
+.custom-black {
+  background-color: #272727;
+}
+
+</style>

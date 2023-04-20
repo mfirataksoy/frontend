@@ -5,14 +5,19 @@ const user = useUserStore()
 
 </script>
 
+<style>
+  @import url('/public/fonts.css');
+</style>
+
+
 <template>
   <div v-if="!user.isLoggedIn.value" class="flex justify-center">
     <a href="/">
       <div
         class="bg-white rounded-md w-30 "
       >
-        <h1 class=" text-xl text-black font-bold">
-          KEEPSAKE
+        <h1 class=" text-3xl text-black font-bold" style="font-family: 'Keepsake'">
+          Keepsake
         </h1>
       </div>
     </a>
@@ -21,8 +26,8 @@ const user = useUserStore()
       <div
         class="bg-white rounded-md   w-30 "
       >
-        <h1 class=" text-xl text-black font-bold">
-          KEEPSAKE
+        <h1 class=" text-3xl text-black font-bold" style="font-family: 'Keepsake'">
+          Keepsake
         </h1>
       </div>
   </div>

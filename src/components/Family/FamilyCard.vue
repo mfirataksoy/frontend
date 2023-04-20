@@ -167,7 +167,7 @@ async function leaveFamily() {
                         >
                           <DialogTitle
                             as="h3"
-                            class="text-center text-2xl font-bold leading-6 text-white"
+                            class="text-center text-2xl font-bold leading-6 text-white " 
                           >
                             {{family.name}} Settings
                           </DialogTitle>

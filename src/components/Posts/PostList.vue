@@ -164,7 +164,7 @@ const { t } = useI18n()
     </div>
     </button>
     <button v-else class="ml-10 mb-5 custom-black rounded-md text-white font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" >All Posts</button>
-    <h1 class="pr-30 text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal"> {{ currentFamily }}</h1>
+    <h1 class="pr-30 text-6xl font-bold text-black mx-auto text-shadow hover:text-shadow-lg" @click="openModal" style="font-family: 'Keepsake'"> {{ currentFamily }}</h1>
     </div>
     <div class="custom-black-text border-b-2 font-bold mb-10 ml-10 mr-10 mt-10"></div>
 
