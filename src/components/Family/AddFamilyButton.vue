@@ -8,16 +8,24 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { services } from '~/common/services/services'
+import Alert from "../Notification/Alert.vue"; // import the Alert component
+
 const { t } = useI18n()
 
 const isOpen = ref(false)
 
 const user = useUserStore()
 
+const familyCreatedCount = ref(0);
+
 const familyName = ref('')
+const errorMessage = ref("");
+const errorvisible = ref(false);
 
 function closeModal() {
   isOpen.value = false
+  errorMessage.value = "";
+  errorvisible.value = false;
 }
 async function openModal() {
   const id = user.currentUser?._id;
@@ -32,22 +40,37 @@ async function openModal() {
 
 
 async function checkFamilyNumber(id: string) {
-  const familyNumber = await services.getUser(id)
-  console.log(familyNumber)
+  const res = await services.getUser(id);
+  familyCreatedCount.value = res.familyCreatedCount;
 }
 
 async function createFamily() {
-  const nowJoinedFamily = await services.createFamily(familyName.value)
-  const currentFamilies = await services.getAccountDetails();
-  const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
-  familyIdArray.push(nowJoinedFamily._id);
-  const response = await services.editAccountDetails({
-  _id: currentFamilies._id,
-  familyId: familyIdArray
+  try {
+    if(familyCreatedCount.value >= 1) throw new Error("You can only create one family");
+    else{
+      const nowJoinedFamily = await services.createFamily(familyName.value)
+      const currentFamilies = await services.getAccountDetails();
+      const familyIdArray = currentFamilies.familyId || []; // In case familyId is empty
+      familyIdArray.push(nowJoinedFamily._id);
+      const response = await services.editAccountDetails({
+      _id: currentFamilies._id,
+      familyId: familyIdArray
   });
   console.log(response);
   window.location.reload();
+    }
   }
+  catch (error) {
+    errorvisible.value = true;
+    errorMessage.value = error.message || "Unknown error";
+    console.log(error);
+  }
+}
+
+function clearError() {
+  errorvisible.value = false;
+  errorMessage.value = "";
+}
 </script>
 
 <template>
@@ -78,9 +101,12 @@ async function createFamily() {
                 <DialogPanel
                   class="w-full max-w-md transform overflow-hidden rounded-2xl custom-black p-6 text-left align-middle shadow-xl transition-all"
                 >
-                  <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-white">
+                <DialogTitle as="h3" class="text-center text-xl font-medium leading-6 text-white">
                     Create a new family
                   </DialogTitle>
+                  <div v-if="errorvisible">
+                    <Alert :error="{title: errorMessage, body: 'Please fix the error and try again.'}"></Alert> 
+                  </div>
 
                   <div class="mx-auto flex flex-col gap-1 max-w-xlr" w="300px">
                     <label class=" text-gray-100 text-center text-sm pt-3 pb-3" for="name">

@@ -1,3 +1,135 @@
+
+
+<script>
+import { ref } from 'vue';
+import { makePost, uploadProfilePic, increasePostCount } from "../../common/services/services";
+import Alert from "../Notification/Alert.vue"; // Import the Alert component
+
+// ...
+
+
+export default {
+  props: {
+    selectedFamilies: {
+      type: Array,
+      required: true,
+    },
+  },
+  components: {
+    Alert,
+  },
+  emits: ["audio-data"],
+  setup(props, { emit }) {
+    const mediaRecorder = ref(null);
+    const recordingInProgress = ref(false);
+    const audioResultURL = ref("");
+    const audioBlob = ref(null);
+    const user = useUserStore()
+    const errorMessage = ref(""); // Add a ref for errorMessage
+    const errorVisible = ref(false); // Add a ref for errorVisible
+
+    emit("audio-data", audioBlob.value);
+    emit("selected-families", props.selectedFamilies);
+
+    
+
+    const beginRecording = () => {
+      let audioChunks = [];
+      recordingInProgress.value = true;
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        mediaRecorder.value = new MediaRecorder(stream);
+        mediaRecorder.value.start();
+
+        mediaRecorder.value.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+
+        mediaRecorder.value.addEventListener("stop", () => {
+          audioBlob.value = new Blob(audioChunks, { type: "audio/mpeg" });
+          audioResultURL.value = URL.createObjectURL(audioBlob.value);
+          emit("audio-data", audioBlob.value);
+        });
+      });
+    };
+
+    const endRecording = () => {
+      if (mediaRecorder.value) {
+        mediaRecorder.value.stop();
+        recordingInProgress.value = false;
+      }
+    };
+
+    const sendAudioToBackend = async () => {
+  console.log('sendAudioToBackend called');
+
+  if (!audioResultURL.value) return;
+  console.log(user.currentUser?._id);
+  const formData = new FormData();
+  formData.append("file", audioBlob.value, "audio.mp3");
+
+  try {
+    console.log('Trying to increasePostCount');
+    const res = await increasePostCount(user.currentUser?._id);
+
+    // Add these lines to check the response
+    if (!res || res.error) {
+      throw new Error(res.error || 'Error in response');
+    }
+
+
+        const response = await uploadProfilePic(formData);
+        console.log("Audio sent successfully:", response);
+
+        const payload = {
+          familyId: props.selectedFamilies[0].id,
+          audioUrl: response.url,
+        };
+
+        const ans = await makePost(payload);
+        console.log("Post sent successfully:", ans);
+        window.location.reload()
+
+    // Additional code...
+  } catch (error) {
+    errorVisible.value = true;
+    errorMessage.value = "You have reached the maximum amount of posts you can make.";
+  }
+
+  console.log('After catch block');
+};
+
+
+    return {
+      Alert,
+      beginRecording,
+      endRecording,
+      recordingInProgress,
+      audioResultURL,
+      sendAudioToBackend,
+      errorVisible,
+      errorMessage,
+    };
+  },
+};
+</script>
+
+<style>
+
+.custom-black {
+  background-color: #272727;
+}
+
+.custom-purple {
+  background-color: #cabfcb;
+}
+
+.custom-black-text {
+  border-color: #272727;
+}
+
+</style>
+
 <template>
   <div>
     <div class="text-center mb-4">
@@ -39,6 +171,9 @@
           <span class="text-red text-lg font-bold">No family selected</span>
         </template>
       </button>
+      <div v-if="errorVisible">
+      <Alert :error="{title: errorMessage, body: 'Please upgrade your member plan and try again.'}"></Alert> 
+    </div>
     </div>
   </div>
 </template>
@@ -89,106 +224,6 @@ button:hover {
 
 body {
   background-color: #f7f7f7;
-}
-
-</style>
-
-<script>
-import { makePost, uploadProfilePic } from "../../common/services/services";
-
-
-export default {
-  props: {
-    selectedFamilies: {
-      type: Array,
-      required: true,
-    },
-  },
-  emits: ["audio-data"],
-  setup(props, { emit }) {
-    const mediaRecorder = ref(null);
-    const recordingInProgress = ref(false);
-    const audioResultURL = ref("");
-    const audioBlob = ref(null);
-
-    emit("audio-data", audioBlob.value);
-    emit("selected-families", props.selectedFamilies);
-
-    
-
-    const beginRecording = () => {
-      let audioChunks = [];
-      recordingInProgress.value = true;
-
-      navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        mediaRecorder.value = new MediaRecorder(stream);
-        mediaRecorder.value.start();
-
-        mediaRecorder.value.ondataavailable = (event) => {
-          audioChunks.push(event.data);
-        };
-
-        mediaRecorder.value.addEventListener("stop", () => {
-          audioBlob.value = new Blob(audioChunks, { type: "audio/mpeg" });
-          audioResultURL.value = URL.createObjectURL(audioBlob.value);
-          emit("audio-data", audioBlob.value);
-        });
-      });
-    };
-
-    const endRecording = () => {
-      if (mediaRecorder.value) {
-        mediaRecorder.value.stop();
-        recordingInProgress.value = false;
-      }
-    };
-
-    const sendAudioToBackend = async () => {
-      if (!audioResultURL.value) return;
-
-      const formData = new FormData();
-      formData.append("file", audioBlob.value, "audio.mp3");
-
-      try {
-        const response = await uploadProfilePic(formData);
-        console.log("Audio sent successfully:", response);
-
-        const payload = {
-          familyId: props.selectedFamilies[0].id,
-          audioUrl: response.url,
-        };
-
-        const ans = await makePost(payload);
-        console.log("Post sent successfully:", ans);
-        window.location.reload()
-      } catch (error) {
-        console.error("Error sending audio to backend:", error);
-      }
-    };
-
-    return {
-      beginRecording,
-      endRecording,
-      recordingInProgress,
-      audioResultURL,
-      sendAudioToBackend,
-    };
-  },
-};
-</script>
-
-<style>
-
-.custom-black {
-  background-color: #272727;
-}
-
-.custom-purple {
-  background-color: #cabfcb;
-}
-
-.custom-black-text {
-  border-color: #272727;
 }
 
 </style>
