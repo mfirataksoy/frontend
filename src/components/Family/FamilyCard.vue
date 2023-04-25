@@ -19,6 +19,7 @@ const isOpen = ref(false);
 const isOpenConfirm = ref(false);
 const familyClosed = ref(false)//await services.openCloseFamily(family._id);
 
+const showPopup = ref(false);
 
 const user = useUserStore()
 
@@ -40,10 +41,18 @@ async function openModalConfirm() {
   isOpenConfirm.value = true;
 }
 
+function showCopiedPopup() {
+    showPopup.value = true;
+    setTimeout(() => {
+      showPopup.value = false;
+    }, 2000);
+  }
 
 async function copyToClipboard(text: string) {
-  await navigator.clipboard.writeText(text)
-}
+    await navigator.clipboard.writeText(text);
+    showCopiedPopup();
+  }
+
 
 function  sendInviteEmail() {
     const recipient = '';
@@ -343,13 +352,25 @@ async function leaveFamily() {
               </TransitionRoot>
             </div>
           </button>
-          <button class="bg-white text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-100 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" 
-          @click="copyToClipboard(family.code)">
-          Copy Invite ID: {{ family.code }}
-          </button>
+          <button
+    class="bg-white text-black font-bold rounded-xl shadow-md py-2 px-4 hover:bg-gray-100 hover:scale-102 transition-all ease-out duration-200 cursor-pointer"
+    @click="copyToClipboard(family.code)"
+  >
+    Copy Invite ID: {{ family.code }}
+  </button>
           <button class="bg-white hover:bg-gray-100 text-white font-bold py-2 px-4 rounded-xl ml-2 hover:scale-102 transition-all ease-out duration-200 cursor-pointer" @click="sendInviteEmail">
             <font-awesome-icon :icon="['fas', 'envelope']" style="color: #000000;" />
           </button>
+          
+          <div class="flex flex-col items-center">
+            <div
+    v-if="showPopup"
+    class="text-white bg-green-500 px-4 py-1 mt-1 rounded-md text-sm transition-all duration-300 max-w-sm"
+  >
+  Invite code copied to clipboard.
+  </div>
+          </div>
+
 
         </p>
         <h2 class="text-xl font-bold mb-4 text-white">

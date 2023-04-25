@@ -121,16 +121,7 @@ export default {
                                     <input v-model="lastName" class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'  required>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-between mt-4">
-                                <div class='w-full md:w-1/2 px-3 mb-6'>
-                                    <label class='block tracking-wide text-white text-lg font-bold mb-2' >Birthdate</label>
-                                    <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'>
-                                </div>
-                                <div class='w-full md:w-1/2 px-3 mb-6'>
-                                    <label class='block tracking-wide text-white text-lg font-bold mb-2' >Phone Number</label>
-                                    <input class='appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500' type='text'>
-                                </div>
-                            </div>
+
                             <div class="flex justify-end">
                                 <button @click="submitForm" class="bg-green-100 rounded-md text-black font-bold py-2 px-4 rounded shadow-lg hover:scale-110 transition duration-300" type="submit">Save Changes</button>
                             </div>

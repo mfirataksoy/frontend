@@ -2,7 +2,7 @@
 
 <script>
 import { ref } from 'vue';
-import { makePost, uploadProfilePic, increasePostCount } from "../../common/services/services";
+import { makePost, uploadProfilePic, increasePostCount, getAccountDetails } from "../../common/services/services";
 import Alert from "../Notification/Alert.vue"; // Import the Alert component
 
 // ...
@@ -69,35 +69,31 @@ export default {
   formData.append("file", audioBlob.value, "audio.mp3");
 
   try {
-    console.log('Trying to increasePostCount');
+    const current = await getAccountDetails(user.currentUser?._id);
+    console.log('current:', current.postsCount);
+    if(current.postsCount > 20) throw new Error("You have reached the maximum amount of posts you can make.")
+    
+    const response = await uploadProfilePic(formData);
+    const payload = {
+      familyId: props.selectedFamilies[0].id,
+      audioUrl: response.url,
+    };
+
+    const ans = await makePost(payload);
     const res = await increasePostCount(user.currentUser?._id);
 
-    // Add these lines to check the response
-    if (!res || res.error) {
-      throw new Error(res.error || 'Error in response');
-    }
-
-
-        const response = await uploadProfilePic(formData);
-        console.log("Audio sent successfully:", response);
-
-        const payload = {
-          familyId: props.selectedFamilies[0].id,
-          audioUrl: response.url,
-        };
-
-        const ans = await makePost(payload);
-        console.log("Post sent successfully:", ans);
-        window.location.reload()
+    window.location.reload()
 
     // Additional code...
   } catch (error) {
+    console.log('Error in sendAudioToBackend:', error);
     errorVisible.value = true;
     errorMessage.value = "You have reached the maximum amount of posts you can make.";
   }
 
   console.log('After catch block');
 };
+
 
 
     return {
