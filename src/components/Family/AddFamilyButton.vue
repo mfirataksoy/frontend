@@ -9,6 +9,7 @@ import {
 } from '@headlessui/vue'
 import { services } from '~/common/services/services'
 import Alert from "../Notification/Alert.vue"; // import the Alert component
+import { i } from 'vitest/dist/index-50755efe';
 
 const { t } = useI18n()
 
@@ -29,24 +30,26 @@ function closeModal() {
 }
 async function openModal() {
   const id = user.currentUser?._id;
+  const res = await services.getAccountDetails();
+  console.log(res.familyCreatedCount)
+
   if (id) {
-    console.log("here")
-    await checkFamilyNumber(id);
     isOpen.value = true;
   } else {
-    console.error('User ID is undefined');
+  isOpen.value = true;
   }
 }
 
 
-async function checkFamilyNumber(id: string) {
-  const res = await services.getUser(id);
-  familyCreatedCount.value = res.familyCreatedCount;
-}
+
 
 async function createFamily() {
   try {
-    if(familyCreatedCount.value >= 1) throw new Error("You can only create one family");
+    const res = await services.getAccountDetails();
+    if(res.familyCreatedCount >= 1) {
+      console.log(familyCreatedCount)
+      throw new Error("You can only create one family");
+    }
     else{
       const nowJoinedFamily = await services.createFamily(familyName.value)
       const currentFamilies = await services.getAccountDetails();
@@ -57,6 +60,7 @@ async function createFamily() {
       familyId: familyIdArray
   });
   console.log(response);
+  await services.increaseFamilyCount();
   window.location.reload();
     }
   }
@@ -71,6 +75,7 @@ function clearError() {
   errorvisible.value = false;
   errorMessage.value = "";
 }
+
 </script>
 
 <template>
@@ -105,7 +110,7 @@ function clearError() {
                     Create a new family
                   </DialogTitle>
                   <div v-if="errorvisible">
-                    <Alert :error="{title: errorMessage, body: 'Please fix the error and try again.'}"></Alert> 
+                    <Alert :error="{title: errorMessage, body: 'Please upgrade your membership plan to be able to create more families.'}"></Alert> 
                   </div>
 
                   <div class="mx-auto flex flex-col gap-1 max-w-xlr" w="300px">
