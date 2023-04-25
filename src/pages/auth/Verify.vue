@@ -17,7 +17,6 @@ const handleVerify = async () => {
     router.push('/auth/login')
 }
 const resendCode = () => {
-  console.log('resend')
 }
 onMounted(() => {
   email.value = user?.currentUser?.email || ''

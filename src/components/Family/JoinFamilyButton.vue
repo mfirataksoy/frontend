@@ -35,13 +35,11 @@ async function joinFamily() {
       _id: currentFamilies._id,
       familyId: familyIdArray
     });
-    console.log(response);
     window.location.reload();
   } catch (error) {
     errorvisible.value=true
     errorMessage.value = error.response?.data?.message || "Unknown error";
     //alert(errorMessage); // Replace with your preferred method of displaying error messages
-    console.log(error)
   }
 }
 

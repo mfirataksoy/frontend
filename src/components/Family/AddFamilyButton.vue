@@ -31,7 +31,6 @@ function closeModal() {
 async function openModal() {
   const id = user.currentUser?._id;
   const res = await services.getAccountDetails();
-  console.log(res.familyCreatedCount)
 
   if (id) {
     isOpen.value = true;
@@ -47,7 +46,6 @@ async function createFamily() {
   try {
     const res = await services.getAccountDetails();
     if(res.familyCreatedCount >= 1) {
-      console.log(familyCreatedCount)
       throw new Error("You can only create one family");
     }
     else{
@@ -59,7 +57,6 @@ async function createFamily() {
       _id: currentFamilies._id,
       familyId: familyIdArray
   });
-  console.log(response);
   await services.increaseFamilyCount();
   window.location.reload();
     }
@@ -67,7 +64,6 @@ async function createFamily() {
   catch (error) {
     errorvisible.value = true;
     errorMessage.value = error.message || "Unknown error";
-    console.log(error);
   }
 }
 

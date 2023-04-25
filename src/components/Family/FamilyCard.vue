@@ -68,7 +68,6 @@ function  sendInviteEmail() {
     const updatedFamily = family;
     const res = await services.closeFamily(family._id);
     //change for prod
-    console.log(updatedFamily)
   }
 
   async function handleFamilyOpen(){
@@ -76,7 +75,6 @@ function  sendInviteEmail() {
     const updatedFamily = family;
     const res = await services.openFamily(family._id);
     //change for prod
-    console.log(updatedFamily)
   }
 
 
@@ -91,7 +89,6 @@ function  sendInviteEmail() {
 async function deleteFamily(id: string) {
   const deleteConfirmation = await services.deleteFamily(id)
   window.location.reload()
-  console.log(deleteConfirmation)
 }
 
 async function removeUser(userId: string) {
@@ -102,7 +99,6 @@ async function removeUser(userId: string) {
   updatedFamily.members = updatedMembers
   const updateFamily = await services.updateFamily(family._id, updatedFamily)
   window.location.reload()
-  console.log(updateFamily)
 
   //delete family in user
   //const updatedUser = await services.getUser(userId)

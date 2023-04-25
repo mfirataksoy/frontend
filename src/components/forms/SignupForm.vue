@@ -93,7 +93,6 @@ const handleSubmit = async (e: MouseEvent) => {
 }
 
 function redirectToLogin() {
-  console.log("here")
   router.push('/auth/login')
 }
 

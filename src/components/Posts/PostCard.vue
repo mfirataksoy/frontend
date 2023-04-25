@@ -41,15 +41,12 @@ const ownsPost = computed(() => {
 });
 
 const isAdmin = computed(() => {
-  console.log(family)
  // return user.currentUser?._id === family.adminUser;
 });
 
 
 async function deletePost() {
-  const deleteConfirmation = await services.deletePost(post._id)
-  console.log(deleteConfirmation)
-  console.log(post.familyId)
+  await services.deletePost(post._id)
   window.location.reload()
 }
 

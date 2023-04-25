@@ -32,7 +32,6 @@ const getfamilies = async() =>{
 
   if (families.value) {
     const familyIdArray = families.value.map((item: Family) => item._id).flat();
-    console.log(families);
     const feedOptions = {
       skip: 0,
       limit: 100
@@ -69,7 +68,6 @@ async function openModal() {
 async function setFamily(fam: string, famId: string): Promise<void> {
   currentFamily.value = fam;
   propFamily.value = await getFamily(famId)
-  console.log(propFamily.value)
   isOpen.value = false;
   if (famId === "all") {
     filteredPosts.value = posts.value;

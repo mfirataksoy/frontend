@@ -61,16 +61,13 @@ export default {
     };
 
     const sendAudioToBackend = async () => {
-  console.log('sendAudioToBackend called');
 
   if (!audioResultURL.value) return;
-  console.log(user.currentUser?._id);
   const formData = new FormData();
   formData.append("file", audioBlob.value, "audio.mp3");
 
   try {
     const current = await getAccountDetails(user.currentUser?._id);
-    console.log('current:', current.postsCount);
     if(current.postsCount > 20) throw new Error("You have reached the maximum amount of posts you can make.")
     
     const response = await uploadProfilePic(formData);
@@ -86,12 +83,10 @@ export default {
 
     // Additional code...
   } catch (error) {
-    console.log('Error in sendAudioToBackend:', error);
     errorVisible.value = true;
     errorMessage.value = "You have reached the maximum amount of posts you can make.";
   }
 
-  console.log('After catch block');
 };
 
 

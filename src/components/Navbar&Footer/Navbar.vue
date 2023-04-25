@@ -16,7 +16,6 @@ import { computed } from 'vue'
 
   const toggleMobileMenu = () => {
   isOpen.value = !isOpen.value;
-  console.log('Toggling mobile menu');
 };
 
 </script>

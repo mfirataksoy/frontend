@@ -41,12 +41,10 @@ export const useUserStore = defineStore('user', () => {
 
   function logout() {
     isLoggedIn.value = false
-    console.log("users.ts: ", isLoggedIn.value)
   }
 
   function login() {
     isLoggedIn.value = true
-    console.log("users.ts: ", isLoggedIn.value)
   }
 
   // function switchIsLoggedIn() {

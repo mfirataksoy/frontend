@@ -44,7 +44,6 @@ export default {
           phoneNumber: this.phoneNumber,
           profilePicUrl: this.profilePicUrl,
         });
-        console.log("finished update");
       } catch (error) {
         console.error(error);
       }
@@ -60,11 +59,9 @@ export default {
         formData.append('file', this.selectedProfilePicture, this.selectedProfilePicture.name);
 
         const response = await services.uploadProfilePic(formData);
-        console.log(response)
         this.profilePicUrl = response.url;
         this.submitForm()
         window.location.reload()
-        console.log("Updated profile picture");
       } catch (error) {
         console.error(error);
       }
