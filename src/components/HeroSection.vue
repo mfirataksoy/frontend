@@ -57,7 +57,7 @@ function scrollToBottom() {
           </div>
           <div class="mb-12 lg:mb-0">
             <img
-              src="https://imgs.search.brave.com/5EcLTemFzq-iyfET1_Pu1HpOAMjihfTG2toOWlUTqoU/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9oaXBz/LmhlYXJzdGFwcHMu/Y29tL2htZy1wcm9k/LnMzLmFtYXpvbmF3/cy5jb20vaW1hZ2Vz/L21hbi1hbmQtd29t/YW4taG9sZGluZy1o/YW5kcy1yb3lhbHR5/LWZyZWUtaW1hZ2Ut/MTU3NjY5ODUwOC5q/cGc"
+              src="https://imgs.search.brave.com/33XJWJJzC9h2m9TnL1MLbm_Jnf31V1VKmB2jnvzKYDk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzM2L2Nk/LzQzLzM2Y2Q0MzBi/NmZiZGQ1MzZkMTI1/ZjIzMGE2YTE1NmMz/LmpwZw"
               class="w-full rounded-lg shadow-lg"
               alt=""
               style="opacity: 0.99;"
